@@ -1,6 +1,7 @@
 package com.example.MadCampProj1_ver2.phone
 
 import CVData
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
@@ -22,6 +23,7 @@ sealed class ListItem {
 }
 
 class PhoneAdapter(private var sectionedList: List<ListItem>,
+                   private val context: Context,
                    private val onItemClick: (Int) -> Unit,
                    private val onLocationClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -87,7 +89,8 @@ class PhoneAdapter(private var sectionedList: List<ListItem>,
                     notifyItemChanged(clickedPosition)
                 },
                     isFirstInSection = isFirstInSection,
-                    isLastInSection = isLastInSection
+                    isLastInSection = isLastInSection,
+                    context
                 )
 
             }
@@ -136,10 +139,11 @@ class ContactViewHolder(
         isExpanded: Boolean,
         onCardClick: (Int) -> Unit,
         isFirstInSection: Boolean,
-        isLastInSection: Boolean
+        isLastInSection: Boolean,
+        context: Context
     ) {
         nameTextView.text = member.name
-        for (cv in CVData.getCVDataList()) {
+        for (cv in CVData.getCVDataList(context)) {
             if (cv.memberId == member.memberId) {
                 statusTextView.text = cv.studentID
                 break

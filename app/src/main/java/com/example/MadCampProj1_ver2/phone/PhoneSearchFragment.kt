@@ -52,7 +52,7 @@ class PhoneSearchFragment : Fragment() {
         recyclerView = view.findViewById(R.id.search_recycler_view)
 
         // Load data and set up RecyclerView
-        originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList())
+        originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList(requireContext()))
         val initialData = listOf<ListItem>()
         adapter = PhoneAdapter(initialData,
             onItemClick = { id ->
@@ -73,6 +73,7 @@ class PhoneSearchFragment : Fragment() {
                     .addToBackStack(null)
                     .commit()
             },
+            context = requireContext(),
             onLocationClick = { id ->
                 // Handle location click (e.g., open map view)
                 val member = memberDataList.find { it.memberId == id }

@@ -34,13 +34,13 @@ class PhoneFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.phone_recycler_view)
         val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
-        val cvDataList: List<CVDto> = CVData.getCVDataList()
+        val cvDataList: List<CVDto> = CVData.getCVDataList(requireContext())
 
         // 섹션화된 데이터 준비
 
         val sectionedList = prepareSectionedList(memberDataList, cvDataList)
         val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber)
-        notificationNumber.text = NotificationData.getCheckdNotificationDataList().toString()
+        notificationNumber.text = NotificationData.getCheckdNotificationDataList(requireContext()).toString()
 
         val searchButton = view.findViewById<ImageView>(R.id.top_bar_search)
         searchButton.setOnClickListener {
@@ -91,7 +91,7 @@ class PhoneFragment : Fragment() {
         // RecyclerView 설정
         recyclerView.layoutManager = LinearLayoutManager(activity)  // 아이템 세로로 나열
         Log.d("hi", sectionedList.toString())
-        recyclerView.adapter = PhoneAdapter(sectionedList, { id ->
+        recyclerView.adapter = PhoneAdapter(sectionedList, context = requireContext(), { id ->
             // onItemClick 이벤트 처리
             val fragment = PhoneDetailFragment().apply {
                 arguments = Bundle().apply {

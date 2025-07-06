@@ -30,7 +30,7 @@ class PhoneDetailFragment : Fragment() {
             val member = memberDataList.find { it.memberId == memberId }
 
             if(member != null){
-                val CVDataList: List<CVDto> = CVData.getCVDataList() //cv data
+                val CVDataList: List<CVDto> = CVData.getCVDataList(requireContext()) //cv data
                 val cv = CVDataList.find{it.memberId == memberId}
                 if(cv != null){
                     // 상단바 텍스트 변경 및 뒤로가기 버튼 추가

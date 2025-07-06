@@ -70,7 +70,7 @@ class MapFragment : Fragment() {
                 .commit()
         }
         val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber)
-        notificationNumber.text = NotificationData.getCheckdNotificationDataList().toString()
+        notificationNumber.text = NotificationData.getCheckdNotificationDataList(requireContext()).toString()
         val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person)
         mypageButton.setOnClickListener {
 
@@ -133,7 +133,7 @@ class MapFragment : Fragment() {
     private fun setupRecyclerView(view: View, memberDataList: List<MemberDto>) {
         val recyclerView: RecyclerView = view.findViewById(R.id.map_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = MapAdapter(memberDataList) { id ->
+        recyclerView.adapter = MapAdapter(memberDataList, context = requireContext()) { id ->
             val member = memberDataList.find { it.memberId == id }
             member?.let { moveToLocation(it.lat, it.lng, it) }
         }
@@ -187,7 +187,7 @@ class MapFragment : Fragment() {
         val statusText: TextView = view.findViewById(R.id.phone_component_status)
         val cardView: CardView = view.findViewById(R.id.phone)
 
-        val cv = CVData.getCVDataList().find { it.memberId == member.memberId }
+        val cv = CVData.getCVDataList(requireContext()).find { it.memberId == member.memberId }
         cv?.let {
             imageView.setImageResource(member.imgCirclePath)
             imageView.setBackgroundResource(R.drawable.circle)

@@ -102,13 +102,13 @@ class GalleryUploadFragment(private val galleryAdapter: GalleryAdapter?) : Fragm
                 image = -1
             )
             val newNotification = NotificationDto(
-                id = NotificationData.getNotificationDataList().size + 1,
+                id = NotificationData.getNotificationDataList(requireContext()).size + 1,
                 type = NotificationType.GALLERY_POST,
                 message = "게시물을 업로드하였습니다",
                 targetId = GalleryData.getGalleryDataList().size + 1,
                 clicked = false
             )
-            NotificationData.addNotificationItem(newNotification)
+            NotificationData.addNotificationItem(requireContext(), newNotification)
             Log.d("Date", currentDate)
             GalleryData.addGalleryItem(newGalleryItem)
             Log.d("GalleryData", "Current GalleryData: ${GalleryData.getGalleryDataList()}")

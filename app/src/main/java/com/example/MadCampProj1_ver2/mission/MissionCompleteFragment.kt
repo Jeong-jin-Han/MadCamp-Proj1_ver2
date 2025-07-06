@@ -71,7 +71,7 @@ class MissionCompleteFragment : Fragment() {
         }
 
         val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber)
-        notificationNumber.text = NotificationData.getCheckdNotificationDataList().toString()
+        notificationNumber.text = NotificationData.getCheckdNotificationDataList(requireContext()).toString()
         val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person)
         mypageButton.setOnClickListener {
 
@@ -96,9 +96,10 @@ class MissionCompleteFragment : Fragment() {
                 .map { it.memberId }
 
             // Load data and set up RecyclerView
-            originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList(), filteredMemberIds)
+            originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList(requireContext()), filteredMemberIds)
 //            val initialData = listOf<ListItem>()
             adapter = PhoneAdapter(originalData,
+                context = requireContext(),
                 onItemClick = { id ->
                     // Handle item click (e.g., navigate to detail view)
                     val fragment = PhoneDetailFragment().apply {

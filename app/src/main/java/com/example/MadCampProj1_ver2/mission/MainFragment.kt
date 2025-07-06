@@ -70,7 +70,7 @@ class MainFragment : Fragment() {
                 .commit()
         }
         val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber)
-        notificationNumber.text = NotificationData.getCheckdNotificationDataList().toString()
+        notificationNumber.text = NotificationData.getCheckdNotificationDataList(requireContext()).toString()
         val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person)
         mypageButton.setOnClickListener {
 

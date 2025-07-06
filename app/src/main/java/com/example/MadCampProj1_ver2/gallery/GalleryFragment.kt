@@ -65,7 +65,7 @@ class GalleryFragment : Fragment() {
         )
         recyclerView.layoutManager = layoutManager
         val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber)
-        notificationNumber.text = NotificationData.getCheckdNotificationDataList().toString()
+        notificationNumber.text = NotificationData.getCheckdNotificationDataList(requireContext()).toString()
         val notificationButton = view.findViewById<ImageView>(R.id.top_bar_bell)
         notificationButton.setOnClickListener {
 

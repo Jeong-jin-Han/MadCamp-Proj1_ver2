@@ -13,6 +13,7 @@ import com.example.MadCampProj1_ver2.sampledata.CVDto
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
 
 class MapAdapter (private var memberDataList: List<MemberDto>,
+                  private val context: Context,
                       private val onItemClick: (Int) -> Unit) //람다식으로 인자값 받음
     : RecyclerView.Adapter<MapAdapter.MapViewHolder>(){
 
@@ -31,7 +32,7 @@ class MapAdapter (private var memberDataList: List<MemberDto>,
 
     override fun onBindViewHolder(holder: MapViewHolder, position: Int) {
         val member = memberDataList[position]
-        val cvDataList: List<CVDto> = CVData.getCVDataList()
+        val cvDataList: List<CVDto> = CVData.getCVDataList(context)
         val cv = cvDataList.find {it.memberId == member.memberId}
         if(cv != null){
             holder.nameTextView.text = member.name

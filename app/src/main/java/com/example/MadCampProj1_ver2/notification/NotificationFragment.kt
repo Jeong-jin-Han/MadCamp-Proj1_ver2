@@ -47,7 +47,7 @@ class NotificationFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)  // 아이템 세로로 나열
 
 
-        val notifications: List<NotificationDto> = NotificationData.getNotificationDataList()
+        val notifications: List<NotificationDto> = NotificationData.getNotificationDataList(requireContext())
         val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
 
 
