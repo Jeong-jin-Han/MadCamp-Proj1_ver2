@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pro_fessor"
+    namespace = "com.example.MadCampProj1_ver2"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.pro_fessor"
-        minSdk = 26
+        applicationId = "com.example.MadCampProj1_ver2"
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -38,6 +38,12 @@ android {
         compose = true
     }
 }
+android { // me
+    // 이미 존재하는 항목들 사이에 추가
+    lint {
+        abortOnError = false
+    }
+}
 
 dependencies {
 
@@ -62,7 +68,8 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
     // 네이버 지도 SDK
-    implementation("com.naver.maps:map-sdk:3.20.0")
+//    implementation("com.naver.maps:map-sdk:3.20.0")
+    implementation("com.naver.maps:map-sdk:3.22.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
     // gif

@@ -20,6 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Pro_fessor"
+rootProject.name = "MadCampProj1_ver2"
 include(":app")
  
