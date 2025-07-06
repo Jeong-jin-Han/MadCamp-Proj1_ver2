@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:background="#F6F6F6"
+    android:weightSum="3"
+    android:paddingBottom="4dp"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/food_bank_Layout"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+
+        <ImageButton
+            android:id="@+id/food_bank_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/food_bank"
+            android:background="#F6F6F6"
+            android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:contentDescription="Food Bank"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ingrediant"
+            android:textSize="9dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/menu_book_Layout"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+
+        <ImageButton
+            android:id="@+id/menu_book_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/menu_book"
+            android:background="#F6F6F6"
+            android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:contentDescription="Menu Book"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Recipe"
+            android:textSize="9dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/travel_explore_Layout"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+
+        <ImageButton
+            android:id="@+id/travel_explore_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/travel_explore"
+            android:background="#F6F6F6"
+            android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:contentDescription="Travel Explore"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Network"
+            android:textSize="9dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
