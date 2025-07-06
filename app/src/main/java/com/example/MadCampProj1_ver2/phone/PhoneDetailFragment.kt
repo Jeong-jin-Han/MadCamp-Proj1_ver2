@@ -26,7 +26,7 @@ class PhoneDetailFragment : Fragment() {
 
         val memberId = arguments?.getInt("id") ?: -1
         if (memberId != -1){
-            val memberDataList: List<MemberDto> = MemberData.getPhoneDataList() //member data
+            val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext()) //member data
             val member = memberDataList.find { it.memberId == memberId }
 
             if(member != null){

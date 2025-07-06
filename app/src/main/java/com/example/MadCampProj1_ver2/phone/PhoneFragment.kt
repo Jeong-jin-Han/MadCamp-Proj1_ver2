@@ -33,7 +33,7 @@ class PhoneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.phone_recycler_view)
-        val memberDataList: List<MemberDto> = MemberData.getPhoneDataList()
+        val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
         val cvDataList: List<CVDto> = CVData.getCVDataList()
 
         // 섹션화된 데이터 준비

@@ -52,7 +52,7 @@ class MapFragment : Fragment() {
         val lng: Double = arguments?.getDouble("lng") ?: -1.0 // 경도
         val memberId: Int = arguments?.getInt("memberId") ?: -1 // memberId
 
-        val memberDataList: List<MemberDto> = MemberData.getPhoneDataList()
+        val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
         val searchButton = view.findViewById<ImageView>(R.id.top_bar_search)
         searchButton.visibility = View.GONE
         val notificationButton = view.findViewById<ImageView>(R.id.top_bar_bell)

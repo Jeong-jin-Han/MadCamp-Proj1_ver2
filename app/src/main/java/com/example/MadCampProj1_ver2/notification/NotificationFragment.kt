@@ -48,10 +48,10 @@ class NotificationFragment : Fragment() {
 
 
         val notifications: List<NotificationDto> = NotificationData.getNotificationDataList()
-        val memberDataList: List<MemberDto> = MemberData.getPhoneDataList()
+        val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
 
 
-        recyclerView.adapter = NotificationAdapter(notifications) { notification ->
+        recyclerView.adapter = NotificationAdapter(requireContext(), notifications) { notification ->
             // onItemClick 이벤트 처리
             when (notification.type) {
                 NotificationType.GALLERY_POST -> {

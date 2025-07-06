@@ -35,7 +35,7 @@ class PhoneSearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val memberDataList: List<MemberDto> = MemberData.getPhoneDataList()
+        val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
 
         val searchEditText = view.findViewById<EditText>(R.id.titleEditText)
         searchEditText.requestFocus()
@@ -52,7 +52,7 @@ class PhoneSearchFragment : Fragment() {
         recyclerView = view.findViewById(R.id.search_recycler_view)
 
         // Load data and set up RecyclerView
-        originalData = prepareSectionedList(MemberData.getPhoneDataList(), CVData.getCVDataList())
+        originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList())
         val initialData = listOf<ListItem>()
         adapter = PhoneAdapter(initialData,
             onItemClick = { id ->

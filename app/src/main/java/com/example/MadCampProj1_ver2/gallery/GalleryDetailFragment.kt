@@ -70,7 +70,7 @@ class GalleryDetailFragment : Fragment() {
         if (galleryId != -1){
             val galleryDataList: List<GalleryDto> = GalleryData.getGalleryDataList()
             val gallery = galleryDataList.find { it.id == galleryId }
-            val memberDataList: List<MemberDto> = MemberData.getPhoneDataList()
+            val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
             val member = memberDataList.find { it.memberId == gallery?.memberId }
 
             if (gallery?.image == -1) {

@@ -1,5 +1,6 @@
 package com.example.MadCampProj1_ver2.notification
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.util.Log
 import android.widget.LinearLayout
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.MadCampProj1_ver2.R
@@ -19,6 +21,7 @@ import com.example.MadCampProj1_ver2.sampledata.MissionDto
 import com.example.MadCampProj1_ver2.sampledata.NotificationDto
 
 class NotificationAdapter(
+    private val context: Context, // Context를 추가로 받도록 수정
     private val notifications: List<NotificationDto>,
     private val onNotificationClick: (NotificationDto) -> Unit
 ) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
@@ -49,7 +52,7 @@ class NotificationAdapter(
                 if (galleryId != -1){
                     val galleryDataList: List<GalleryDto> = GalleryData.getGalleryDataList()
                     val gallery = galleryDataList.find { it.id == galleryId }
-                    val memberDataList: List<MemberDto> = MemberData.getPhoneDataList()
+                    val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(context = context)
                     val member = memberDataList.find { it.memberId == gallery?.memberId }
 
                     val abstractText = gallery?.abstract
@@ -68,7 +71,7 @@ class NotificationAdapter(
                 imageView.setImageResource(R.drawable.n_loc)
                 val phoneId = notification.targetId
                 if (phoneId != -1){
-                    val memberDataList: List<MemberDto> = MemberData.getPhoneDataList()
+                    val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(context = context)
                     val member = memberDataList.find { it.memberId == phoneId }
                     val name = member?.name
                     val lat = member?.lat

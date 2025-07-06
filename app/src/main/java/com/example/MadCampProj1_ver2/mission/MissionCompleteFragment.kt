@@ -96,7 +96,7 @@ class MissionCompleteFragment : Fragment() {
                 .map { it.memberId }
 
             // Load data and set up RecyclerView
-            originalData = prepareSectionedList(MemberData.getPhoneDataList(), CVData.getCVDataList(), filteredMemberIds)
+            originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList(), filteredMemberIds)
 //            val initialData = listOf<ListItem>()
             adapter = PhoneAdapter(originalData,
                 onItemClick = { id ->
@@ -118,7 +118,7 @@ class MissionCompleteFragment : Fragment() {
                         .commit()
                 },
                 onLocationClick = { id ->
-                    val memberDataList: List<MemberDto> = MemberData.getPhoneDataList()
+                    val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
                     val member = memberDataList.find { it.memberId == id }
 
                     if(member != null){
