@@ -65,7 +65,7 @@ class MapFragment : Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame, NotificationFragment())
+                .replace(R.id.content_frame_ver2, NotificationFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -81,7 +81,7 @@ class MapFragment : Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame, MypageFragment())
+                .replace(R.id.content_frame_ver2, MypageFragment())
                 .addToBackStack(null)
                 .commit()
         }

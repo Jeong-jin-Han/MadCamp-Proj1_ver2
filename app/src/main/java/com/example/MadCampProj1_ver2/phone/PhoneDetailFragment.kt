@@ -1,4 +1,4 @@
-package com.example.MadCampProj1_ver2.gallery
+package com.example.MadCampProj1_ver2.phone
 
 import android.annotation.SuppressLint
 import android.os.Bundle

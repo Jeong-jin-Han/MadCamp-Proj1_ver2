@@ -1,4 +1,4 @@
-package com.example.MadCampProj1_ver2.gallery
+package com.example.MadCampProj1_ver2.phone
 
 import android.content.Context
 import android.os.Bundle
@@ -69,7 +69,7 @@ class PhoneSearchFragment : Fragment() {
                         0,
                         R.anim.slide_out_down
                     )
-                    .replace(R.id.content_frame, fragment)
+                    .replace(R.id.content_frame_ver2, fragment)
                     .addToBackStack(null)
                     .commit()
             },
@@ -88,7 +88,7 @@ class PhoneSearchFragment : Fragment() {
                     }
 
                     requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.content_frame, fragment)
+                        .replace(R.id.content_frame_ver2, fragment)
                         .addToBackStack(null)
                         .commit()
                 }

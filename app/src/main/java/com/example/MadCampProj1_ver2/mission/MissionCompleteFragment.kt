@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.MadCampProj1_ver2.R
-import com.example.MadCampProj1_ver2.gallery.PhoneDetailFragment
+import com.example.MadCampProj1_ver2.phone.PhoneDetailFragment
 import com.example.MadCampProj1_ver2.map.MapFragment
 import com.example.MadCampProj1_ver2.mypage.MypageFragment
 import com.example.MadCampProj1_ver2.notification.NotificationFragment
@@ -65,7 +65,7 @@ class MissionCompleteFragment : Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame, NotificationFragment())
+                .replace(R.id.content_frame_ver2, NotificationFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -82,7 +82,7 @@ class MissionCompleteFragment : Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame, MypageFragment())
+                .replace(R.id.content_frame_ver2, MypageFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -114,7 +114,7 @@ class MissionCompleteFragment : Fragment() {
                             0,
                             R.anim.slide_out_down
                         )
-                        .replace(R.id.content_frame, fragment)
+                        .replace(R.id.content_frame_ver2, fragment)
                         .addToBackStack(null)
                         .commit()
                 },
@@ -132,7 +132,7 @@ class MissionCompleteFragment : Fragment() {
                         }
 
                         requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.content_frame, fragment)
+                            .replace(R.id.content_frame_ver2, fragment)
                             .addToBackStack(null)
                             .commit()
                     }

@@ -67,7 +67,7 @@ class NotificationFragment : Fragment() {
                             R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                             R.anim.phone_slide_out_right
                         )
-                        .replace(R.id.content_frame, fragment)
+                        .replace(R.id.content_frame_ver2, fragment)
                         .addToBackStack(null)
                         .commit()
                 }
@@ -88,7 +88,7 @@ class NotificationFragment : Fragment() {
                             R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                             R.anim.phone_slide_out_right
                         )
-                        .replace(R.id.content_frame, fragment)
+                        .replace(R.id.content_frame_ver2, fragment)
                         .addToBackStack(null)
                         .commit()
                 }
@@ -106,7 +106,7 @@ class NotificationFragment : Fragment() {
                         }
 
                         requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.content_frame, fragment)
+                            .replace(R.id.content_frame_ver2, fragment)
                             .addToBackStack(null)
                             .commit()
                     }

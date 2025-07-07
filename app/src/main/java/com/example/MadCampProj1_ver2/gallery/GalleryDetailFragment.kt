@@ -203,7 +203,7 @@ class GalleryDetailFragment : Fragment() {
                 )
             }
 
-            transaction.replace(R.id.content_frame, fragment)
+            transaction.replace(R.id.content_frame_ver2, fragment)
                 .commit() // addToBackStack() 제거
         }
     }

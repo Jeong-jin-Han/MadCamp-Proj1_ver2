@@ -76,7 +76,7 @@ class GalleryFragment : Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame, NotificationFragment())
+                .replace(R.id.content_frame_ver2, NotificationFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -91,7 +91,7 @@ class GalleryFragment : Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame, MypageFragment())
+                .replace(R.id.content_frame_ver2, MypageFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -108,7 +108,7 @@ class GalleryFragment : Fragment() {
             // Fragment 전환 시 Shared Element Transition 설정
             requireActivity().supportFragmentManager.beginTransaction()
                 .addSharedElement(sharedView, "shared_image_transition") // 애니메이션에 사용할 뷰 연결
-                .replace(R.id.content_frame, fragment, "galleryFragment")
+                .replace(R.id.content_frame_ver2, fragment, "galleryFragment")
                 .addToBackStack("galleryFragment")
                 .commit()
         }
@@ -223,7 +223,7 @@ class GalleryFragment : Fragment() {
             }
         }
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.content_frame, fragment)
+            .replace(R.id.content_frame_ver2, fragment)
             .addToBackStack(null)
             .commit()
     }

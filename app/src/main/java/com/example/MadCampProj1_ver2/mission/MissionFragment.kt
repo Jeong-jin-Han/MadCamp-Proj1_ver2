@@ -68,7 +68,7 @@ class MissionFragment : Fragment() {
         uploadButton.setOnClickListener {
             val fragment = MissionUploadFragment()
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
+                .replace(R.id.content_frame_ver2, fragment)
                 .addToBackStack(null)
                 .commit()
         }
@@ -83,7 +83,7 @@ class MissionFragment : Fragment() {
                 }
             }
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
+                .replace(R.id.content_frame_ver2, fragment)
                 .addToBackStack(null)
                 .commit()
         }

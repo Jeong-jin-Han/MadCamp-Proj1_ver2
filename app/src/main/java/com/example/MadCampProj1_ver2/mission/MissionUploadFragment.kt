@@ -105,7 +105,7 @@ class MissionUploadFragment() : Fragment(){
             Toast.makeText(requireContext(), "업로드 완료!", Toast.LENGTH_SHORT).show()
             val fragment = MainFragment()
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
+                .replace(R.id.content_frame_ver2, fragment)
                 .addToBackStack(null)
                 .commit()
         }

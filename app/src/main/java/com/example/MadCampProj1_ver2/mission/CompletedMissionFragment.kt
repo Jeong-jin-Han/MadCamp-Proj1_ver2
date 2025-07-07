@@ -90,7 +90,7 @@ class CompletedMissionFragment : Fragment() {
                 }
             }
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
+                .replace(R.id.content_frame_ver2, fragment)
                 .addToBackStack(null)
                 .commit()
         }
