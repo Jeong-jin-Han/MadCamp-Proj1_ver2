@@ -3,6 +3,9 @@ package com.example.MadCampProj1_ver2.gallery
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.transition.TransitionInflater
 import android.util.Log
 import android.view.GestureDetector
@@ -12,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.MadCampProj1_ver2.R
@@ -27,6 +31,28 @@ class GalleryDetailFragment : Fragment() {
     private lateinit var gestureDetector: GestureDetector
     private val SWIPE_THRESHOLD = 100 // 스와이프 거리 임계값
     private val SWIPE_VELOCITY_THRESHOLD = 100 // 스와이프 속도 임계값
+    private fun generateTextForPhoto(photoId: Int): SpannableString {
+        val gallery = GalleryData.getGalleryDataList().find { it.id == photoId }
+        val ingredients = gallery?.ingredients ?: emptyList()
+
+        val fridge = listOf("계란", "대파", "김치", "고추장")  // 내 냉장고 재료
+
+        val fullText = ingredients.joinToString(", ")
+        val spannable = SpannableString(fullText)
+
+        var startIndex = 0
+        for (ingredient in ingredients) {
+            val endIndex = startIndex + ingredient.length
+            val color = if (fridge.contains(ingredient)) {
+                ContextCompat.getColor(requireContext(), android.R.color.black)
+            } else {
+                ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark)
+            }
+            spannable.setSpan(ForegroundColorSpan(color), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            startIndex = endIndex + 2 // ", " 길이
+        }
+        return spannable
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +71,17 @@ class GalleryDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val galleryImageView = view.findViewById<ImageView>(R.id.gallery_component_image)
+        val detailTextView = view.findViewById<TextView>(R.id.gallery_detail_abstract)
+        galleryImageView.setOnClickListener {
+            val photoId = arguments?.getInt("id") ?: -1
+            Log.d("GalleryDetail", "Clicked photoId: $photoId")
+            if(photoId != -1) {
+                val textToShow = generateTextForPhoto(photoId)
+                Log.d("GalleryDetail", "Generated text: $textToShow")
+                detailTextView.text = textToShow
+            }
+        }
         Log.d("String", "View created")
         gestureDetector = GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
             override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
@@ -62,6 +99,7 @@ class GalleryDetailFragment : Fragment() {
                 }
                 return false
             }
+
         })
 
         val backArrow = view.findViewById<ImageView>(R.id.top_bar_arrow)
@@ -112,7 +150,7 @@ class GalleryDetailFragment : Fragment() {
             view.findViewById<TextView>(R.id.gallery_detail_date).text = date
         }
 
-        val galleryImageView = view.findViewById<ImageView>(R.id.gallery_component_image)
+
 
         // RGB값 가져와서 arrow색깔 변형하기
         galleryImageView.post {
@@ -149,6 +187,7 @@ class GalleryDetailFragment : Fragment() {
             galleryImageView.setOnTouchListener { _, event ->
                 gestureDetector.onTouchEvent(event)
                 true
+
             }
         }
 

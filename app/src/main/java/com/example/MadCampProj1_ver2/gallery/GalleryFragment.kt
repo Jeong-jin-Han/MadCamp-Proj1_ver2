@@ -54,7 +54,7 @@ class GalleryFragment : Fragment() {
         val recyclerView1: RecyclerView = view.findViewById(R.id.recycler_view1)
         val galleryDataList1: List<GalleryGroupDto> = GalleryGroupData.getGalleryGroupDataList()
         val topBarTextView = view.findViewById<TextView>(R.id.top_bar_text)
-        topBarTextView.text = "리포트"
+        topBarTextView.text = "추천 요리"
 
         val cameraButton = view.findViewById<Button>(R.id.fixed_button)
 
