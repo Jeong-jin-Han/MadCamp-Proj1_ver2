@@ -11,19 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.MadCampProj1_ver2.R
-import com.example.MadCampProj1_ver2.phone.PhoneDetailFragment
 import com.example.MadCampProj1_ver2.map.MapFragment
 import com.example.MadCampProj1_ver2.mypage.MypageFragment
 import com.example.MadCampProj1_ver2.notification.NotificationFragment
 //import com.example.MadCampProj1_ver2.phone.ListItem
-import com.example.MadCampProj1_ver2.foodbank.ListItem
 
 import com.example.MadCampProj1_ver2.sampledata.CVDto
 import com.example.MadCampProj1_ver2.sampledata.MemberData
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
-import com.example.MadCampProj1_ver2.phone.PhoneAdapter
-import com.example.MadCampProj1_ver2.phone.PhoneSearchFragment
-import com.example.MadCampProj1_ver2.foodbank.FoodBankSearchFragment
 
 import com.example.MadCampProj1_ver2.sampledata.NotificationData
 

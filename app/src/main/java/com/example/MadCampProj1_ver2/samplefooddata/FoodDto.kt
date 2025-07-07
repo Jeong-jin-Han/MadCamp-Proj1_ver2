@@ -1,10 +1,9 @@
 package com.example.MadCampProj1_ver2.samplefooddata
 
 data class FoodDto(
+    val foodId: Int,
     val name: String,
     val category: String,
     val storage: String,
-    var isChecked: Boolean = false,
-    var expiry: String? = null,
-    var count: Int = 1
+    val imgPath: Int,
 )

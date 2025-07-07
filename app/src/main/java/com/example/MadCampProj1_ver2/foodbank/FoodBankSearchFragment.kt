@@ -62,7 +62,7 @@ class FoodBankSearchFragment : Fragment(){
         val initialData = listOf<ListItem>()
         adapter = FoodBankAdapter(initialData,
             onItemClick = {
-                id ->
+                    id ->
                 val fragment = FoodBankDetailFragment().apply {
                     arguments = Bundle().apply {
                         putInt("id", id)
@@ -83,7 +83,7 @@ class FoodBankSearchFragment : Fragment(){
             },
             context = requireContext(),
             onLocationClick = {
-                id ->
+                    id ->
                 // Handle location click (e.g. open map view)
                 val member = memberDataList.find {it.memberId == id}
 
@@ -161,12 +161,12 @@ fun prepareSectionedList(memberList: List<MemberDto>, cvList: List<CVDto>): List
         val cv = cvList.find { it.memberId == member.memberId}
         cv?.let {member to it}
     }.groupBy { it.second.qualification } // 그룹화: 박사, 석사, 학사
-    
+
     val sectionedList = mutableListOf<ListItem>()
-    
+
     // 그룹별로 정렬 후 헹더와 연락처 추가
     listOf("박사", "석사", "인턴").forEach {
-        qualification ->
+            qualification ->
         val group = groupedData[qualification]
         if (!group.isNullOrEmpty()) {
             sectionedList.add(ListItem.Header(qualification))
