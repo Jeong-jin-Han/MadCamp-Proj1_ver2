@@ -14,6 +14,7 @@ import com.example.MadCampProj1_ver2.R
 import com.example.MadCampProj1_ver2.map.MapFragment
 import com.example.MadCampProj1_ver2.mypage.MypageFragment
 import com.example.MadCampProj1_ver2.notification.NotificationFragment
+import com.example.MadCampProj1_ver2.phone.PhoneSearchFragment
 //import com.example.MadCampProj1_ver2.phone.ListItem
 
 import com.example.MadCampProj1_ver2.sampledata.CVDto
@@ -60,6 +61,8 @@ class FoodBankFragment : Fragment() {
                     R.anim.phone_slide_out_right
                 )
                 .replace(R.id.content_frame_ver2, FoodBankSearchFragment())
+//                .replace(R.id.content_frame_ver2, PhoneSearchFragment())
+
                 .addToBackStack(null)
                 .commit()
         }

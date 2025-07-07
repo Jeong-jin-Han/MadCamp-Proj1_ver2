@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.MadCampProj1_ver2.R
 import com.example.MadCampProj1_ver2.map.MapFragment
 //import com.example.MadCampProj1_ver2.phone.ListItem
+import com.example.MadCampProj1_ver2.foodbank.ListItem
+
 import com.example.MadCampProj1_ver2.phone.PhoneDetailFragment
 
 import com.example.MadCampProj1_ver2.sampledata.CVDto
@@ -51,7 +54,7 @@ class FoodBankSearchFragment : Fragment(){
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT)
 
-        val backArrow = view.findViewById<ImageView>(R.id.top_bar_arrow_ver2)
+        val backArrow = view.findViewById<ImageView>(R.id.top_bar_arrow)
         backArrow.visibility = View.VISIBLE
 
         backArrow.setOnClickListener {
@@ -63,54 +66,57 @@ class FoodBankSearchFragment : Fragment(){
         // load dataa and set up RecyclerView
 //        originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList(requireContext()))
         originalData = prepareSectionedList(FoodData.getFoodDataList(requireContext()))
+        Log.d("FoodBankDebug", "originalData loaded: size=${originalData.size}")
 
         val initialData = listOf<ListItem>()
         adapter = FoodBankAdapter(initialData,
             onItemClick = {
                     id ->
-                val fragment = FoodBankDetailFragment().apply {
-                    arguments = Bundle().apply {
-                        putInt("id", id)
-                    }
-                }
-
-                //  Handle item click (e.g. navigate to detail view)
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .setCustomAnimations(
-                        R.anim.slide_in_up,
-                        0,
-                        0,
-                        R.anim.slide_out_down
-                    )
-                    .replace(R.id.content_frame_ver2, fragment)
-                    .addToBackStack(null)
-                    .commit()
+//                val fragment = FoodBankDetailFragment().apply {
+//                    arguments = Bundle().apply {
+//                        putInt("id", id)
+//                    }
+//                }
+//
+//                //  Handle item click (e.g. navigate to detail view)
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .setCustomAnimations(
+//                        R.anim.slide_in_up,
+//                        0,
+//                        0,
+//                        R.anim.slide_out_down
+//                    )
+//                    .replace(R.id.content_frame_ver2, fragment)
+//                    .addToBackStack(null)
+//                    .commit()
             },
             context = requireContext(),
             onLocationClick = {
                     id ->
                 // Handle location click (e.g. open map view)
-                val member = memberDataList.find {it.memberId == id}
+//                val member = memberDataList.find {it.memberId == id}
 
-                if (member != null) {
-                    val fragment = MapFragment().apply {
-                        arguments = Bundle().apply {
-                            putDouble("lat", member.lat)
-                            putDouble("lng", member.lng)
-                            putInt("memberId", member.memberId)
-                        }
-                    }
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.content_frame_ver2, fragment)
-                        .addToBackStack(null)
-                        .commit()
-                }
+
+//                if (member != null) {
+//                    val fragment = MapFragment().apply {
+//                        arguments = Bundle().apply {
+//                            putDouble("lat", member.lat)
+//                            putDouble("lng", member.lng)
+//                            putInt("memberId", member.memberId)
+//                        }
+//                    }
+//                    requireActivity().supportFragmentManager.beginTransaction()
+//                        .replace(R.id.content_frame_ver2, fragment)
+//                        .addToBackStack(null)
+//                        .commit()
+//                }
 
             }
         )
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
+        Log.d("FoodBankDebug", "RecyclerView adapter set")
 
         // Add TextWatcher to filter data
         searchEditText.addTextChangedListener(object: TextWatcher {
