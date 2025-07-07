@@ -75,6 +75,12 @@
 
         <!--내용-->
         <TextView
+            android:id="@+id/gallery_detail_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
             android:id="@+id/gallery_detail_abstract"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

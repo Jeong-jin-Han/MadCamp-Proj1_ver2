@@ -71,15 +71,21 @@ class GalleryDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val ingredientsTextView = view.findViewById<TextView>(R.id.gallery_detail_ingredients)
         val galleryImageView = view.findViewById<ImageView>(R.id.gallery_component_image)
         val detailTextView = view.findViewById<TextView>(R.id.gallery_detail_abstract)
+        Log.d("GalleryDetail", "galleryImageView: $galleryImageView")
+        galleryImageView.isClickable = true
+        galleryImageView.isFocusable = true
+
         galleryImageView.setOnClickListener {
+            Log.d("GalleryDetail", "ImageView clicked!")
             val photoId = arguments?.getInt("id") ?: -1
             Log.d("GalleryDetail", "Clicked photoId: $photoId")
             if(photoId != -1) {
-                val textToShow = generateTextForPhoto(photoId)
-                Log.d("GalleryDetail", "Generated text: $textToShow")
-                detailTextView.text = textToShow
+                val spannableText = generateTextForPhoto(photoId)
+                Log.d("GalleryDetail", "Generated ingredients: $spannableText")
+                ingredientsTextView.text = spannableText
             }
         }
         Log.d("String", "View created")
