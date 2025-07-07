@@ -34,6 +34,7 @@ class FoodBankAdapter(
     private val context: Context,
     private val onItemClick: (Int) -> Unit,
     private val onLocationClick: (Int) -> Unit,
+    private val onCalanderClick: (Int) -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         private const val VIEW_TYPE_HEADER = 0
@@ -59,7 +60,8 @@ class FoodBankAdapter(
             }
             VIEW_TYPE_CONTACT -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.phone_component, parent, false)
+//                    .inflate(R.layout.phone_component, parent, false)
+                    .inflate(R.layout.phone_component_ver2, parent, false)
                 ContactViewHolder(view)
             }
             else -> throw IllegalArgumentException("Invalid view type")
@@ -91,7 +93,7 @@ class FoodBankAdapter(
                 Log.d("hello", previousClick.toString())
 
                 (holder as ContactViewHolder).bind(
-                    item.food, item.qualification, onItemClick, onLocationClick, isExpanded, onCardClick = {
+                    item.food, item.qualification, onItemClick, onLocationClick, onCalanderClick, isExpanded, onCardClick = {
                         clickedPosition ->
                         if (previousClick != -1 && previousClick != clickedPosition) {
                             notifyItemChanged(previousClick)
@@ -229,6 +231,8 @@ class FoodBankAdapter(
             qualification: String,
             onItemClick: (Int) -> Unit,
             onLocationClick: (Int) -> Unit,
+            onCalanderClick: (Int) -> Unit,
+
             isExpanded: Boolean,
             onCardClick: (Int) -> Unit,
             isFirstInSection: Boolean,
@@ -281,13 +285,16 @@ class FoodBankAdapter(
                 onCardClick(adapterPosition) // 클릭된 위치 전달
             }
 
-//            // 전화 걸기
+            // 전화 걸기
 //            callView.setOnClickListener {
 //                val intent = Intent(Intent.ACTION_DIAL).apply {
-//                    data = Uri.parse("tel:${member.phone}")
+//                    data = Uri.parse("tel:${food.imgPath}")
 //                }
 //                it.context.startActivity(intent)
 //            }
+            callView.setOnClickListener {
+                onCalanderClick(food.foodId)  // 또는 food.foodId 등
+            }
 //            // 메시지 보내기
 //            messageView.setOnClickListener {
 //                val intent = Intent(Intent.ACTION_SENDTO).apply {

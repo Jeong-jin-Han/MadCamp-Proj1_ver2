@@ -111,6 +111,9 @@ class FoodBankSearchFragment : Fragment(){
 //                        .commit()
 //                }
 
+            },
+            onCalanderClick = {
+                id ->
             }
         )
 

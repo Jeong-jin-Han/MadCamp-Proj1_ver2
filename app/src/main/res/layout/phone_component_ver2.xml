@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/phone"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="0dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft='10dp'>
+
+    <FrameLayout
+        android:id="@+id/phone_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_card_background"
+        app:cardElevation="0dp">
+        <!--구분선-->
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:paddingTop="2dp"
+                android:layout_marginBottom="-5dp">
+
+                <ImageView
+                    android:id="@+id/phone_component_image"
+                    android:background="@drawable/circle"
+                    android:clipToOutline="true"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/soy"
+                    android:layout_marginTop="2dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:id="@+id/linetop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:background="#E7E7E7"
+                        android:visibility="gone"
+                        android:layout_marginRight = "40dp" />
+
+                    <!--이름-->
+                    <TextView
+                        android:id="@+id/phone_component_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:textSize="17sp"
+                        android:textColor="@color/font_color"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="달걀"/>
+
+                    <!--학석박-->
+                    <TextView
+                        android:id="@+id/phone_component_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/main_color"
+                        android:fontFamily="@font/pretendard_light"
+                        android:text="유통기한"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!--    visibility gone으로 바꾸어주기    -->
+            <!--추가 하단바 (기본은 안보이되, 사용자가 클릭하면 해당 component에만 생김-->
+            <LinearLayout
+                android:id="@+id/phone_component_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/phone_call"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/calendar_fail"
+                    android:scaleType="centerInside" />
+
+                <ImageView
+                    android:id="@+id/phone_message"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/plus"
+                    android:scaleType="centerInside" />
+
+                <ImageView
+                    android:id="@+id/phone_info"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/minus"
+                    android:scaleType="centerInside" />
+
+                <ImageView
+                    android:id="@+id/phone_location"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_location"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

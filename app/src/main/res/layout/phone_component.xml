@@ -79,6 +79,7 @@
         </LinearLayout>
 
 
+<!--    visibility gone으로 바꾸어주기    -->
         <!--추가 하단바 (기본은 안보이되, 사용자가 클릭하면 해당 component에만 생김-->
         <LinearLayout
             android:id="@+id/phone_component_more"
@@ -87,7 +88,7 @@
             android:layout_marginVertical="8dp"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal"
-            android:visibility="gone"
+            android:visibility="visible"
             >
 
             <ImageView
