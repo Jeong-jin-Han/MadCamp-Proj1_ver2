@@ -13,6 +13,8 @@ import com.example.MadCampProj1_ver2.R
 import com.example.MadCampProj1_ver2.sampledata.CVDto
 import com.example.MadCampProj1_ver2.sampledata.MemberData
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
+import com.example.MadCampProj1_ver2.samplefooddata.FoodData
+import com.example.MadCampProj1_ver2.samplefooddata.FoodDto
 
 @Suppress("DEPRECATION")
 class FoodBankDetailFragment : Fragment() {
@@ -31,6 +33,8 @@ class FoodBankDetailFragment : Fragment() {
         val memberId = arguments?.getInt("id") ?: -1
         if (memberId != -1) {
             val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext()) // member data
+            val foodDataList: List<FoodDto> = FoodData.getFoodDataList(requireContext()) // food data
+
             val member = memberDataList.find {it.memberId == memberId}
 
             if (member != null) {

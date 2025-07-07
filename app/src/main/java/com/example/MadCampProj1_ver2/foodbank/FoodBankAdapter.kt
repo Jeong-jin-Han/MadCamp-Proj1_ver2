@@ -18,10 +18,13 @@ import com.example.MadCampProj1_ver2.R
 import com.example.MadCampProj1_ver2.phone.ContactViewHolder
 import com.example.MadCampProj1_ver2.phone.HeaderViewHolder
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
+import com.example.MadCampProj1_ver2.samplefooddata.FoodDto
 
 sealed class ListItem {
     data class Header(val title: String) : ListItem()
-    data class Contact(val member: MemberDto, val qualification: String) : ListItem()
+//    data class Contact(val member: MemberDto, val qualification: String) : ListItem()
+    data class Contact(val food: FoodDto, val qualification: String) : ListItem()
+
 }
 
 //import com.example.MadCampProj1_ver2.phone.ListItem
@@ -64,6 +67,8 @@ class FoodBankAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        Log.d("FoodBankAdapter", "onBindViewHolder position=$position, item=${sectionedList[position]}")
+
         when (val item = sectionedList[position]) {
             is ListItem.Header -> {
                 Log.d("PhoneAdapter", "Binding Header: ${item.title}")
@@ -86,7 +91,7 @@ class FoodBankAdapter(
                 Log.d("hello", previousClick.toString())
 
                 (holder as ContactViewHolder).bind(
-                    item.member, item.qualification, onItemClick, onLocationClick, isExpanded, onCardClick = {
+                    item.food, item.qualification, onItemClick, onLocationClick, isExpanded, onCardClick = {
                         clickedPosition ->
                         if (previousClick != -1 && previousClick != clickedPosition) {
                             notifyItemChanged(previousClick)
@@ -118,6 +123,7 @@ class FoodBankAdapter(
     }
 
     fun updateData(newData: List<ListItem>) {
+        Log.d("FoodBankAdapter", "updateData 호출됨 - 아이템 수: ${newData.size}")
         sectionedList = newData
         notifyDataSetChanged()
     }
@@ -138,8 +144,88 @@ class FoodBankAdapter(
         private val frameView: FrameLayout = view.findViewById(R.id.phone_frame)
         private val lineView: View = view.findViewById(R.id.linetop)
 
+//        fun bind(
+//            member: MemberDto,
+//            qualification: String,
+//            onItemClick: (Int) -> Unit,
+//            onLocationClick: (Int) -> Unit,
+//            isExpanded: Boolean,
+//            onCardClick: (Int) -> Unit,
+//            isFirstInSection: Boolean,
+//            isLastInSection: Boolean,
+//            context: Context
+//        ) {
+//            nameTextView.text = member.name
+//            for (cv in CVData.getCVDataList(context)) {
+//                if (cv.memberId == member.memberId) {
+//                    statusTextView.text = cv.studentID
+//                    break
+//                }
+//            }
+//            imageView.setImageResource(member.imgPath)
+//            // View 초기화
+//
+//
+//            frameView.setBackgroundResource(R.color.background)
+//            cardView.setCardBackgroundColor(cardView.context.getColor(R.color.background)) // 기본 색상
+//            lineView.visibility = View.GONE // 기본적으로 숨김 처리
+//
+//            when {
+//                isFirstInSection && isLastInSection -> {
+//                    // 둘 다 true일 때 처리
+//                    frameView.setBackgroundResource(R.drawable.rounded_card_background)
+//                    lineView.visibility = View.GONE
+//                }
+//                isFirstInSection -> {
+//                    frameView.setBackgroundResource(R.drawable.rounded_card_background_top)
+//                    lineView.visibility = View.GONE
+//                }
+//                isLastInSection -> {
+//                    frameView.setBackgroundResource(R.drawable.rounded_card_background_bottom)
+//                    lineView.visibility = View.VISIBLE
+//                }
+//                else -> {
+//                    Log.d("hello", "It is in the middle")
+//                    frameView.setBackgroundResource(R.drawable.rounded_card_background_middle)
+//                    cardView.setCardBackgroundColor(cardView.context.getColor(R.color.background2))
+//                    lineView.visibility = View.VISIBLE
+//                }
+//            }
+//
+//            // "더보기" 상태 반영
+//            moreView.visibility = if (isExpanded) View.VISIBLE else View.GONE
+//
+//            cardView.setOnClickListener {
+//
+//                onCardClick(adapterPosition) // 클릭된 위치 전달
+//            }
+//
+////            // 전화 걸기
+////            callView.setOnClickListener {
+////                val intent = Intent(Intent.ACTION_DIAL).apply {
+////                    data = Uri.parse("tel:${member.phone}")
+////                }
+////                it.context.startActivity(intent)
+////            }
+////            // 메시지 보내기
+////            messageView.setOnClickListener {
+////                val intent = Intent(Intent.ACTION_SENDTO).apply {
+////                    data = Uri.parse("smsto:${member.phone}")
+////                }
+////                it.context.startActivity(intent)
+////            }
+////            // 정보 보기
+////            infoView.setOnClickListener {
+////                onItemClick(member.memberId)
+////            }
+////            // 위치 보기
+////            locationView.setOnClickListener {
+////                onLocationClick(member.memberId)
+////            }
+//        }
+
         fun bind(
-            member: MemberDto,
+            food: FoodDto,
             qualification: String,
             onItemClick: (Int) -> Unit,
             onLocationClick: (Int) -> Unit,
@@ -149,14 +235,15 @@ class FoodBankAdapter(
             isLastInSection: Boolean,
             context: Context
         ) {
-            nameTextView.text = member.name
-            for (cv in CVData.getCVDataList(context)) {
-                if (cv.memberId == member.memberId) {
-                    statusTextView.text = cv.studentID
-                    break
-                }
-            }
-            imageView.setImageResource(member.imgPath)
+            nameTextView.text = food.name
+//            for (cv in CVData.getCVDataList(context)) {
+//                if (cv.foodId == food.foodId) {
+//                    statusTextView.text = cv.studentID
+//                    break
+//                }
+//            }
+            statusTextView.text = food.name
+            imageView.setImageResource(food.imgPath)
             // View 초기화
 
 
@@ -194,30 +281,29 @@ class FoodBankAdapter(
                 onCardClick(adapterPosition) // 클릭된 위치 전달
             }
 
-            // 전화 걸기
-            callView.setOnClickListener {
-                val intent = Intent(Intent.ACTION_DIAL).apply {
-                    data = Uri.parse("tel:${member.phone}")
-                }
-                it.context.startActivity(intent)
-            }
-            // 메시지 보내기
-            messageView.setOnClickListener {
-                val intent = Intent(Intent.ACTION_SENDTO).apply {
-                    data = Uri.parse("smsto:${member.phone}")
-                }
-                it.context.startActivity(intent)
-            }
-            // 정보 보기
-            infoView.setOnClickListener {
-                onItemClick(member.memberId)
-            }
-            // 위치 보기
-            locationView.setOnClickListener {
-                onLocationClick(member.memberId)
-            }
+//            // 전화 걸기
+//            callView.setOnClickListener {
+//                val intent = Intent(Intent.ACTION_DIAL).apply {
+//                    data = Uri.parse("tel:${member.phone}")
+//                }
+//                it.context.startActivity(intent)
+//            }
+//            // 메시지 보내기
+//            messageView.setOnClickListener {
+//                val intent = Intent(Intent.ACTION_SENDTO).apply {
+//                    data = Uri.parse("smsto:${member.phone}")
+//                }
+//                it.context.startActivity(intent)
+//            }
+//            // 정보 보기
+//            infoView.setOnClickListener {
+//                onItemClick(member.memberId)
+//            }
+//            // 위치 보기
+//            locationView.setOnClickListener {
+//                onLocationClick(member.memberId)
+//            }
         }
-
 
     }
 }

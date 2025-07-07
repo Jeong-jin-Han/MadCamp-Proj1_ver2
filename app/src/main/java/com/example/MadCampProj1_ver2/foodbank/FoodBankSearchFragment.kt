@@ -21,6 +21,8 @@ import com.example.MadCampProj1_ver2.phone.PhoneDetailFragment
 import com.example.MadCampProj1_ver2.sampledata.CVDto
 import com.example.MadCampProj1_ver2.sampledata.MemberData
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
+import com.example.MadCampProj1_ver2.samplefooddata.FoodData
+import com.example.MadCampProj1_ver2.samplefooddata.FoodDto
 
 @Suppress("DEPRECATION")
 class FoodBankSearchFragment : Fragment(){
@@ -41,6 +43,8 @@ class FoodBankSearchFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext())
 
+        val foodDataList: List<FoodDto> = FoodData.getFoodDataList(requireContext())
+
         val searchEditText = view.findViewById<EditText>(R.id.titleEditText)
         searchEditText.requestFocus()
 
@@ -57,7 +61,8 @@ class FoodBankSearchFragment : Fragment(){
         recyclerView = view.findViewById(R.id.search_recycler_view)
 
         // load dataa and set up RecyclerView
-        originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList(requireContext()))
+//        originalData = prepareSectionedList(MemberData.getPhoneDataList(requireContext()), CVData.getCVDataList(requireContext()))
+        originalData = prepareSectionedList(FoodData.getFoodDataList(requireContext()))
 
         val initialData = listOf<ListItem>()
         adapter = FoodBankAdapter(initialData,
@@ -137,7 +142,7 @@ class FoodBankSearchFragment : Fragment(){
                         currentHeader = item
                     }
                     is ListItem.Contact -> {
-                        if (item.member.name.contains(query, ignoreCase = true)) {
+                        if (item.food.name.contains(query, ignoreCase = true)) {
                             // Add header before adding the first matching contact under it
 
                             if (currentHeader != null && !filteredList.contains(currentHeader)) {
@@ -156,21 +161,39 @@ class FoodBankSearchFragment : Fragment(){
 
 }
 
-fun prepareSectionedList(memberList: List<MemberDto>, cvList: List<CVDto>): List<ListItem> {
-    val groupedData = memberList.mapNotNull { member ->
-        val cv = cvList.find { it.memberId == member.memberId}
-        cv?.let {member to it}
-    }.groupBy { it.second.qualification } // 그룹화: 박사, 석사, 학사
+fun prepareSectionedList(foodList: List<FoodDto>): List<ListItem> {
+    val groupTitles = listOf("채소", "육류와 가공육", "유제품과 가공식품", "양념류", "기타")
+
+    val categoryGroups = mapOf(
+        "채소" to listOf("채소"),
+        "육류와 가공육" to listOf("육류", "가공육"),
+        "유제품과 가공식품" to listOf("유제품", "가공식품"),
+        "양념류" to listOf("장류", "조미료"),
+        "기타" to listOf("통조림", "곡류", "면류", "해산물", "건조식품", "베이커리", "발효식품")
+    )
+
+    // qualification → 상위 그룹 이름으로 매핑
+    val mapped = foodList.map { food ->
+        // qualification이 어떤 상위 그룹에 속하는지 찾기
+        val groupName = categoryGroups.entries.find { it.value.contains(food.category) }?.key ?: "기타"
+        groupName to food
+    }
+
+    // 상위 그룹별로 묶기
+    val groupedByCategory = mapped.groupBy { it.first }
 
     val sectionedList = mutableListOf<ListItem>()
 
-    // 그룹별로 정렬 후 헹더와 연락처 추가
-    listOf("박사", "석사", "인턴").forEach {
-            qualification ->
-        val group = groupedData[qualification]
+    // groupTitles 순서대로 섹션 생성
+    groupTitles.forEach { title ->
+        val group = groupedByCategory[title]
         if (!group.isNullOrEmpty()) {
-            sectionedList.add(ListItem.Header(qualification))
-            sectionedList.addAll(group.map {ListItem.Contact(it.first, qualification)})
+            sectionedList.add(ListItem.Header(title))
+            sectionedList.addAll(
+                group.map { (_, food) ->
+                    ListItem.Contact(food, food.category)
+                }
+            )
         }
     }
 

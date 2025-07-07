@@ -39,7 +39,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/example_mask"
+                android:src="@drawable/soy"
                 android:layout_marginTop="2dp"/>
 
             <LinearLayout
@@ -64,7 +64,7 @@
                     android:textSize="17sp"
                     android:textColor="@color/font_color"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="홍길동"/>
+                    android:text="달걀"/>
 
                 <!--학석박-->
                 <TextView
@@ -74,7 +74,7 @@
                     android:textSize="13sp"
                     android:textColor="@color/main_color"
                     android:fontFamily="@font/pretendard_light"
-                    android:text="석사"/>
+                    android:text="유통기한"/>
             </LinearLayout>
         </LinearLayout>
 

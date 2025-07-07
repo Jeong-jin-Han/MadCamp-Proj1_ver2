@@ -7,7 +7,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.MadCampProj1_ver2.gallery.GalleryFragment
-import com.example.MadCampProj1_ver2.phone.PhoneFragment
+//import com.example.MadCampProj1_ver2.phone.PhoneFragment
 import com.example.MadCampProj1_ver2.foodbank.FoodBankFragment
 
 
@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_ver2)
+//        supportFragmentManager.beginTransaction().
+//            replace(R.id.content_frame_ver2, PhoneFragment()).commit()
         supportFragmentManager.beginTransaction().
-            replace(R.id.content_frame_ver2, PhoneFragment()).commit()
+        replace(R.id.content_frame_ver2, FoodBankFragment()).commit()
 
         // 하단바 동작 설정
         val foodbankLayout = findViewById<LinearLayout>(R.id.food_bank_Layout)
