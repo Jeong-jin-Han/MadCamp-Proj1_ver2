@@ -1,0 +1,78 @@
+[
+  { "name": "가지", "category": "채소", "storage": "냉장", "image": "eggplant" },
+  { "name": "깻잎", "category": "채소", "storage": "냉장", "image": "perilla_leaf" },
+  { "name": "대파", "category": "채소", "storage": "냉장", "image": "large_green_onion" },
+  { "name": "당근", "category": "채소", "storage": "냉장", "image": "carrot" },
+  { "name": "마늘", "category": "채소", "storage": "실온", "image": "garlic" },
+  { "name": "부추", "category": "채소", "storage": "냉장", "image": "chives" },
+  { "name": "상추", "category": "채소", "storage": "냉장", "image": "lettuce" },
+  { "name": "애호박", "category": "채소", "storage": "냉장", "image": "zucchini" },
+  { "name": "양배추", "category": "채소", "storage": "냉장", "image": "cabbage" },
+  { "name": "양파", "category": "채소", "storage": "실온", "image": "onion" },
+  { "name": "오이", "category": "채소", "storage": "냉장", "image": "cucumber" },
+  { "name": "쪽파", "category": "채소", "storage": "냉장", "image": "spring_onion" },
+  { "name": "청양고추 / 일반고추", "category": "채소", "storage": "냉장", "image": "cheongyang_red_pepper" },
+  { "name": "토마토", "category": "채소", "storage": "실온", "image": "tomato" },
+  { "name": "팽이버섯", "category": "채소", "storage": "냉장", "image": "enoki_mushroom" },
+  { "name": "감자", "category": "채소", "storage": "실온", "image": "potato" },
+  { "name": "느타리버섯 / 양송이버섯", "category": "채소", "storage": "냉장", "image": "mushroom" },
+
+  { "name": "닭가슴살", "category": "육류", "storage": "냉동", "image": "chicken_breast" },
+  { "name": "닭다리살", "category": "육류", "storage": "냉동", "image": "chicken_drumstick" },
+  { "name": "대패삼겹 / 대패 목살", "category": "육류", "storage": "냉동", "image": "thin_sliced_pork_belly" },
+  { "name": "목살", "category": "육류", "storage": "냉동", "image": "pork_shoulder" },
+  { "name": "삼겹살", "category": "육류", "storage": "냉동", "image": "pork_belly" },
+  { "name": "소고기", "category": "육류", "storage": "냉동", "image": "beef" },
+
+  { "name": "베이컨", "category": "가공육", "storage": "냉장", "image": "bacon" },
+  { "name": "소시지", "category": "가공육", "storage": "냉장", "image": "sausage" },
+  { "name": "스팸", "category": "가공육", "storage": "실온", "image": "spam" },
+
+  { "name": "계란", "category": "유제품", "storage": "냉장", "image": "egg" },
+  { "name": "버터", "category": "유제품", "storage": "냉장", "image": "butter" },
+  { "name": "생크림", "category": "유제품", "storage": "냉장", "image": "whipped_cream" },
+  { "name": "우유", "category": "유제품", "storage": "냉장", "image": "milk" },
+  { "name": "치즈", "category": "유제품", "storage": "냉장", "image": "cheese" },
+
+  { "name": "두부", "category": "가공식품", "storage": "냉장", "image": "tofu" },
+  { "name": "떡", "category": "가공식품", "storage": "냉동", "image": "rice_cake" },
+  { "name": "만두", "category": "가공식품", "storage": "냉동", "image": "dumplings" },
+  { "name": "멸치육수코인", "category": "가공식품", "storage": "실온", "image": "soup_coin" },
+  { "name": "부침가루", "category": "가공식품", "storage": "실온", "image": "pancake_mix" },
+  { "name": "순두부", "category": "가공식품", "storage": "냉장", "image": "soft_tofu" },
+  { "name": "치킨스톡", "category": "가공식품", "storage": "실온", "image": "chicken_stock" },
+
+  { "name": "고추장", "category": "장류", "storage": "냉장", "image": "gochujang" },
+  { "name": "된장", "category": "장류", "storage": "냉장", "image": "doenjang" },
+
+  { "name": "간장", "category": "조미료", "storage": "실온", "image": "soy_sauce" },
+  { "name": "굴소스", "category": "조미료", "storage": "냉장", "image": "oyster_sauce" },
+  { "name": "고춧가루", "category": "조미료", "storage": "냉동", "image": "red_pepper_powder" },
+  { "name": "꿀 / 알룰로스", "category": "조미료", "storage": "실온", "image": "honey" },
+  { "name": "마요네즈", "category": "조미료", "storage": "냉장", "image": "mayonnaise" },
+  { "name": "맛술", "category": "조미료", "storage": "실온", "image": "cooking_wine" },
+  { "name": "물엿", "category": "조미료", "storage": "실온", "image": "corn_syrup" },
+  { "name": "식초", "category": "조미료", "storage": "실온", "image": "vinegar" },
+  { "name": "참기름", "category": "조미료", "storage": "실온", "image": "sesame_oil" },
+  { "name": "참치액젓", "category": "조미료", "storage": "실온", "image": "fish_sauce" },
+  { "name": "케첩", "category": "조미료", "storage": "냉장", "image": "ketchup" },
+  { "name": "후추", "category": "조미료", "storage": "실온", "image": "pepper" },
+  { "name": "올리브오일", "category": "조미료", "storage": "실온", "image": "olive_oil" },
+
+  { "name": "참치캔", "category": "통조림", "storage": "실온", "image": "tuna_can" },
+
+  { "name": "밥", "category": "곡류", "storage": "실온", "image": "rice" },
+
+  { "name": "소면", "category": "면류", "storage": "실온", "image": "noodle" },
+  { "name": "파스타면", "category": "면류", "storage": "실온", "image": "pasta" },
+
+  { "name": "고등어", "category": "해산물", "storage": "냉동", "image": "mackerel" },
+  { "name": "새우", "category": "해산물", "storage": "냉동", "image": "shrimp" },
+  { "name": "연어", "category": "해산물", "storage": "냉동", "image": "salmon" },
+
+  { "name": "김", "category": "건조식품", "storage": "실온", "image": "seaweed" },
+
+  { "name": "김치", "category": "발효식품", "storage": "냉장", "image": "kimchi" },
+
+  { "name": "빵", "category": "베이커리", "storage": "실온", "image": "bread" }
+]
