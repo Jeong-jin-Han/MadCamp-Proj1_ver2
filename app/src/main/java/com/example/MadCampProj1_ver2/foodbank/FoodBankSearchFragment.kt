@@ -1,5 +1,6 @@
 package com.example.MadCampProj1_ver2.foodbank
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,7 @@ import com.example.MadCampProj1_ver2.R
 import com.example.MadCampProj1_ver2.map.MapFragment
 //import com.example.MadCampProj1_ver2.phone.ListItem
 import com.example.MadCampProj1_ver2.foodbank.ListItem
+import com.example.MadCampProj1_ver2.myfooddata.MyFoodData
 
 import com.example.MadCampProj1_ver2.phone.PhoneDetailFragment
 
@@ -26,6 +29,7 @@ import com.example.MadCampProj1_ver2.sampledata.MemberData
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
 import com.example.MadCampProj1_ver2.samplefooddata.FoodData
 import com.example.MadCampProj1_ver2.samplefooddata.FoodDto
+import java.util.Calendar
 
 @Suppress("DEPRECATION")
 class FoodBankSearchFragment : Fragment(){
@@ -113,7 +117,28 @@ class FoodBankSearchFragment : Fragment(){
 
             },
             onCalanderClick = {
-                id ->
+                foodId ->
+                // 달력 열고 선택된 날짜를 처리
+                showDatePickerDialog { selectedDate ->
+                    // 1. MyFoodData에 추가
+                    MyFoodData.addMyFoodDataDueDate(foodId, selectedDate)
+
+                    Toast.makeText(requireContext(), "[$foodId] 날짜 선택됨: $selectedDate", Toast.LENGTH_SHORT).show()
+
+                    // 여기서 id는 클릭된 FoodItem의 id (또는 foodId 등)
+                    // 필요하면 선택된 날짜와 id로 서버에 저장하거나 다른 UI 업데이트도 가능
+
+                }
+            },
+            onPlusClick = {
+                foodId ->
+                MyFoodData.addMyFoodDataNumber(foodId)
+                Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
+            },
+            onMinusClick = {
+                foodId ->
+                MyFoodData.deleteMyFoodDataNumber(foodId)
+                Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
             }
         )
 
@@ -167,6 +192,23 @@ class FoodBankSearchFragment : Fragment(){
         adapter.updateData(filteredList)
     }
 
+    //DatePicker
+    private fun showDatePickerDialog(onDateSelected: (String) -> Unit) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                val formattedDate = "${selectedYear}-${selectedMonth + 1}-${String.format("%02d", selectedDay)}"
+                onDateSelected(formattedDate)
+            },
+            year, month, day
+        )
+        datePickerDialog.show()
+    }
 
 }
 
@@ -207,5 +249,4 @@ fun prepareSectionedList(foodList: List<FoodDto>): List<ListItem> {
     }
 
     return sectionedList
-
 }

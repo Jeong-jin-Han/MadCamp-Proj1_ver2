@@ -86,9 +86,10 @@
 
         <ImageView
             android:id="@+id/top_bar_person_ver2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/person"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/fridge_ver2"
+            android:layout_marginLeft="5dp"
             android:layout_gravity="right|center_vertical"
             android:scaleType="fitCenter"
             />

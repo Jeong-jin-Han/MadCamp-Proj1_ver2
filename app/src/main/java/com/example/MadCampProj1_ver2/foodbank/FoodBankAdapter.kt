@@ -35,6 +35,8 @@ class FoodBankAdapter(
     private val onItemClick: (Int) -> Unit,
     private val onLocationClick: (Int) -> Unit,
     private val onCalanderClick: (Int) -> Unit,
+    private val onPlusClick: (Int) -> Unit,
+    private val onMinusClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         private const val VIEW_TYPE_HEADER = 0
@@ -93,7 +95,7 @@ class FoodBankAdapter(
                 Log.d("hello", previousClick.toString())
 
                 (holder as ContactViewHolder).bind(
-                    item.food, item.qualification, onItemClick, onLocationClick, onCalanderClick, isExpanded, onCardClick = {
+                    item.food, item.qualification, onItemClick, onLocationClick, onCalanderClick, onPlusClick, onMinusClick, isExpanded, onCardClick = {
                         clickedPosition ->
                         if (previousClick != -1 && previousClick != clickedPosition) {
                             notifyItemChanged(previousClick)
@@ -232,6 +234,8 @@ class FoodBankAdapter(
             onItemClick: (Int) -> Unit,
             onLocationClick: (Int) -> Unit,
             onCalanderClick: (Int) -> Unit,
+            onPlusClick: (Int) -> Unit,
+            onMinusClick: (Int) -> Unit,
 
             isExpanded: Boolean,
             onCardClick: (Int) -> Unit,
@@ -302,10 +306,18 @@ class FoodBankAdapter(
 //                }
 //                it.context.startActivity(intent)
 //            }
+            messageView.setOnClickListener {
+                onPlusClick(food.foodId)
+            }
+
 //            // 정보 보기
 //            infoView.setOnClickListener {
 //                onItemClick(member.memberId)
 //            }
+            infoView.setOnClickListener {
+                onMinusClick(food.foodId)
+            }
+
 //            // 위치 보기
 //            locationView.setOnClickListener {
 //                onLocationClick(member.memberId)

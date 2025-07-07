@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.MadCampProj1_ver2.R
 import com.example.MadCampProj1_ver2.map.MapFragment
+import com.example.MadCampProj1_ver2.myfooddata.MyFoodData
 import com.example.MadCampProj1_ver2.myfoodpage.MyFoodpageFragment
 import com.example.MadCampProj1_ver2.mypage.MypageFragment
 import com.example.MadCampProj1_ver2.notification.NotificationFragment
@@ -144,14 +145,26 @@ class FoodBankFragment : Fragment() {
                 }
             },
             onCalanderClick = {
-                id ->
+                foodId ->
                 // 달력 열고 선택된 날짜를 처리
                 showDatePickerDialog { selectedDate ->
-                    Toast.makeText(requireContext(), "[$id] 날짜 선택됨: $selectedDate", Toast.LENGTH_SHORT).show()
+                    // 1. MyFoodData에 추가
+                    MyFoodData.addMyFoodDataDueDate(foodId, selectedDate)
 
+                    Toast.makeText(requireContext(), "[$foodId] 날짜 선택됨: $selectedDate", Toast.LENGTH_SHORT).show()
                     // 여기서 id는 클릭된 FoodItem의 id (또는 foodId 등)
                     // 필요하면 선택된 날짜와 id로 서버에 저장하거나 다른 UI 업데이트도 가능
                 }
+            },
+            onPlusClick = {
+                foodId ->
+                MyFoodData.addMyFoodDataNumber(foodId)
+                Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
+            },
+            onMinusClick = {
+                foodId ->
+                MyFoodData.deleteMyFoodDataNumber(foodId)
+                Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
             }
         )
 
