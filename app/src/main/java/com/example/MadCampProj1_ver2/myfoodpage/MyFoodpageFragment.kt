@@ -207,7 +207,7 @@ class MyFoodpageFragment : Fragment() {
         recyclerView_dairy.layoutManager = LinearLayoutManager(activity) // 아이템을 세트별로 나열
         Log.d("hi", sectionedList_dairy.toString())
 //        recyclerView.adapter = PhoneAdapter(sectionedList, requireContext(), {id ->
-        recyclerView_vegatable.adapter = FoodBankAdapter(sectionedList_dairy, requireContext(),
+        recyclerView_dairy.adapter = FoodBankAdapter(sectionedList_dairy, requireContext(),
             {
                     id ->
                 // onItemClick 이벤트 처리
@@ -354,7 +354,7 @@ class MyFoodpageFragment : Fragment() {
         recyclerView_etc.layoutManager = LinearLayoutManager(activity) // 아이템을 세트별로 나열
         Log.d("hi", sectionedList_etc.toString())
 //        recyclerView.adapter = PhoneAdapter(sectionedList, requireContext(), {id ->
-        recyclerView_vegatable.adapter = FoodBankAdapter(sectionedList_etc, requireContext(),
+        recyclerView_etc.adapter = FoodBankAdapter(sectionedList_etc, requireContext(),
             {
                     id ->
                 // onItemClick 이벤트 처리
