@@ -145,26 +145,33 @@ class FoodBankFragment : Fragment() {
                 }
             },
             onCalanderClick = {
-                foodId ->
+                foodId, statusTextView ->
                 // 달력 열고 선택된 날짜를 처리
                 showDatePickerDialog { selectedDate ->
                     // 1. MyFoodData에 추가
                     MyFoodData.addMyFoodDataDueDate(foodId, selectedDate)
 
                     Toast.makeText(requireContext(), "[$foodId] 날짜 선택됨: $selectedDate", Toast.LENGTH_SHORT).show()
+
+                    statusTextView.text = "유통기한: $selectedDate"
                     // 여기서 id는 클릭된 FoodItem의 id (또는 foodId 등)
                     // 필요하면 선택된 날짜와 id로 서버에 저장하거나 다른 UI 업데이트도 가능
                 }
             },
             onPlusClick = {
-                foodId ->
+                foodId, numberView ->
                 MyFoodData.addMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
+                val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
+                numberView.text = "$number 개"
+
             },
             onMinusClick = {
-                foodId ->
+                foodId, numberView ->
                 MyFoodData.deleteMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
+                val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
+                numberView.text = "$number 개"
             }
         )
 

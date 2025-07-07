@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.MadCampProj1_ver2.R
+import com.example.MadCampProj1_ver2.myfooddata.MyFoodData
 import com.example.MadCampProj1_ver2.phone.ContactViewHolder
 import com.example.MadCampProj1_ver2.phone.HeaderViewHolder
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
@@ -34,9 +35,9 @@ class FoodBankAdapter(
     private val context: Context,
     private val onItemClick: (Int) -> Unit,
     private val onLocationClick: (Int) -> Unit,
-    private val onCalanderClick: (Int) -> Unit,
-    private val onPlusClick: (Int) -> Unit,
-    private val onMinusClick: (Int) -> Unit
+    private val onCalanderClick: (Int, TextView) -> Unit,
+    private val onPlusClick: (Int, TextView) -> Unit,
+    private val onMinusClick: (Int, TextView) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         private const val VIEW_TYPE_HEADER = 0
@@ -136,17 +137,19 @@ class FoodBankAdapter(
     class ContactViewHolder(
         view: View,
     )  : RecyclerView.ViewHolder(view) {
-        private val nameTextView: TextView = view.findViewById(R.id.phone_component_name)
-        private val statusTextView: TextView = view.findViewById(R.id.phone_component_status)
-        private val imageView: ImageView = view.findViewById(R.id.phone_component_image)
-        private val callView: ImageView = view.findViewById(R.id.phone_call)
-        private val messageView: ImageView = view.findViewById(R.id.phone_message)
-        private val infoView: ImageView = view.findViewById(R.id.phone_info)
-        private val locationView: ImageView = view.findViewById(R.id.phone_location)
-        private val moreView: LinearLayout = view.findViewById(R.id.phone_component_more)
-        private val cardView: CardView = view.findViewById(R.id.phone)
-        private val frameView: FrameLayout = view.findViewById(R.id.phone_frame)
-        private val lineView: View = view.findViewById(R.id.linetop)
+        private val nameTextView: TextView = view.findViewById(R.id.phone_component_name_ver2)
+        private val statusTextView: TextView = view.findViewById(R.id.phone_component_status_ver2)
+        private val imageView: ImageView = view.findViewById(R.id.phone_component_image_ver2)
+        private val callView: ImageView = view.findViewById(R.id.phone_call_ver2)
+        private val messageView: ImageView = view.findViewById(R.id.phone_message_ver2)
+        private val infoView: ImageView = view.findViewById(R.id.phone_info_ver2)
+        private val locationView: ImageView = view.findViewById(R.id.phone_location_ver2)
+        private val moreView: LinearLayout = view.findViewById(R.id.phone_component_more_ver2)
+        private val cardView: CardView = view.findViewById(R.id.phone_ver2)
+        private val frameView: FrameLayout = view.findViewById(R.id.phone_frame_ver2)
+        private val lineView: View = view.findViewById(R.id.linetop_ver2)
+        private val numberTextView: TextView = view.findViewById(R.id.phone_component_name_2_ver2)
+        private val numberView: TextView = view.findViewById(R.id.phone_component_status_2_ver2)
 
 //        fun bind(
 //            member: MemberDto,
@@ -233,9 +236,9 @@ class FoodBankAdapter(
             qualification: String,
             onItemClick: (Int) -> Unit,
             onLocationClick: (Int) -> Unit,
-            onCalanderClick: (Int) -> Unit,
-            onPlusClick: (Int) -> Unit,
-            onMinusClick: (Int) -> Unit,
+            onCalanderClick: (Int, TextView) -> Unit,
+            onPlusClick: (Int, TextView) -> Unit,
+            onMinusClick: (Int, TextView) -> Unit,
 
             isExpanded: Boolean,
             onCardClick: (Int) -> Unit,
@@ -244,13 +247,23 @@ class FoodBankAdapter(
             context: Context
         ) {
             nameTextView.text = food.name
+            numberTextView.text = "개수"
 //            for (cv in CVData.getCVDataList(context)) {
 //                if (cv.foodId == food.foodId) {
 //                    statusTextView.text = cv.studentID
 //                    break
 //                }
 //            }
-            statusTextView.text = food.name
+            val matched = MyFoodData.getMyFoodDataAllItems().find { it.foodId == food.foodId }
+
+            if (matched != null) {
+                statusTextView.text = matched.foodDuedate
+                numberView.text = "${matched.foodNumber} 개"
+            } else {
+                statusTextView.text = "유통기한: 미입력"
+                numberView.text = "0 개"
+            }
+
             imageView.setImageResource(food.imgPath)
             // View 초기화
 
@@ -297,7 +310,8 @@ class FoodBankAdapter(
 //                it.context.startActivity(intent)
 //            }
             callView.setOnClickListener {
-                onCalanderClick(food.foodId)  // 또는 food.foodId 등
+                onCalanderClick(food.foodId, statusTextView)  // 또는 food.foodId 등
+//                statusTextView.text = "유통기한: 미입력"
             }
 //            // 메시지 보내기
 //            messageView.setOnClickListener {
@@ -307,7 +321,8 @@ class FoodBankAdapter(
 //                it.context.startActivity(intent)
 //            }
             messageView.setOnClickListener {
-                onPlusClick(food.foodId)
+                Log.d("FoodBankDebug", "Plus clicked for ${food.foodId}")
+                onPlusClick(food.foodId, numberView)
             }
 
 //            // 정보 보기
@@ -315,7 +330,7 @@ class FoodBankAdapter(
 //                onItemClick(member.memberId)
 //            }
             infoView.setOnClickListener {
-                onMinusClick(food.foodId)
+                onMinusClick(food.foodId, numberView)
             }
 
 //            // 위치 보기

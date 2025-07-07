@@ -72,4 +72,13 @@ object MyFoodData {
         return foodList.toList()
     }
 
+    fun getMyFoodDataNumberfromFoodId(foodId: Int): Int {
+        val existing = foodList.find { it.foodId == foodId }
+        if (existing != null) {
+            return existing.foodNumber
+        } else {
+            return 0
+        }
+    }
+
 }
