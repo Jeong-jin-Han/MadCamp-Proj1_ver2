@@ -42,7 +42,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:cursorVisible="true"
-            android:hint="이름을 입력하세요"
+            android:hint="식재료를 입력하세요"
             android:textColorHint="#C1C1C1"
             android:imeOptions="actionDone"
             android:singleLine="true"/>

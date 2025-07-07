@@ -23,6 +23,8 @@ import com.example.MadCampProj1_ver2.sampledata.MemberData
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
 import com.example.MadCampProj1_ver2.phone.PhoneAdapter
 import com.example.MadCampProj1_ver2.phone.PhoneSearchFragment
+import com.example.MadCampProj1_ver2.foodbank.FoodBankSearchFragment
+
 import com.example.MadCampProj1_ver2.sampledata.NotificationData
 
 class FoodBankFragment : Fragment() {
@@ -57,7 +59,7 @@ class FoodBankFragment : Fragment() {
                     R.anim.phone_slide_in_left, // 뒤로가기 시 기존 Fragmet가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame_ver2, PhoneSearchFragment())
+                .replace(R.id.content_frame_ver2, FoodBankSearchFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -96,7 +98,7 @@ class FoodBankFragment : Fragment() {
 //        recyclerView.adapter = PhoneAdapter(sectionedList, requireContext(), {id ->
         recyclerView.adapter = FoodBankAdapter(sectionedList, requireContext(), {id ->
             // onItemClick 이벤트 처리
-            val fragment = PhoneDetailFragment().apply {
+            val fragment = FoodBankDetailFragment().apply {
                 arguments = Bundle().apply {
                     putInt("id", id)
                 }

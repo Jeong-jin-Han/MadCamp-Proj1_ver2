@@ -16,15 +16,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.MadCampProj1_ver2.R
 import com.example.MadCampProj1_ver2.map.MapFragment
 //import com.example.MadCampProj1_ver2.phone.ListItem
-import com.example.MadCampProj1_ver2.foodbank.ListItem
+import com.example.MadCampProj1_ver2.phone.PhoneDetailFragment
 
-import com.example.MadCampProj1_ver2.phone.PhoneAdapter
 import com.example.MadCampProj1_ver2.sampledata.CVDto
 import com.example.MadCampProj1_ver2.sampledata.MemberData
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
 
 @Suppress("DEPRECATION")
-class FoodSearchFragment : Fragment(){
+class FoodBankSearchFragment : Fragment(){
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FoodBankAdapter
@@ -64,7 +63,7 @@ class FoodSearchFragment : Fragment(){
         adapter = FoodBankAdapter(initialData,
             onItemClick = {
                 id ->
-                val fragment = PhoneDetailFragment().apply {
+                val fragment = FoodBankDetailFragment().apply {
                     arguments = Bundle().apply {
                         putInt("id", id)
                     }
@@ -105,8 +104,53 @@ class FoodSearchFragment : Fragment(){
             }
         )
 
-        recyclerView.layoutManager
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
 
+        // Add TextWatcher to filter data
+        searchEditText.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                TODO("Not yet implemented")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                TODO("Not yet implemented")
+                val query = s.toString()
+                filterData(query)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+//                TODO("Not yet implemented")
+            }
+        })
+
+    }
+
+    private fun filterData(query: String) {
+        val filteredList = mutableListOf<ListItem>()
+        if (query.isNotEmpty()) {
+            // Filter contacts while keeping header
+            var currentHeader: ListItem.Header? = null
+            for (item in originalData) {
+                when (item) {
+                    is ListItem.Header -> {
+                        currentHeader = item
+                    }
+                    is ListItem.Contact -> {
+                        if (item.member.name.contains(query, ignoreCase = true)) {
+                            // Add header before adding the first matching contact under it
+
+                            if (currentHeader != null && !filteredList.contains(currentHeader)) {
+                                filteredList.add(currentHeader)
+                            }
+
+                            filteredList.add(item)
+                        }
+                    }
+                }
+            }
+        }
+        adapter.updateData(filteredList)
     }
 
 
