@@ -1,0 +1,459 @@
+Index: app/src/main/java/com/example/MadCampProj1_ver2/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.MadCampProj1_ver2\r\n\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.Window\r\nimport android.widget.ImageButton\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen\r\nimport com.example.MadCampProj1_ver2.gallery.GalleryFragment\r\n//import com.example.MadCampProj1_ver2.phone.PhoneFragment\r\nimport com.example.MadCampProj1_ver2.foodbank.FoodBankFragment\r\n\r\n\r\nimport android.widget.LinearLayout\r\nimport com.example.MadCampProj1_ver2.map.MapFragment\r\nimport com.example.MadCampProj1_ver2.mission.MainFragment\r\n\r\n\r\n@Suppress(\"DEPRECATION\")\r\nclass MainActivity : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        val splashScreen = installSplashScreen()\r\n        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)    //자동 생성 상단바 없앰\r\n\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_main_ver2)\r\n//        supportFragmentManager.beginTransaction().\r\n//            replace(R.id.content_frame_ver2, PhoneFragment()).commit()\r\n        supportFragmentManager.beginTransaction().\r\n        replace(R.id.content_frame_ver2, FoodBankFragment()).commit()\r\n\r\n        // 하단바 동작 설정\r\n        val foodbankLayout = findViewById<LinearLayout>(R.id.food_bank_Layout)\r\n        val menubookLayout = findViewById<LinearLayout>(R.id.menu_book_Layout)\r\n        val travelexploreLayout = findViewById<LinearLayout>(R.id.travel_explore_Layout)\r\n        val foodbankButton = findViewById<ImageButton>(R.id.food_bank_button)\r\n        val menubookButton = findViewById<ImageButton>(R.id.menu_book_button)\r\n        val travelexploreButton = findViewById<ImageButton>(R.id.travel_explore_button)\r\n\r\n        foodbankLayout.setOnClickListener {\r\n            Log.d(\"Button\",\"button clicked\")\r\n            foodbankButton.setImageResource(R.drawable.food_bank)\r\n            menubookButton.setImageResource(R.drawable.menu_book_unselected)\r\n            travelexploreButton.setImageResource(R.drawable.travel_explore_unselected)\r\n            supportFragmentManager.beginTransaction().\r\n            replace(R.id.content_frame_ver2, FoodBankFragment()).commit()\r\n        }\r\n\r\n        foodbankButton.setOnClickListener {\r\n            Log.d(\"Button\",\"button clicked\")\r\n            foodbankButton.setImageResource(R.drawable.food_bank)\r\n            menubookButton.setImageResource(R.drawable.menu_book_unselected)\r\n            travelexploreButton.setImageResource(R.drawable.travel_explore_unselected)\r\n            supportFragmentManager.beginTransaction().\r\n            replace(R.id.content_frame_ver2, FoodBankFragment()).commit()\r\n        }\r\n\r\n\r\n        menubookLayout.setOnClickListener {\r\n            Log.d(\"Button\",\"button clicked\")\r\n            foodbankButton.setImageResource(R.drawable.food_bank_unselected)\r\n            menubookButton.setImageResource(R.drawable.menu_book)\r\n            travelexploreButton.setImageResource(R.drawable.travel_explore_unselected)\r\n            supportFragmentManager.beginTransaction().\r\n            replace(R.id.content_frame_ver2, GalleryFragment()).commit()\r\n        }\r\n\r\n        menubookButton.setOnClickListener {\r\n            Log.d(\"Button\",\"button clicked\")\r\n            foodbankButton.setImageResource(R.drawable.food_bank_unselected)\r\n            menubookButton.setImageResource(R.drawable.menu_book)\r\n            travelexploreButton.setImageResource(R.drawable.travel_explore_unselected)\r\n            supportFragmentManager.beginTransaction().\r\n            replace(R.id.content_frame_ver2, GalleryFragment()).commit()\r\n        }\r\n\r\n\r\n        travelexploreLayout.setOnClickListener {\r\n            Log.d(\"Button\",\"button clicked\")\r\n            foodbankButton.setImageResource(R.drawable.food_bank_unselected)\r\n            menubookButton.setImageResource(R.drawable.menu_book_unselected)\r\n            travelexploreButton.setImageResource(R.drawable.travel_explore)\r\n            supportFragmentManager.beginTransaction().\r\n            replace(R.id.content_frame_ver2, MapFragment()).commit()\r\n        }\r\n\r\n        travelexploreButton.setOnClickListener {\r\n            Log.d(\"Button\",\"button clicked\")\r\n            foodbankButton.setImageResource(R.drawable.food_bank_unselected)\r\n            menubookButton.setImageResource(R.drawable.menu_book_unselected)\r\n            travelexploreButton.setImageResource(R.drawable.travel_explore)\r\n            supportFragmentManager.beginTransaction().\r\n            replace(R.id.content_frame_ver2, MapFragment()).commit()\r\n        }\r\n\r\n//        // 하단바 동작 설정 (id값으로 들고옴)\r\n//        val phoneLayout= findViewById<LinearLayout>(R.id.phoneLayout)\r\n//        val imageLayout = findViewById<LinearLayout>(R.id.imageLayout)\r\n//        val otherLayout = findViewById<LinearLayout>(R.id.otherLayout)\r\n//        val phoneButton = findViewById<ImageButton>(R.id.phone_button)\r\n//        val imageButton = findViewById<ImageButton>(R.id.image_button)\r\n//        val otherButton = findViewById<ImageButton>(R.id.other_button)\r\n//        val missionButton = findViewById<ImageButton>(R.id.mission_button)\r\n//\r\n//        phoneLayout.setOnClickListener {\r\n//            Log.d(\"Button\",\"button clicked\")\r\n//            phoneButton.setImageResource(R.drawable.bottom_phone)\r\n//            imageButton.setImageResource(R.drawable.bottom_image_unselected)\r\n//            otherButton.setImageResource(R.drawable.bottom_other_unselected)\r\n//            missionButton.setImageResource(R.drawable.bottom_mission_unselected)\r\n//            supportFragmentManager.beginTransaction().\r\n//                replace(R.id.content_frame, PhoneFragment()).commit()\r\n//        }\r\n//        phoneButton.setOnClickListener {\r\n//            Log.d(\"Button\",\"button clicked\")\r\n//            phoneButton.setImageResource(R.drawable.bottom_phone)\r\n//            imageButton.setImageResource(R.drawable.bottom_image_unselected)\r\n//            otherButton.setImageResource(R.drawable.bottom_other_unselected)\r\n//            supportFragmentManager.beginTransaction().\r\n//            replace(R.id.content_frame, PhoneFragment()).commit()\r\n//        }\r\n//\r\n//        imageLayout.setOnClickListener {\r\n//            phoneButton.setImageResource(R.drawable.bottom_phone_unselected)\r\n//            imageButton.setImageResource(R.drawable.bottom_image)\r\n//            otherButton.setImageResource(R.drawable.bottom_other_unselected)\r\n//            supportFragmentManager.beginTransaction().\r\n//            replace(R.id.content_frame, GalleryFragment()).commit()\r\n//        }\r\n//        imageButton.setOnClickListener {\r\n//            phoneButton.setImageResource(R.drawable.bottom_phone_unselected)\r\n//            imageButton.setImageResource(R.drawable.bottom_image)\r\n//            otherButton.setImageResource(R.drawable.bottom_other_unselected)\r\n//            missionButton.setImageResource(R.drawable.bottom_mission_unselected)\r\n//            supportFragmentManager.beginTransaction().\r\n//            replace(R.id.content_frame, GalleryFragment()).commit()\r\n//        }\r\n//\r\n//        otherLayout.setOnClickListener {\r\n//            phoneButton.setImageResource(R.drawable.bottom_phone_unselected)\r\n//            imageButton.setImageResource(R.drawable.bottom_image_unselected)\r\n//            otherButton.setImageResource(R.drawable.bottom_other)\r\n//            supportFragmentManager.beginTransaction().\r\n//            replace(R.id.content_frame, MapFragment()).commit()\r\n//        }\r\n//        otherButton.setOnClickListener {\r\n//            phoneButton.setImageResource(R.drawable.bottom_phone_unselected)\r\n//            imageButton.setImageResource(R.drawable.bottom_image_unselected)\r\n//            otherButton.setImageResource(R.drawable.bottom_other)\r\n//            missionButton.setImageResource(R.drawable.bottom_mission_unselected)\r\n//            supportFragmentManager.beginTransaction().\r\n//            replace(R.id.content_frame, MapFragment()).commit()\r\n//        }\r\n//\r\n//        missionButton.setOnClickListener {\r\n//            phoneButton.setImageResource(R.drawable.bottom_phone_unselected)\r\n//            imageButton.setImageResource(R.drawable.bottom_image_unselected)\r\n//            otherButton.setImageResource(R.drawable.bottom_other_unselected)\r\n//            missionButton.setImageResource(R.drawable.bottom_mission)\r\n//            supportFragmentManager.beginTransaction().\r\n//            replace(R.id.content_frame, MainFragment()).commit()\r\n//        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/MadCampProj1_ver2/MainActivity.kt b/app/src/main/java/com/example/MadCampProj1_ver2/MainActivity.kt
+--- a/app/src/main/java/com/example/MadCampProj1_ver2/MainActivity.kt	(revision c0758f82f4dba97693c37a4b6f5bb398b4ef66dc)
++++ b/app/src/main/java/com/example/MadCampProj1_ver2/MainActivity.kt	(date 1751939644000)
+@@ -12,6 +12,7 @@
+ 
+ 
+ import android.widget.LinearLayout
++import com.example.MadCampProj1_ver2.foodmap.FoodMapFragment
+ import com.example.MadCampProj1_ver2.map.MapFragment
+ import com.example.MadCampProj1_ver2.mission.MainFragment
+ 
+@@ -81,7 +82,7 @@
+             menubookButton.setImageResource(R.drawable.menu_book_unselected)
+             travelexploreButton.setImageResource(R.drawable.travel_explore)
+             supportFragmentManager.beginTransaction().
+-            replace(R.id.content_frame_ver2, MapFragment()).commit()
++            replace(R.id.content_frame_ver2, FoodMapFragment()).commit()
+         }
+ 
+         travelexploreButton.setOnClickListener {
+@@ -90,7 +91,7 @@
+             menubookButton.setImageResource(R.drawable.menu_book_unselected)
+             travelexploreButton.setImageResource(R.drawable.travel_explore)
+             supportFragmentManager.beginTransaction().
+-            replace(R.id.content_frame_ver2, MapFragment()).commit()
++            replace(R.id.content_frame_ver2, FoodMapFragment()).commit()
+         }
+ 
+ //        // 하단바 동작 설정 (id값으로 들고옴)
+Index: app/src/main/java/com/example/MadCampProj1_ver2/myfoodmemberdata/MyFoodMemberDto.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/MadCampProj1_ver2/myfoodmemberdata/MyFoodMemberDto.kt b/app/src/main/java/com/example/MadCampProj1_ver2/myfoodmemberdata/MyFoodMemberDto.kt
+new file mode 100644
+--- /dev/null	(date 1751933848000)
++++ b/app/src/main/java/com/example/MadCampProj1_ver2/myfoodmemberdata/MyFoodMemberDto.kt	(date 1751933848000)
+@@ -0,0 +1,14 @@
++package com.example.MadCampProj1_ver2.myfoodmemberdata
++
++import com.example.MadCampProj1_ver2.myfooddata.MyFoodDto
++
++data class MyFoodMemberDto(
++    val memberId : Int,
++    val name: String,
++    val phone: String,
++    val lat: Double,            // 위도
++    val lng: Double,            // 경도
++    val imgPath: Int,           // 정사각형 프로필 이미지 리소스
++    val imgCirclePath: Int,     // 원형 이미지 리소스
++    val foods: Set<MyFoodDto>?        // 보유 식재료 ID 목록 (FoodDto.foodId)
++)
+Index: app/src/main/java/com/example/MadCampProj1_ver2/myfoodmemberdata/MyFoodMemberData.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/MadCampProj1_ver2/myfoodmemberdata/MyFoodMemberData.kt b/app/src/main/java/com/example/MadCampProj1_ver2/myfoodmemberdata/MyFoodMemberData.kt
+new file mode 100644
+--- /dev/null	(date 1751937082000)
++++ b/app/src/main/java/com/example/MadCampProj1_ver2/myfoodmemberdata/MyFoodMemberData.kt	(date 1751937082000)
+@@ -0,0 +1,93 @@
++package com.example.MadCampProj1_ver2.myfoodmemberdata
++
++import android.content.Context
++import com.example.MadCampProj1_ver2.myfooddata.MyFoodDto
++import com.example.MadCampProj1_ver2.sampledata.MemberData
++import com.example.MadCampProj1_ver2.sampledata.MemberDto
++import com.google.gson.Gson
++import org.json.JSONArray
++import java.io.InputStreamReader
++import kotlin.random.Random
++
++
++object MyFoodMemberData {
++    private val myFoodMemberList: MutableList<MyFoodMemberDto> = mutableListOf()
++    private val myFoodMemberIdsWithItems = listOf(1, 3, 10, 25, 30)
++    private var initialized = false
++
++    private val sampleDueDates = listOf(
++        "2025-07-30", "2025-08-05", "2025-08-12",
++        "2025-09-01", "2025-09-15", "2025-10-01"
++    )
++
++    fun initializeIfNeeded(context: Context) {
++        if (initialized) return
++
++        val jsonString = loadJSONFromAsset(context) ?: return
++        val jsonArray = JSONArray(jsonString)
++
++        for (i in 0 until jsonArray.length()) {
++            val jsonObject = jsonArray.getJSONObject(i)
++
++            val memberId = jsonObject.getInt("memberId")
++            val name = jsonObject.getString("name")
++            val phone = jsonObject.getString("phone")
++            val lat = jsonObject.getDouble("lat")
++            val lng = jsonObject.getDouble("lng")
++            val img = getDrawableResourceId(context, jsonObject.getString("imgPath"))
++            val imgCircle = getDrawableResourceId(context, jsonObject.getString("imgCirclePath"))
++
++            // 랜덤 식재료는 특정 멤버에게만 추가
++            val foods = if (memberId in myFoodMemberIdsWithItems) {
++                generateRandomMyFoodDtoSet()
++            } else {
++                null
++            }
++
++            val dto = MyFoodMemberDto(
++                memberId = memberId,
++                name = name,
++                phone = phone,
++                lat = lat,
++                lng = lng,
++                imgPath = img,
++                imgCirclePath = imgCircle,
++                foods = foods
++            )
++
++            myFoodMemberList.add(dto)
++        }
++
++        initialized = true
++    }
++
++    fun getAllMyFoodMembers(): List<MyFoodMemberDto> = myFoodMemberList
++
++    fun getMyFoodMemberIfExists(memberId: Int): MyFoodMemberDto? {
++        return myFoodMemberList.find { it.memberId == memberId }
++    }
++
++    private fun generateRandomMyFoodDtoSet(): Set<MyFoodDto> {
++        val random = Random(System.currentTimeMillis())
++        return (0 until 50).shuffled(random).take(5).map { foodId ->
++            val number = (1..3).random(random)
++            val dueDate = sampleDueDates.random(random)
++            MyFoodDto(foodId, number, dueDate)
++        }.toSet()
++    }
++
++    private fun getDrawableResourceId(context: Context, resourceName: String): Int {
++        return context.resources.getIdentifier(resourceName, "drawable", context.packageName)
++    }
++
++    private fun loadJSONFromAsset(context: Context): String? {
++        return try {
++            val inputStream = context.assets.open("members.json")
++            val inputStreamReader = InputStreamReader(inputStream)
++            inputStreamReader.readText()
++        } catch (ex: Exception) {
++            ex.printStackTrace()
++            null
++        }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/MadCampProj1_ver2/foodmap/FoodMapAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/MadCampProj1_ver2/foodmap/FoodMapAdapter.kt b/app/src/main/java/com/example/MadCampProj1_ver2/foodmap/FoodMapAdapter.kt
+new file mode 100644
+--- /dev/null	(date 1751940606000)
++++ b/app/src/main/java/com/example/MadCampProj1_ver2/foodmap/FoodMapAdapter.kt	(date 1751940606000)
+@@ -0,0 +1,68 @@
++package com.example.MadCampProj1_ver2.foodmap
++
++import android.content.Context
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.ImageView
++import android.widget.TextView
++import androidx.cardview.widget.CardView
++import androidx.recyclerview.widget.RecyclerView
++import com.example.MadCampProj1_ver2.R
++import com.example.MadCampProj1_ver2.map.MapAdapter
++import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberDto
++import com.example.MadCampProj1_ver2.sampledata.CVDto
++import com.example.MadCampProj1_ver2.sampledata.MemberDto
++
++class FoodMapAdapter (
++    private var foodmemberList: List<MyFoodMemberDto>,
++    private val context: Context,
++    private val onItemClick: (Int) -> Unit) //람다식으로 인자값 받음
++    : RecyclerView.Adapter<FoodMapAdapter.MapViewHolder>(){
++
++    class MapViewHolder(view: View) : RecyclerView.ViewHolder(view) {
++        val nameTextView: TextView = view.findViewById(R.id.phone_component_name)
++        val statusTextView: TextView = view.findViewById(R.id.phone_component_status)
++        val imageView: ImageView = view.findViewById(R.id.phone_component_image)
++        val cardView: CardView = view.findViewById(R.id.phone)
++    }
++
++    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MapViewHolder {
++//        TODO("Not yet implemented")
++        val view = LayoutInflater.from(parent.context)
++            .inflate(R.layout.phone_component, parent, false)
++        return MapViewHolder(view)
++    }
++
++    override fun onBindViewHolder(holder: MapViewHolder, position: Int) {
++//        TODO("Not yet implemented")
++        val member = foodmemberList[position]
++        val cvDataList: List<CVDto> = CVData.getCVDataList(context)
++        val cv = cvDataList.find {it.memberId == member.memberId}
++        if(cv != null){
++            holder.nameTextView.text = member.name
++            holder.statusTextView.text = cv.qualification
++            holder.imageView.setImageResource(member.imgPath)
++        }
++        holder.cardView.radius = 50f
++        //길이 변경
++        val layoutParams = holder.cardView.layoutParams
++        layoutParams.width = dpToPx(holder.cardView.context, 200)
++        holder.cardView.layoutParams = layoutParams
++
++        // 클릭 이벤트 설정
++        holder.cardView.setOnClickListener {
++            onItemClick(member.memberId) // 클릭된 아이템의 memberId를 전달
++        }
++    }
++
++    fun dpToPx(context: Context, dp: Int): Int {
++        val density = context.resources.displayMetrics.density
++        return (dp * density).toInt()
++    }
++
++    override fun getItemCount(): Int {
++//        TODO("Not yet implemented")
++        return foodmemberList.size
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/MadCampProj1_ver2/foodmap/FoodMapFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/MadCampProj1_ver2/foodmap/FoodMapFragment.kt b/app/src/main/java/com/example/MadCampProj1_ver2/foodmap/FoodMapFragment.kt
+new file mode 100644
+--- /dev/null	(date 1751941516000)
++++ b/app/src/main/java/com/example/MadCampProj1_ver2/foodmap/FoodMapFragment.kt	(date 1751941516000)
+@@ -0,0 +1,205 @@
++package com.example.MadCampProj1_ver2.foodmap
++
++import android.content.Intent
++import android.os.Bundle
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.TextView
++import androidx.fragment.app.Fragment
++import com.example.MadCampProj1_ver2.R
++import com.naver.maps.geometry.LatLng
++import com.naver.maps.map.NaverMap
++import com.naver.maps.map.overlay.Marker
++import com.naver.maps.map.overlay.OverlayImage
++import android.graphics.Bitmap
++import android.graphics.Canvas
++import android.net.Uri
++import android.os.Handler
++import android.os.Looper
++import android.util.Log
++import android.widget.ImageView
++import androidx.cardview.widget.CardView
++import androidx.recyclerview.widget.LinearLayoutManager
++import androidx.recyclerview.widget.RecyclerView
++import com.example.MadCampProj1_ver2.map.MapAdapter
++import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData
++import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberDto
++import com.example.MadCampProj1_ver2.myfoodpage.MyFoodpageFragment
++import com.example.MadCampProj1_ver2.mypage.MypageFragment
++import com.example.MadCampProj1_ver2.notification.NotificationFragment
++import com.example.MadCampProj1_ver2.sampledata.MemberData
++import com.example.MadCampProj1_ver2.sampledata.MemberDto
++import com.example.MadCampProj1_ver2.sampledata.NotificationData
++import com.naver.maps.map.CameraAnimation
++import com.naver.maps.map.CameraUpdate
++import kotlin.math.abs
++
++@Suppress("DEPRECATION")
++class FoodMapFragment: Fragment() {
++    private lateinit var naverMap: NaverMap
++    private var currentMemberId: Int? = null
++    private var isMapInitizalized = false
++    private var isInitialPinSet = false
++
++    override fun onCreateView(
++        inflater: LayoutInflater,
++        container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++        return inflater.inflate(R.layout.map, container, false)
++    }
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        Log.d("view", "viewCreate")
++        super.onViewCreated(view, savedInstanceState)
++        val lat: Double = arguments?.getDouble("lat") ?: -1.0 // 위도
++        val lng: Double = arguments?.getDouble("lng") ?: -1.0 // 경도
++        val memberId: Int = arguments?.getInt("memberId") ?: -1 // memberId
++
++        MyFoodMemberData.initializeIfNeeded(requireContext())
++
++        val MyFoodMemberList: List<MyFoodMemberDto> = MyFoodMemberData.getAllMyFoodMembers()
++
++        val searchButton = view.findViewById<ImageView>(R.id.top_bar_search)
++        searchButton.visibility = View.GONE
++
++        val notificationButton = view.findViewById<ImageView>(R.id.top_bar_bell)
++        notificationButton.setOnClickListener {
++            requireActivity().supportFragmentManager.beginTransaction()
++                .setCustomAnimations(
++                    R.anim.phone_slide_in_right,
++                    R.anim.phone_slide_out_left,
++                    R.anim.phone_slide_in_left,
++                    R.anim.phone_slide_out_right,
++                )
++                .replace(R.id.content_frame_ver2, NotificationFragment())
++                .addToBackStack(null)
++                .commit()
++        }
++
++        val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber)
++        notificationNumber.text = NotificationData.getCheckdNotificationDataList(requireContext()).toString()
++
++        val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person)
++        mypageButton.setOnClickListener {
++
++            requireActivity().supportFragmentManager.beginTransaction()
++                .setCustomAnimations(
++                    R.anim.phone_slide_in_right, // 새로운 Fragment가 오른쪽에서 들어오는 애니메이션
++                    R.anim.phone_slide_out_left, // 기존 Fragment가 왼쪽으로 밀리는 애니메이션
++                    R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
++                    R.anim.phone_slide_out_right
++                )
++                .replace(R.id.content_frame_ver2, MyFoodpageFragment())
++                .addToBackStack(null)
++                .commit()
++        }
++
++        // 상단바 이름 변경
++        view.findViewById<TextView>(R.id.top_bar_text).text = "탐색"
++
++        // Naver MapFragment 가져오거나 새로 생성
++        var mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as? com.naver.maps.map.MapFragment
++        if (mapFragment == null) {
++            mapFragment = com.naver.maps.map.MapFragment.newInstance()
++            childFragmentManager.beginTransaction()
++                .add(R.id.mapView, mapFragment)
++                .commit()
++        }
++
++        if (!isMapInitizalized) {
++            mapFragment?.getMapAsync {
++                naverMap ->
++                Log.d("d", "시작")
++                this.naverMap = naverMap
++                this.isMapInitizalized = true
++                naverMap.uiSettings.isZoomControlEnabled = true
++
++                // 멤버 데이터로 마커 설정
++                MyFoodMemberList.forEach {
++                    foodmember ->
++                    createAndSetMarker(foodmember)
++                }
++
++                // RecyclerView 설정
++                setupRecyclerView(view, MyFoodMemberList)
++
++                // 특정 GPS 위촐 이동 (lat, lng 값이 유효한 경우)
++                if (lat != -1.0 && lng != -1.0 && memberId == -1) {
++                    val foodmember = MyFoodMemberList.find {it.memberId == memberId}
++                    foodmember?.let {
++                        moveToLocation(lat, lng, it)
++
++                        // 초기 핀 설정 후 1초 동안 스크럴 리스ㄴ 비활성화
++                        isInitialPinSet = true
++                        Handler(Looper.getMainLooper()).postDelayed(
++                            {isInitialPinSet = false}, 1000
++                        )
++                    }
++                }
++            }
++        }
++    }
++
++    private fun createAndSetMarker(foodmember: MyFoodMemberDto, marker: Marker = Marker()) {
++        val view = LayoutInflater.from(context).inflate(R.layout.map_pin, null)
++        val imageView: ImageView = view.findViewById(R.id.phone_component_image)
++        val nameText: TextView = view.findViewById(R.id.phone_component_name)
++        val statusText: TextView = view.findViewById(R.id.phone_component_status)
++        val cardView: CardView = view.findViewById(R.id.phone)
++
++        // cvdata가 아니라 Food에 대한 정보를 가져오게 할 예정
++        val cv = CVData.getCVDataList(requireContext()).find { it.memberId == foodmember.memberId }
++        cv?.let {
++            imageView.setImageResource(foodmember.imgCirclePath)
++            imageView.setBackgroundResource(R.drawable.circle)
++            cardView.radius = 50f
++            nameText.text = foodmember.name
++            statusText.text = it.qualification
++        }
++
++        marker.icon = OverlayImage.fromBitmap(createBitmapFromView(view))
++        marker.position = LatLng(foodmember.lat, foodmember.lng)
++        marker.zIndex = 10
++        marker.map = naverMap
++
++    }
++
++    private fun setupRecyclerView(view: View, foodmemberDataList: List<MyFoodMemberDto>) {
++        val recyclerView: RecyclerView = view.findViewById(R.id.map_recycler_view)
++        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
++        recyclerView.adapter = FoodMapAdapter(foodmemberDataList, context = requireContext()) {
++            id ->
++            val member = foodmemberDataList.find { it.memberId == id }
++            member?.let { moveToLocation(it.lat, it.lng, it) }
++        }
++//        TODO()
++    }
++
++    private fun createBitmapFromView(view: View): Bitmap {
++        view.measure(
++            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
++            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
++        )
++        view.layout(0,0, view.measuredWidth, view.measuredHeight)
++        val bitmap = Bitmap.createBitmap(view.measuredWidth, view.measuredHeight, Bitmap.Config.ARGB_8888)
++        val canvas = Canvas(bitmap)
++        view.draw(canvas)
++        return bitmap
++    }
++
++    private fun moveToLocation(pinlat: Double, pinlng: Double, pinmember: MyFoodMemberDto) {
++        if (currentMemberId == pinmember.memberId) {
++            // 이미 현재 멤버에 대해 이동했으면 중복 호출 방지
++            return
++        }
++        currentMemberId = pinmember.memberId
++
++        val marker = Marker()
++        createAndSetMarker(pinmember, marker)
++        val cameraUpdate = CameraUpdate.scrollTo(LatLng(pinlat, pinlng))
++            .animate(CameraAnimation.Easing)
++        naverMap.moveCamera(cameraUpdate)
++    }
++}
+\ No newline at end of file
