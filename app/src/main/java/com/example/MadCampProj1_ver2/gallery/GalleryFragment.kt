@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity.RESULT_OK
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -33,8 +34,14 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import com.example.MadCampProj1_ver2.foodbank.Constants.fridge
+import com.example.MadCampProj1_ver2.foodmap.FoodMapAdapter
+import com.example.MadCampProj1_ver2.myfoodmembercheckeddata.MyFoodCheckedMemberData
 import com.example.MadCampProj1_ver2.myfoodmergedata.MyFoodMergeData
+import com.example.MadCampProj1_ver2.myfoodpage.MyFoodpageFragment
 import com.example.MadCampProj1_ver2.sampledata.GalleryDto
+
+import com.example.MadCampProj1_ver2.myfoodmemberpage.MyFoodMemberpageFragment
+import android.util.Log
 
 @Suppress("DEPRECATION")
 
@@ -44,6 +51,8 @@ class GalleryFragment : Fragment() {
     private val REQUEST_IMAGE_PICK = 102
     private var galleryAdapter: GalleryAdapter? = null
     private var imageFilePath: String? = null
+
+    private lateinit var cartAdapter: FoodMapAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -56,20 +65,91 @@ class GalleryFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         val recyclerView1: RecyclerView = view.findViewById(R.id.recycler_view1)
         val galleryDataList1: List<GalleryGroupDto> = GalleryGroupData.getGalleryGroupDataList()
-        val topBarTextView = view.findViewById<TextView>(R.id.top_bar_text)
+        val topBarTextView = view.findViewById<TextView>(R.id.top_bar_text_ver2)
         topBarTextView.text = "추천 요리"
 
         val cameraButton = view.findViewById<Button>(R.id.fixed_button)
 
-        val searchButton = view.findViewById<ImageView>(R.id.top_bar_search)
+        val searchButton = view.findViewById<ImageView>(R.id.top_bar_search_ver2)
         searchButton.visibility = View.GONE
+
+
+        val cartButton = view.findViewById<ImageView>(R.id.top_bar_cart_ver2)
+        val cartPopup = view.findViewById<CardView>(R.id.cartPopupCard)
+
+        cartButton.visibility = View.VISIBLE
+        cartButton.setOnClickListener {
+            cartPopup.visibility = if (cartPopup.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        }
+
+        // ✅ 여기서 RecyclerView + Adapter 설정
+        val cartrecyclerView = view.findViewById<RecyclerView>(R.id.cartRecyclerView)
+//        val cartItems = listOf("계란", "우유", "양파") // 예시 데이터
+
+//        val foodmemberDataList = MyFoodMemberList
+        val foodmemberDataList = MyFoodCheckedMemberData.getCheckedFoodMembers()
+
+        cartAdapter = FoodMapAdapter(
+            foodmemberDataList,
+            context = requireContext(),
+            onFridgeClick = {
+                    id ->
+//                // ✅ MyFoodpageFragment로 전환
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .setCustomAnimations(
+//                        R.anim.phone_slide_in_right,
+//                        R.anim.phone_slide_out_left,
+//                        R.anim.phone_slide_in_left,
+//                        R.anim.phone_slide_out_right
+//                    )
+//                    .replace(R.id.content_frame_ver2, MyFoodpageFragment())
+//                    .addToBackStack(null)
+//                    .commit()
+                val fragmentManager = requireActivity().supportFragmentManager
+                val transaction = fragmentManager.beginTransaction()
+
+                val newFragment = MyFoodMemberpageFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("memberId", id)
+                    }
+                }
+
+                transaction.setCustomAnimations(
+                    R.anim.phone_slide_in_right,
+                    R.anim.phone_slide_out_left,
+                    R.anim.phone_slide_in_left,
+                    R.anim.phone_slide_out_right
+                )
+
+                transaction
+                    .hide(this@GalleryFragment) // 현재 FoodMapFragment 숨김
+                    .add(R.id.content_frame_ver2, newFragment) // 새 Fragment 추가
+                    .addToBackStack(null)
+                    .commit()
+            },
+            onLocationClick = {
+                    id ->
+            },
+            onCheckClick = { memberId ->
+                val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
+                Log.d("CartUpdate", "Checked members: ${updatedList.map { it.name }}")
+                cartAdapter.updateData(updatedList)
+            }
+        )
+
+        cartrecyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
+        cartrecyclerView.adapter = cartAdapter
+
+
         val layoutManager = StaggeredGridLayoutManager(
             2, StaggeredGridLayoutManager.VERTICAL
         )
         recyclerView.layoutManager = layoutManager
-        val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber)
+        val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber_ver2)
         notificationNumber.text = NotificationData.getCheckdNotificationDataList(requireContext()).toString()
-        val notificationButton = view.findViewById<ImageView>(R.id.top_bar_bell)
+        val notificationButton = view.findViewById<ImageView>(R.id.top_bar_bell_ver2)
         notificationButton.setOnClickListener {
 
             requireActivity().supportFragmentManager.beginTransaction()
@@ -84,7 +164,7 @@ class GalleryFragment : Fragment() {
                 .commit()
         }
 
-        val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person)
+        val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person_ver2)
         mypageButton.setOnClickListener {
 
             requireActivity().supportFragmentManager.beginTransaction()
@@ -94,7 +174,7 @@ class GalleryFragment : Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame_ver2, MypageFragment())
+                .replace(R.id.content_frame_ver2, MyFoodpageFragment())
                 .addToBackStack(null)
                 .commit()
         }

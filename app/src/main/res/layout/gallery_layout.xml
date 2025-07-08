@@ -7,8 +7,8 @@
 
     <!-- 상단 고정 레이아웃 -->
     <include
-        android:id="@+id/top_bar"
-        layout="@layout/top_bar"
+        android:id="@+id/top_bar_ver2"
+        layout="@layout/top_bar_ver2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

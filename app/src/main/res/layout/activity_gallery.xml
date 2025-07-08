@@ -1,63 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Top Bar -->
-    <include
-        layout="@layout/top_bar" />
-
-    <!-- 메인 콘텐츠 영역 -->
+    <!-- 상단 바를 별도의 FrameLayout에서 고정 -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <!-- ConstraintLayout 내부에 두 RecyclerView 배치 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:elevation="10dp">
+        <include
+            layout="@layout/top_bar_ver2"
+            android:id="@+id/top_bar_ver2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <!-- 첫 번째 RecyclerView -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/recycler_view"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@color/background"
-                app:layout_constraintHorizontal_weight="1"/>
-
-            <!-- 두 번째 RecyclerView -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                app:layout_constraintStart_toEndOf="@+id/recycler_view1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@color/background"
-                app:layout_constraintHorizontal_weight="3"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <Button
-            android:id="@+id/fixed_button"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom|end"
-            android:background="@drawable/upload_button_background"
-            android:text="업로드하기"
-            android:textColor="@color/main_color2"
-            android:fontFamily="@font/pretendard_semibold"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="20dp"
-            android:textSize="16sp" />
-        <!-- 고정된 버튼 -->
+            android:layout_height="wrap_content"/>
     </FrameLayout>
 
-</LinearLayout>
+    <!-- 지도 -->
+    <FrameLayout
+        android:id="@+id/mapView_ver2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+<!--    &lt;!&ndash; RecyclerView 1 &ndash;&gt;-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recycler_view1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--    android:background="@color/background" />-->
+
+<!--    &lt;!&ndash; RecyclerView 2 &ndash;&gt;-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recycler_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--    android:background="@color/background" />-->
+    <!-- ConstraintLayout 내부에 두 RecyclerView 배치 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 첫 번째 RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view1"
+            android:layout_marginTop="65dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/recycler_view"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 두 번째 RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_marginTop="65dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toEndOf="@+id/recycler_view1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/background"
+            app:layout_constraintHorizontal_weight="3"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 고정된 버튼 -->
+    <Button
+        android:id="@+id/fixed_button"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/upload_button_background"
+        android:text="업로드하기"
+        android:textColor="@color/main_color2"
+        android:fontFamily="@font/pretendard_semibold"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="16sp" />
+
+</FrameLayout>
