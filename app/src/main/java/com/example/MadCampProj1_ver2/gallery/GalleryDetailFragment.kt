@@ -51,6 +51,7 @@ class GalleryDetailFragment : Fragment() {
             spannable.setSpan(ForegroundColorSpan(color), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             startIndex = endIndex + 2 // ", " 길이
         }
+        Log.d("GalleryDetail", "generate_text_for_photo: $spannable")
         return spannable
     }
 
@@ -78,7 +79,7 @@ class GalleryDetailFragment : Fragment() {
         galleryImageView.isClickable = true
         galleryImageView.isFocusable = true
 
-        galleryImageView.setOnClickListener {
+        /*galleryImageView.setOnClickListener {
             Log.d("GalleryDetail", "ImageView clicked!")
             val photoId = arguments?.getInt("id") ?: -1
             Log.d("GalleryDetail", "Clicked photoId: $photoId")
@@ -86,8 +87,9 @@ class GalleryDetailFragment : Fragment() {
                 val spannableText = generateTextForPhoto(photoId)
                 Log.d("GalleryDetail", "Generated ingredients: $spannableText")
                 ingredientsTextView.text = spannableText
+                ingredientsTextView.visibility = View.VISIBLE
             }
-        }
+        }*/
         Log.d("String", "View created")
         gestureDetector = GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
             override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
@@ -154,6 +156,7 @@ class GalleryDetailFragment : Fragment() {
             view.findViewById<TextView>(R.id.gallery_detail_abstract).text = abstractText
             view.findViewById<TextView>(R.id.gallery_detail_title).text = titleText
             view.findViewById<TextView>(R.id.gallery_detail_date).text = date
+            view.findViewById<TextView>(R.id.gallery_detail_ingredients).text = generateTextForPhoto(galleryId)
         }
 
 
