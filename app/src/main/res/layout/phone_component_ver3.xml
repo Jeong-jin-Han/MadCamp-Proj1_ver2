@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/phone_ver3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="0dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft='10dp'>
+
+    <FrameLayout
+        android:id="@+id/phone_frame_ver3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_card_background"
+        app:cardElevation="0dp">
+        <!--구분선-->
+
+        <!--        </LinearLayout>-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- ✅ 선은 수직으로 구분되어야 하므로 여기로 이동 -->
+            <View
+                android:id="@+id/linetop_ver3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E7E7E7"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="2dp">
+
+                <ImageView
+                    android:id="@+id/phone_component_image_ver3"
+                    android:background="@drawable/circle"
+                    android:clipToOutline="true"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/soy"
+                    android:layout_marginTop="2dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 이름 -->
+                    <TextView
+                        android:id="@+id/phone_component_name_ver3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:textSize="17sp"
+                        android:textColor="@color/font_color"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="달걀"/>
+
+                    <!-- 유통기한 -->
+                    <TextView
+                        android:id="@+id/phone_component_status_ver3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/main_color"
+                        android:fontFamily="@font/pretendard_light"
+                        android:text="유통기한 미입력"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phone_component_more_ver3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/member_fridge"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:src="@drawable/fridge_ver2"
+                    android:scaleType="centerInside" />
+
+
+                <ImageView
+                    android:id="@+id/member_message"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_message"
+                    android:scaleType="centerInside" />
+
+                <ImageView
+                    android:id="@+id/member_location"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_location"
+                    android:scaleType="centerInside" />
+
+                <ImageView
+                    android:id="@+id/member_checkbox"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/checkbox_unselected"
+                    android:scaleType="fitCenter" />
+<!--                    android:scaleType="centerInside" />-->
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

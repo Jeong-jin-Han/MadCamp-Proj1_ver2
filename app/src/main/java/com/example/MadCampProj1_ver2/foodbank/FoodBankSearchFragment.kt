@@ -97,10 +97,10 @@ class FoodBankSearchFragment : Fragment(){
             context = requireContext(),
             onLocationClick = {
                     id ->
-                // Handle location click (e.g. open map view)
+//                // Handle location click (e.g. open map view)
 //                val member = memberDataList.find {it.memberId == id}
-
-
+//
+//
 //                if (member != null) {
 //                    val fragment = MapFragment().apply {
 //                        arguments = Bundle().apply {

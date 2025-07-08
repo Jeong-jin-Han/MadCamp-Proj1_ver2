@@ -88,6 +88,12 @@ class FoodBankFragment : Fragment() {
 
         val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person_ver2)
         mypageButton.setOnClickListener {
+
+            val fragment = MyFoodpageFragment().apply {
+                arguments = Bundle().apply {
+                    putString("source", "bank")
+                }
+            }
             requireActivity().supportFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     R.anim.phone_slide_in_right,
@@ -95,8 +101,7 @@ class FoodBankFragment : Fragment() {
                     R.anim.phone_slide_in_left,
                     R.anim.phone_slide_out_right,
                 )
-//                .replace(R.id.content_frame_ver2, MypageFragment())
-                .replace(R.id.content_frame_ver2, MyFoodpageFragment())
+                .replace(R.id.content_frame_ver2, fragment)
                 .addToBackStack(null)
                 .commit()
         }

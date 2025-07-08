@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.MadCampProj1_ver2.myfooddata.MyFoodDto
 import com.example.MadCampProj1_ver2.sampledata.MemberData
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
+import com.example.MadCampProj1_ver2.samplefooddata.FoodDto
 import com.google.gson.Gson
 import org.json.JSONArray
 import java.io.InputStreamReader
@@ -65,6 +66,14 @@ object MyFoodMemberData {
 
     fun getMyFoodMemberIfExists(memberId: Int): MyFoodMemberDto? {
         return myFoodMemberList.find { it.memberId == memberId }
+    }
+
+    fun getFoodDtoListfromMemberId(memberId: Int, foodDataList: List<FoodDto>): List<FoodDto> {
+        val member = MyFoodMemberData.getMyFoodMemberIfExists(memberId) ?: return emptyList()
+
+        val foodIdSet = member.foods?.map { it.foodId }?.toSet() ?: return emptyList()
+
+        return foodDataList.filter { it.foodId in foodIdSet }
     }
 
     private fun generateRandomMyFoodDtoSet(): Set<MyFoodDto> {

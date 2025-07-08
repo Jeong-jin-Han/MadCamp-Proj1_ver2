@@ -23,11 +23,15 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.MadCampProj1_ver2.map.MapAdapter
+import com.example.MadCampProj1_ver2.myfoodmembercheckeddata.MyFoodCheckedMemberData
+import com.example.MadCampProj1_ver2.myfoodmembercheckeddata.MyFoodCheckedMemberData.initializeWithMembers
 import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData
 import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberDto
+import com.example.MadCampProj1_ver2.myfoodmemberpage.MyFoodMemberpageFragment
 import com.example.MadCampProj1_ver2.myfoodpage.MyFoodpageFragment
 import com.example.MadCampProj1_ver2.mypage.MypageFragment
 import com.example.MadCampProj1_ver2.notification.NotificationFragment
+import com.example.MadCampProj1_ver2.phone.PhoneAdapter
 import com.example.MadCampProj1_ver2.sampledata.MemberData
 import com.example.MadCampProj1_ver2.sampledata.MemberDto
 import com.example.MadCampProj1_ver2.sampledata.NotificationData
@@ -38,6 +42,7 @@ import kotlin.math.abs
 @Suppress("DEPRECATION")
 class FoodMapFragment: Fragment() {
     private lateinit var naverMap: NaverMap
+    private lateinit var cartAdapter: FoodMapAdapter
     private var currentMemberId: Int? = null
     private var isMapInitizalized = false
     private var isInitialPinSet = false
@@ -47,7 +52,7 @@ class FoodMapFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.map, container, false)
+        return inflater.inflate(R.layout.map_ver2, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,11 +65,86 @@ class FoodMapFragment: Fragment() {
         MyFoodMemberData.initializeIfNeeded(requireContext())
 
         val MyFoodMemberList: List<MyFoodMemberDto> = MyFoodMemberData.getAllMyFoodMembers()
+        initializeWithMembers(MyFoodMemberList)
 
-        val searchButton = view.findViewById<ImageView>(R.id.top_bar_search)
+        val searchButton = view.findViewById<ImageView>(R.id.top_bar_search_ver2)
         searchButton.visibility = View.GONE
 
-        val notificationButton = view.findViewById<ImageView>(R.id.top_bar_bell)
+        // 카트 아이콘 & 팝업
+        val cartButton = view.findViewById<ImageView>(R.id.top_bar_cart_ver2)
+        val cartPopup = view.findViewById<CardView>(R.id.cartPopupCard)
+
+        cartButton.visibility = View.VISIBLE
+        cartButton.setOnClickListener {
+            cartPopup.visibility = if (cartPopup.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        }
+
+        // ✅ 여기서 RecyclerView + Adapter 설정
+        val recyclerView = view.findViewById<RecyclerView>(R.id.cartRecyclerView)
+//        val cartItems = listOf("계란", "우유", "양파") // 예시 데이터
+
+//        val foodmemberDataList = MyFoodMemberList
+        val foodmemberDataList = MyFoodCheckedMemberData.getCheckedFoodMembers()
+
+
+//        val adapter
+        cartAdapter = FoodMapAdapter(
+            foodmemberDataList,
+            context = requireContext(),
+            onFridgeClick = {
+                id ->
+//                // ✅ MyFoodpageFragment로 전환
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .setCustomAnimations(
+//                        R.anim.phone_slide_in_right,
+//                        R.anim.phone_slide_out_left,
+//                        R.anim.phone_slide_in_left,
+//                        R.anim.phone_slide_out_right
+//                    )
+//                    .replace(R.id.content_frame_ver2, MyFoodpageFragment())
+//                    .addToBackStack(null)
+//                    .commit()
+                val fragmentManager = requireActivity().supportFragmentManager
+                val transaction = fragmentManager.beginTransaction()
+
+                val newFragment = MyFoodMemberpageFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("memberId", id)
+                    }
+                }
+
+                transaction.setCustomAnimations(
+                    R.anim.phone_slide_in_right,
+                    R.anim.phone_slide_out_left,
+                    R.anim.phone_slide_in_left,
+                    R.anim.phone_slide_out_right
+                )
+
+                transaction
+                    .hide(this@FoodMapFragment) // 현재 FoodMapFragment 숨김
+                    .add(R.id.content_frame_ver2, newFragment) // 새 Fragment 추가
+                    .addToBackStack(null)
+                    .commit()
+            },
+            onLocationClick = {
+                id ->
+            },
+            onCheckClick = { memberId ->
+                val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
+                Log.d("CartUpdate", "Checked members: ${updatedList.map { it.name }}")
+                cartAdapter.updateData(updatedList)
+            }
+        )
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
+        recyclerView.adapter = cartAdapter
+
+
+
+
+        val notificationButton = view.findViewById<ImageView>(R.id.top_bar_bell_ver2)
         notificationButton.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .setCustomAnimations(
@@ -78,11 +158,18 @@ class FoodMapFragment: Fragment() {
                 .commit()
         }
 
-        val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber)
+        val notificationNumber = view.findViewById<TextView>(R.id.notificationNumber_ver2)
         notificationNumber.text = NotificationData.getCheckdNotificationDataList(requireContext()).toString()
 
-        val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person)
+        val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person_ver2)
+
+
         mypageButton.setOnClickListener {
+            val fragment = MyFoodpageFragment().apply {
+                arguments = Bundle().apply {
+                    putString("source", "map")
+                }
+            }
 
             requireActivity().supportFragmentManager.beginTransaction()
                 .setCustomAnimations(
@@ -91,20 +178,20 @@ class FoodMapFragment: Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame_ver2, MyFoodpageFragment())
+                .replace(R.id.content_frame_ver2, fragment)
                 .addToBackStack(null)
                 .commit()
         }
 
         // 상단바 이름 변경
-        view.findViewById<TextView>(R.id.top_bar_text).text = "탐색"
+        view.findViewById<TextView>(R.id.top_bar_text_ver2).text = "탐색"
 
         // Naver MapFragment 가져오거나 새로 생성
-        var mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as? com.naver.maps.map.MapFragment
+        var mapFragment = childFragmentManager.findFragmentById(R.id.mapView_ver2) as? com.naver.maps.map.MapFragment
         if (mapFragment == null) {
             mapFragment = com.naver.maps.map.MapFragment.newInstance()
             childFragmentManager.beginTransaction()
-                .add(R.id.mapView, mapFragment)
+                .add(R.id.mapView_ver2, mapFragment)
                 .commit()
         }
 
@@ -167,14 +254,80 @@ class FoodMapFragment: Fragment() {
     }
 
     private fun setupRecyclerView(view: View, foodmemberDataList: List<MyFoodMemberDto>) {
-        val recyclerView: RecyclerView = view.findViewById(R.id.map_recycler_view)
+        val recyclerView: RecyclerView = view.findViewById(R.id.map_recycler_view_ver2)
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = FoodMapAdapter(foodmemberDataList, context = requireContext()) {
-            id ->
-            val member = foodmemberDataList.find { it.memberId == id }
-            member?.let { moveToLocation(it.lat, it.lng, it) }
-        }
+        recyclerView.adapter = FoodMapAdapter(foodmemberDataList, context = requireContext(),
+            onFridgeClick = {
+                id ->
+//                // ✅ MyFoodpageFragment로 전환
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .setCustomAnimations(
+//                        R.anim.phone_slide_in_right,
+//                        R.anim.phone_slide_out_left,
+//                        R.anim.phone_slide_in_left,
+//                        R.anim.phone_slide_out_right
+//                    )
+//                    .replace(R.id.content_frame_ver2, MyFoodpageFragment())
+//                    .addToBackStack(null)
+//                    .commit()
+                val fragmentManager = requireActivity().supportFragmentManager
+                val transaction = fragmentManager.beginTransaction()
+
+                val newFragment = MyFoodMemberpageFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("memberId", id)
+                    }
+                }
+
+                transaction.setCustomAnimations(
+                    R.anim.phone_slide_in_right,
+                    R.anim.phone_slide_out_left,
+                    R.anim.phone_slide_in_left,
+                    R.anim.phone_slide_out_right
+                )
+
+                transaction
+                    .hide(this@FoodMapFragment) // 현재 FoodMapFragment 숨김
+                    .add(R.id.content_frame_ver2, newFragment) // 새 Fragment 추가
+                    .addToBackStack(null)
+                    .commit()
+            },
+            onLocationClick = {
+                id ->
+            },
+            onCheckClick = { memberId ->
+                val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
+                Log.d("CartUpdate", "Checked members: ${updatedList.map { it.name }}")
+                cartAdapter.updateData(updatedList)
+            }
+        )
 //        TODO()
+        // RecyclerView 중앙 위치로 카메라 이동
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (isInitialPinSet) {
+                    // 초기 핀 설정 중에는 스크롤 리스너 무시
+                    return
+                }
+                val closestMember = getClosestMember(recyclerView, foodmemberDataList)
+                closestMember?.let { moveToLocation(it.lat, it.lng, it) }
+            }
+        })
+    }
+
+    private fun getClosestMember(recyclerView: RecyclerView, memberDataList: List<MyFoodMemberDto>): MyFoodMemberDto? {
+        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+        val center = recyclerView.width / 2
+        val firstVisible = layoutManager.findFirstVisibleItemPosition()
+        val lastVisible = layoutManager.findLastVisibleItemPosition()
+
+        return (firstVisible..lastVisible).minByOrNull { position ->
+            val view = recyclerView.findViewHolderForAdapterPosition(position)?.itemView ?: return@minByOrNull Int.MAX_VALUE
+            val itemCenter = (view.left + view.right) / 2
+            abs(itemCenter - center)
+        }?.let { memberDataList.getOrNull(it) }
     }
 
     private fun createBitmapFromView(view: View): Bitmap {

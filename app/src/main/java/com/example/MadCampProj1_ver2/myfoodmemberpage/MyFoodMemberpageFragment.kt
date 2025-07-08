@@ -1,4 +1,4 @@
-package com.example.MadCampProj1_ver2.myfoodpage
+package com.example.MadCampProj1_ver2.myfoodmemberpage
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -19,15 +19,14 @@ import com.example.MadCampProj1_ver2.foodbank.ListItem
 import com.example.MadCampProj1_ver2.myfooddata.MyFoodData
 import com.example.MadCampProj1_ver2.myfooddata.MyFoodDto
 import com.example.MadCampProj1_ver2.foodbank.FoodBankDetailFragment
-import com.example.MadCampProj1_ver2.foodbank.FoodBankFragment
-import com.example.MadCampProj1_ver2.foodmap.FoodMapFragment
+import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData
 import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData.getMyFoodMemberIfExists
 
 import java.util.Calendar
 
 
 @Suppress("DEPRECATION")
-class MyFoodpageFragment : Fragment() {
+class MyFoodMemberpageFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,33 +46,40 @@ class MyFoodpageFragment : Fragment() {
         val backArrow = view.findViewById<ImageView>(R.id.top_bar_arrow)
         backArrow.visibility = View.VISIBLE
 
-//        backArrow.setOnClickListener {
-//            requireActivity().onBackPressedDispatcher.onBackPressed()
-//        }
-
         backArrow.setOnClickListener {
-            val source = arguments?.getString("source")
-
-            val targetFragment = when (source) {
-                "bank" -> FoodBankFragment()
-                "map" -> FoodMapFragment()
-//                "gallery" -> FoodGalleryFragment()
-                else -> FoodBankFragment() // 기본 fallback
-            }
-
-            requireActivity().supportFragmentManager.beginTransaction()
-                .hide(this@MyFoodpageFragment)
-                .add(R.id.content_frame_ver2, targetFragment)
-                .addToBackStack(null)
-                .commit()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
+        val memberId = arguments?.getInt("memberId", -1)
+
+//        val totalfoodDataList: List<FoodDto> = FoodData.getFoodDataList(requireContext())
+//        val foodDataList = when (memberId) {
+//            -1 -> FoodData.getFoodDataList(requireContext())
+//            else -> MyFoodMemberData.getFoodDtoListfromMemberId(memberId ?: return, totalfoodDataList)
+//        }
+
         val foodDataList: List<FoodDto> = FoodData.getFoodDataList(requireContext())
-        val sectionedList_vegatable = prepareSectionedList_with_MyFood(foodDataList, "채소")
-        val sectionedList_meat = prepareSectionedList_with_MyFood(foodDataList, "육류와 가공육")
-        val sectionedList_dairy = prepareSectionedList_with_MyFood(foodDataList, "유제품과 가공식품")
-        val sectionedList_sauce = prepareSectionedList_with_MyFood(foodDataList, "양념류")
-        val sectionedList_etc = prepareSectionedList_with_MyFood(foodDataList, "기타" )
+        Log.d("FoodDebug", "전체 FoodDto 리스트 불러옴: ${foodDataList.size}개")
+
+        val memberfoodDataList = when (memberId) {
+            -1 -> {
+                Log.d("FoodDebug", "memberId가 -1이므로 기본 FoodData 사용")
+                FoodData.getFoodDataList(requireContext())
+            }
+            else -> {
+                Log.d("FoodDebug", "memberId: $memberId → 해당 멤버의 식재료만 필터링")
+                val result = MyFoodMemberData.getFoodDtoListfromMemberId(memberId ?: return, foodDataList)
+                Log.d("FoodDebug", "필터링된 식재료 수: ${result.size}")
+                result
+            }
+        }
+
+
+        val sectionedList_vegatable = prepareSectionedList_with_MyFood(foodDataList, memberfoodDataList,"채소")
+        val sectionedList_meat = prepareSectionedList_with_MyFood(foodDataList, memberfoodDataList,"육류와 가공육")
+        val sectionedList_dairy = prepareSectionedList_with_MyFood(foodDataList, memberfoodDataList,"유제품과 가공식품")
+        val sectionedList_sauce = prepareSectionedList_with_MyFood(foodDataList, memberfoodDataList,"양념류")
+        val sectionedList_etc = prepareSectionedList_with_MyFood(foodDataList, memberfoodDataList,"기타" )
 
         // vegetable
         recyclerView_vegatable.layoutManager = LinearLayoutManager(activity) // 아이템을 세트별로 나열
@@ -485,9 +491,10 @@ class MyFoodpageFragment : Fragment() {
 
     fun prepareSectionedList_with_MyFood(
         foodList: List<FoodDto>,
+        memberFoodList: List<FoodDto>,
         groupTitle: String
     ): List<ListItem> {
-        val myFoodIds = MyFoodData.getMyFoodDataAllItems()
+        val myFoodIds = memberFoodList
             .map { it.foodId }
             .toSet()
 
