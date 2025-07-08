@@ -12,6 +12,7 @@ import com.example.MadCampProj1_ver2.foodbank.FoodBankFragment
 
 
 import android.widget.LinearLayout
+import com.example.MadCampProj1_ver2.foodmap.FoodMapFragment
 import com.example.MadCampProj1_ver2.map.MapFragment
 import com.example.MadCampProj1_ver2.mission.MainFragment
 
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             menubookButton.setImageResource(R.drawable.menu_book_unselected)
             travelexploreButton.setImageResource(R.drawable.travel_explore)
             supportFragmentManager.beginTransaction().
-            replace(R.id.content_frame_ver2, MapFragment()).commit()
+            replace(R.id.content_frame_ver2, FoodMapFragment()).commit()
         }
 
         travelexploreButton.setOnClickListener {
@@ -90,7 +91,7 @@ class MainActivity : AppCompatActivity() {
             menubookButton.setImageResource(R.drawable.menu_book_unselected)
             travelexploreButton.setImageResource(R.drawable.travel_explore)
             supportFragmentManager.beginTransaction().
-            replace(R.id.content_frame_ver2, MapFragment()).commit()
+            replace(R.id.content_frame_ver2, FoodMapFragment()).commit()
         }
 
 //        // 하단바 동작 설정 (id값으로 들고옴)
