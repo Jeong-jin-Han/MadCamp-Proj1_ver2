@@ -15,6 +15,8 @@ import com.example.MadCampProj1_ver2.sampledata.GalleryData
 import com.example.MadCampProj1_ver2.sampledata.GalleryDto
 import com.example.MadCampProj1_ver2.sampledata.GalleryGroupData
 import com.example.MadCampProj1_ver2.foodbank.Constants.fridge
+import com.example.MadCampProj1_ver2.myfoodmergedata.MyFoodMergeData
+
 @Suppress("DEPRECATION")
 class GalleryAdapter (private val context: Context,
                       private var dataList: MutableList<GalleryDto>,
@@ -93,12 +95,17 @@ class GalleryAdapter (private val context: Context,
             val date = groupData.find { it.memberId == id }?.title ?: ""
             imgData.filter { it.date == date }
         }
-
+        val mergedFridge = MyFoodMergeData.getMergedList().map { it.foodId }.toSet()
         val sortedData = filteredData.sortedWith(compareByDescending<GalleryDto> { dto ->
-            dto.ingredients.count { it in fridge }
+//            dto.ingredients.count { it in fridge }
+            // 변경
+            dto.ingredients.count { it in mergedFridge }
         }.thenBy { dto ->
-            dto.ingredients.count { it !in fridge }
+//            dto.ingredients.count { it !in fridge }
+
+            dto.ingredients.count { it !in mergedFridge }
         })
+
 
         dataList.clear()
         dataList.addAll(sortedData)

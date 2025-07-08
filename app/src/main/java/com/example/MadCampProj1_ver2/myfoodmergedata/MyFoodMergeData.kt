@@ -20,5 +20,9 @@ object MyFoodMergeData {
         android.util.Log.d("MyFoodMerge", "병합 완료: 내 ${myList.size}개 + 친구 ${friendList.size}개 → 총 ${mergedList.size}개")
     }
 
-    fun getMergedList(): List<MyFoodDto> = mergedList
+//    fun getMergedList(): List<MyFoodDto> = mergedList
+    fun getMergedList(): List<MyFoodDto> {
+        updateMergedList()
+        return mergedList
+    }
 }

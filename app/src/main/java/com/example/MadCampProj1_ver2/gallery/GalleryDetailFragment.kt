@@ -32,6 +32,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.math.abs
 
+import com.example.MadCampProj1_ver2.myfoodmergedata.MyFoodMergeData
+
 @Suppress("DEPRECATION")
 class GalleryDetailFragment : Fragment() {
 
@@ -62,7 +64,9 @@ class GalleryDetailFragment : Fragment() {
         for (ingredient in ingredients) {
             val name = ingredient.name
             val endIndex = startIndex + name.length
-            val isInFridge = Constants.fridge.contains(ingredient.foodId)
+//            val isInFridge = Constants.fridge.contains(ingredient.foodId)
+            val isInFridge = MyFoodMergeData.getMergedList()
+                .any { it.foodId == ingredient.foodId }
             val colorRes = if (isInFridge) android.R.color.black else android.R.color.holo_red_dark
             spannable.setSpan(
                 ForegroundColorSpan(ContextCompat.getColor(requireContext(), colorRes)),

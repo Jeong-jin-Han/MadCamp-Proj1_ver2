@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import com.example.MadCampProj1_ver2.foodbank.Constants.fridge
+import com.example.MadCampProj1_ver2.myfoodmergedata.MyFoodMergeData
 import com.example.MadCampProj1_ver2.sampledata.GalleryDto
 
 @Suppress("DEPRECATION")
@@ -101,12 +102,17 @@ class GalleryFragment : Fragment() {
 
         galleryAdapter = GalleryAdapter(context = requireContext(),
             dataList = getGalleryDataList().filter { it.date == "한식" }.toMutableList()) { id, sharedView ->
+
+            val mergedFridge = MyFoodMergeData.getMergedList().map { it.foodId }.toSet()
             val sortedList = getGalleryDataList()
                 .filter { it.date == "한식" }
                 .sortedWith(compareByDescending<GalleryDto> { dto ->
-                    dto.ingredients.count { it in fridge }}.thenBy { dto ->
-                    dto.ingredients.count { it !in fridge }
+//                    dto.ingredients.count { it in fridge }
+                    dto.ingredients.count { it in mergedFridge }
 
+                }.thenBy { dto ->
+//                    dto.ingredients.count { it !in fridge }
+                    dto.ingredients.count { it !in mergedFridge }
                 }
                 )
                 .map{it.id}
