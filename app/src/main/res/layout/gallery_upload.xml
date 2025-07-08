@@ -53,7 +53,7 @@
             android:layout_marginHorizontal="40dp"
             android:fontFamily="@font/pretendard_medium"
             android:paddingTop="20dp"
-            android:text="2024-12-31"
+            android:text="한식"
             android:textColor="#818181"
             android:textSize="18sp" />
 
@@ -71,6 +71,20 @@
             android:textColorHint="#C5C5C5"
             android:textColor="@color/black"
             android:textSize="25sp" />
+        <EditText
+            android:id="@+id/ingreEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:inputType="textMultiLine"
+            android:layout_gravity="center"
+            android:hint="재료를 입력하세요"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/pretendard_semibold"
+            android:paddingTop="5dp"
+            android:textColorHint="#C5C5C5"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
         <!--내용-->
         <EditText
             android:id="@+id/abstractEditText"
@@ -95,7 +109,7 @@
             android:scrollbars="vertical"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:hint="내용을 입력하세요"
+            android:hint="레시피를 입력하세요"
             android:cursorVisible="true"
             android:textColorHint="#C1C1C1"/>
 

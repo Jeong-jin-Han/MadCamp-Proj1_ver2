@@ -100,9 +100,9 @@ class GalleryFragment : Fragment() {
 
 
         galleryAdapter = GalleryAdapter(context = requireContext(),
-            dataList = getGalleryDataList().filter { it.date == "2025-01-01" }.toMutableList()) { id, sharedView ->
+            dataList = getGalleryDataList().filter { it.date == "한식" }.toMutableList()) { id, sharedView ->
             val sortedList = getGalleryDataList()
-                .filter { it.date == "2025-01-01" }
+                .filter { it.date == "한식" }
                 .sortedWith(compareByDescending<GalleryDto> { dto ->
                     dto.ingredients.count { it in fridge }}.thenBy { dto ->
                     dto.ingredients.count { it !in fridge }

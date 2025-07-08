@@ -171,11 +171,7 @@ class GalleryDetailFragment : Fragment() {
                 Log.d("date", date)
             }
             val name = member?.name
-            if(name != null){
-                view.findViewById<TextView>(R.id.gallery_detail_writer).text = name
-            } else{
-                view.findViewById<TextView>(R.id.gallery_detail_writer).text = "복지희"
-            }
+
 
             view.findViewById<TextView>(R.id.gallery_detail_abstract).text = abstractText
             view.findViewById<TextView>(R.id.gallery_detail_title).text = titleText

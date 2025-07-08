@@ -107,18 +107,6 @@
                 android:layout_marginBottom="5dp"
                 android:background="@color/detail_color" />
 
-            <TextView
-                android:id="@+id/gallery_detail_writer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="30dp"
-                android:fontFamily="@font/pretendard_semibold"
-                android:paddingTop="5dp"
-                android:text="조성원"
-                android:textColor="@color/black"
-                android:textSize="13sp" />
-
         </LinearLayout>
 
     </LinearLayout>
