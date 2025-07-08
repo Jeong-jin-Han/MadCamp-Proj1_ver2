@@ -18,7 +18,7 @@ class GalleryGroupAdapter (private val dataList: List<GalleryGroupDto>,
     class GalleryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageGroupView: ImageView = view.findViewById(R.id.gallery_group_image)
         val imageGroupTitle: TextView = view.findViewById(R.id.gallery_group_title)
-        val imageGroupCount: TextView = view.findViewById(R.id.gallery_group_count)
+        //val imageGroupCount: TextView = view.findViewById(R.id.gallery_group_count)
         val cardView: CardView = view.findViewById(R.id.gallery)
     }
 
@@ -31,7 +31,7 @@ class GalleryGroupAdapter (private val dataList: List<GalleryGroupDto>,
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         val data = dataList[position]
         holder.imageGroupTitle.text = data.title
-        holder.imageGroupCount.text = data.count.toString()
+        //holder.imageGroupCount.text = data.count.toString()
         val date = data.title
         for (l in getGalleryDataList()) {
             if (l.date == date && l.image != -1) {

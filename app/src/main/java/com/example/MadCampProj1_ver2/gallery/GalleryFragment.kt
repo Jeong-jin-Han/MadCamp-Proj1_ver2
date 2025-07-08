@@ -32,6 +32,8 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.MadCampProj1_ver2.foodbank.Constants.fridge
+import com.example.MadCampProj1_ver2.sampledata.GalleryDto
 
 @Suppress("DEPRECATION")
 
@@ -54,7 +56,7 @@ class GalleryFragment : Fragment() {
         val recyclerView1: RecyclerView = view.findViewById(R.id.recycler_view1)
         val galleryDataList1: List<GalleryGroupDto> = GalleryGroupData.getGalleryGroupDataList()
         val topBarTextView = view.findViewById<TextView>(R.id.top_bar_text)
-        topBarTextView.text = "리포트"
+        topBarTextView.text = "추천 요리"
 
         val cameraButton = view.findViewById<Button>(R.id.fixed_button)
 
@@ -97,24 +99,37 @@ class GalleryFragment : Fragment() {
         }
 
 
-
         galleryAdapter = GalleryAdapter(context = requireContext(),
-            dataList = getGalleryDataList().filter { it.date == "2025-01-01" }.toMutableList()) { id, sharedView ->
+            dataList = getGalleryDataList().filter { it.date == "한식" }.toMutableList()) { id, sharedView ->
+            val sortedList = getGalleryDataList()
+                .filter { it.date == "한식" }
+                .sortedWith(compareByDescending<GalleryDto> { dto ->
+                    dto.ingredients.count { it in fridge }}.thenBy { dto ->
+                    dto.ingredients.count { it !in fridge }
+
+                }
+                )
+                .map{it.id}
+
             val fragment = GalleryDetailFragment().apply {
                 arguments = Bundle().apply {
                     putInt("id", id)
+                    putIntegerArrayList("sortedList", ArrayList(sortedList))  // 👉 리스트 같이 넘기기 (GalleryDto는 Parcelable 필요)
                 }
             }
-            // Fragment 전환 시 Shared Element Transition 설정
+
             requireActivity().supportFragmentManager.beginTransaction()
-                .addSharedElement(sharedView, "shared_image_transition") // 애니메이션에 사용할 뷰 연결
+                .addSharedElement(sharedView, "shared_image_transition")
                 .replace(R.id.content_frame_ver2, fragment, "galleryFragment")
                 .addToBackStack("galleryFragment")
                 .commit()
         }
 
+
         recyclerView.adapter = galleryAdapter
         galleryAdapter?.updateData(1)
+
+
         cameraButton.setOnClickListener {
             showImageUploadOptions()
         }

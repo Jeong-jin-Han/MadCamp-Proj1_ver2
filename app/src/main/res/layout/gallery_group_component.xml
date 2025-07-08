@@ -46,7 +46,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_3" />
+                    android:src="@drawable/img_myrecipe" />
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -57,6 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:text="12월 31일"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="11sp"
             android:background="@color/background"
             android:textColor="@color/black"
@@ -65,16 +67,6 @@
             android:layout_marginRight="16dp"/>
 
 
-        <TextView
-            android:id="@+id/gallery_group_count"
-            android:layout_width="match_parent"
-            android:layout_height="13dp"
-            android:text="33"
-            android:textSize="9sp"
-            android:background="@color/background"
-            android:textColor="#818181"
-            android:layout_marginLeft="17dp"
-            android:layout_marginRight="16dp"/>
 
     </LinearLayout>
 

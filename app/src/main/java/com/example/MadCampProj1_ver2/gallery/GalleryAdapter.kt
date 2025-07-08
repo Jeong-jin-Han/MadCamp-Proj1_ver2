@@ -14,7 +14,7 @@ import com.example.MadCampProj1_ver2.R
 import com.example.MadCampProj1_ver2.sampledata.GalleryData
 import com.example.MadCampProj1_ver2.sampledata.GalleryDto
 import com.example.MadCampProj1_ver2.sampledata.GalleryGroupData
-
+import com.example.MadCampProj1_ver2.foodbank.Constants.fridge
 @Suppress("DEPRECATION")
 class GalleryAdapter (private val context: Context,
                       private var dataList: MutableList<GalleryDto>,
@@ -81,20 +81,28 @@ class GalleryAdapter (private val context: Context,
 
 
     override fun getItemCount(): Int = dataList.size
+    fun getCurrentData(): List<GalleryDto> = dataList
 
     fun updateData(id: Int) {
-        val imgData = GalleryData.getGalleryDataList() // Singleton에서 항상 데이터 가져오기
-        if (id == 0) {
-            dataList.clear()
-            dataList.addAll(imgData)
-            notifyDataSetChanged()
+
+        val imgData = GalleryData.getGalleryDataList()
+        val filteredData = if (id == 0) {
+            imgData
         } else {
             val groupData = GalleryGroupData.getGalleryGroupDataList()
             val date = groupData.find { it.memberId == id }?.title ?: ""
-            val filteredData = imgData.filter { it.date == date }
-            dataList.clear()
-            dataList.addAll(filteredData)
-            notifyDataSetChanged()
+            imgData.filter { it.date == date }
         }
+
+        val sortedData = filteredData.sortedWith(compareByDescending<GalleryDto> { dto ->
+            dto.ingredients.count { it in fridge }
+        }.thenBy { dto ->
+            dto.ingredients.count { it !in fridge }
+        })
+
+        dataList.clear()
+        dataList.addAll(sortedData)
+        notifyDataSetChanged()
     }
+
 }

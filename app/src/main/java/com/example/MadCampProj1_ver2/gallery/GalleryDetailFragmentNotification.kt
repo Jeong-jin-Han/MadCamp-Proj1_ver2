@@ -84,7 +84,6 @@ class GalleryDetailFragmentNotification : Fragment() {
             view.findViewById<TextView>(R.id.gallery_detail_abstract).text = abstractText
             view.findViewById<TextView>(R.id.gallery_detail_title).text = titleText
             view.findViewById<TextView>(R.id.gallery_detail_date).text = date
-            view.findViewById<TextView>(R.id.gallery_detail_writer).text = name
         }
 
         val galleryImageView = view.findViewById<ImageView>(R.id.gallery_component_image)
