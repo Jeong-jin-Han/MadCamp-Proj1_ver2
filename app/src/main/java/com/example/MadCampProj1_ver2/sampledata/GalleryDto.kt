@@ -8,5 +8,5 @@ data class GalleryDto(
     val abstract: String,
     val imagePath: String? = null,
     val image: Int,
-    val ingredients: List<String> = emptyList()
+    val ingredients: List<Int> = emptyList()
 )

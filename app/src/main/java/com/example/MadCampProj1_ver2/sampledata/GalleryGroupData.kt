@@ -6,8 +6,8 @@ object GalleryGroupData {
             GalleryGroupDto(1, "한식", 20),
             GalleryGroupDto(2, "일식&중식", 20),
             GalleryGroupDto(3, "양식&퓨전", 20),
-            GalleryGroupDto(4, "샐러드&브런치", 20),
-            GalleryGroupDto(5, "내 레시피", 20)
+            GalleryGroupDto(4, "브런치", 20),
+            GalleryGroupDto(5, "My recipe", 20)
 
         )
     }
