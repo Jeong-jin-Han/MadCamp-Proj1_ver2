@@ -1,129 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.MadCampProj1_ver2.customview.CustomScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/custom_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"> <!-- match_parent로 꽉 차게 -->
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <!-- 이미지 + 화살표 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background2"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:id="@+id/gallery_component_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_20"
+                    android:transitionName="shared_image_transition"/>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/top_bar_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="left"
+                android:paddingHorizontal="15dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/arrow_white" />
+        </FrameLayout>
+
+        <!-- 텍스트 내용들 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 이미지 + 화살표 -->
-            <FrameLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/gallery_detail_date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp">
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:fontFamily="@font/pretendard_medium"
+                android:paddingTop="20dp"
+                android:text="2024-12-31"
+                android:textColor="#818181"
+                android:textSize="18sp" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/background2"
-                    app:cardElevation="0dp">
-                    <ImageView
-                        android:id="@+id/gallery_component_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="450dp"
-                        android:adjustViewBounds="true"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_20"
-                        android:transitionName="shared_image_transition"/>
-                </androidx.cardview.widget.CardView>
-
-                <ImageView
-                    android:id="@+id/top_bar_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="left"
-                    android:paddingHorizontal="15dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_white" />
-            </FrameLayout>
-
-            <!-- 텍스트 내용들 -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/gallery_detail_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:paddingTop="5dp"
+                android:text="텐동 먹기"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
-                <TextView
-                    android:id="@+id/gallery_detail_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="40dp"
-                    android:fontFamily="@font/pretendard_medium"
-                    android:paddingTop="20dp"
-                    android:text="2024-12-31"
-                    android:textColor="#818181"
-                    android:textSize="18sp" />
+            <TextView
+                android:id="@+id/gallery_detail_ingredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="16dp"
+                android:layout_marginHorizontal="30dp"
+                android:text="재료들 표시" />
 
-                <TextView
-                    android:id="@+id/gallery_detail_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="10dp"
-                    android:fontFamily="@font/pretendard_semibold"
-                    android:paddingTop="5dp"
-                    android:text="텐동 먹기"
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
+            <TextView
+                android:id="@+id/gallery_detail_abstract"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pretendard_regular"
+                android:lineSpacingExtra="8dp"
+                android:paddingTop="10dp"
+                android:text="오늘은 연구실 카드로 비싼 텐동을 먹었어요~\n여러분도 열심히 연구해서 연구실 카드로 밥을 먹도록 합시다"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/gallery_detail_ingredients"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingTop="16dp"
-                    android:layout_marginHorizontal="30dp"
-                    android:text="TextView" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/detail_color" />
 
-                <TextView
-                    android:id="@+id/gallery_detail_abstract"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/pretendard_regular"
-                    android:lineSpacingExtra="8dp"
-                    android:paddingTop="10dp"
-                    android:text="오늘은 연구실 카드로 비싼 텐동을 먹었어요~\n여러분도 열심히 연구해서 연구실 카드로 밥을 먹도록 합시다"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/detail_color" />
-
-                <TextView
-                    android:id="@+id/gallery_detail_writer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="30dp"
-                    android:fontFamily="@font/pretendard_semibold"
-                    android:paddingTop="5dp"
-                    android:text="조성원"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/gallery_detail_writer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:paddingTop="5dp"
+                android:text="조성원"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+
+</com.example.MadCampProj1_ver2.customview.CustomScrollView>
 
