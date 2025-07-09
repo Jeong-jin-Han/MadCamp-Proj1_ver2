@@ -155,13 +155,13 @@ class GalleryDetailFragment : Fragment() {
                 if (abs(deltaX) > SWIPE_THRESHOLD && abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                     if (deltaX > 0) {
                         Log.d("SwipeEvent", "Swipe Right detected")
-//                        navigateToAdjacentPhoto(-1)
-                        navigateToAdjacentPhoto(1)
+                        navigateToAdjacentPhoto(-1)
+//                        navigateToAdjacentPhoto(1)
 
                     } else {
                         Log.d("SwipeEvent", "Swipe Left detected")
-//                        navigateToAdjacentPhoto(1)
-                        navigateToAdjacentPhoto(-1)
+                        navigateToAdjacentPhoto(1)
+//                        navigateToAdjacentPhoto(-1)
                     }
                     return true
                 }

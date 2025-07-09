@@ -5,12 +5,15 @@ import android.util.Log
 object MyFoodData {
     private val foodList = mutableListOf<MyFoodDto>()
 
+
     fun addMyFoodDataDueDate(foodId: Int, dueDate: String) {
         val existing = foodList.find { it.foodId == foodId }
         if (existing != null) {
+            // notification data update
             existing.foodDuedate = dueDate
             Log.d("MyFoodData", "Updated dueDate of foodId=$foodId to $dueDate")
         } else {
+            // notification data 추가
             foodList.add(MyFoodDto(foodId, 1, dueDate))
             Log.d("MyFoodData", "Added new food with foodId=$foodId and dueDate=$dueDate")
         }
@@ -26,12 +29,14 @@ object MyFoodData {
         }
     }
 
+    // notification data delete
     fun deleteMyFoodDataNumber(foodId: Int) {
         val existing = foodList.find { it.foodId == foodId }
         if (existing != null) {
             existing.foodNumber -= 1
             Log.d("MyFoodData", "Decreased foodNumber of foodId=$foodId to ${existing.foodNumber}")
             if (existing.foodNumber <= 0) {
+                // notification data 제거
                 foodList.remove(existing)
                 Log.d("MyFoodData", "Removed foodId=$foodId because quantity reached zero")
             }

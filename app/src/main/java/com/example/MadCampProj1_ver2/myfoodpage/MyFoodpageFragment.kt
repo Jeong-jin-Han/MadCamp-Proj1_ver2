@@ -135,19 +135,21 @@ class MyFoodpageFragment : Fragment() {
                 }
             },
             onPlusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.addMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
 
             },
             onMinusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.deleteMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
             }
         )
 
@@ -209,19 +211,21 @@ class MyFoodpageFragment : Fragment() {
                 }
             },
             onPlusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.addMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
 
             },
             onMinusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.deleteMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
             }
         )
 
@@ -283,19 +287,21 @@ class MyFoodpageFragment : Fragment() {
                 }
             },
             onPlusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.addMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
 
             },
             onMinusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.deleteMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
             }
         )
 
@@ -357,19 +363,21 @@ class MyFoodpageFragment : Fragment() {
                 }
             },
             onPlusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.addMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
 
             },
             onMinusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.deleteMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
             }
         )
 
@@ -430,19 +438,21 @@ class MyFoodpageFragment : Fragment() {
                 }
             },
             onPlusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.addMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
 
             },
             onMinusClick = {
-                    foodId, numberView ->
+                    foodId, numberView, numberView2 ->
                 MyFoodData.deleteMyFoodDataNumber(foodId)
                 Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
+                numberView2.text = "$number"
             }
         )
     }

@@ -265,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_regular"
                         android:paddingTop="5dp"
-                        android:text="개수"
+                        android:text="수량"
                         android:textColor="@color/font_color"
                         android:textSize="17sp" />
 
@@ -288,7 +288,7 @@
                 android:layout_marginVertical="8dp"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:gravity="center">
 
                 <ImageView
@@ -300,14 +300,7 @@
                     android:src="@drawable/calendar_fail"
                     android:scaleType="centerInside" />
 
-                <ImageView
-                    android:id="@+id/phone_message_ver2"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:src="@drawable/plus"
-                    android:scaleType="centerInside" />
+
 
                 <ImageView
                     android:id="@+id/phone_info_ver2"
@@ -318,14 +311,29 @@
                     android:src="@drawable/minus"
                     android:scaleType="centerInside" />
 
+
+                <!-- 개수 값 -->
+                <TextView
+                    android:id="@+id/phone_component_status_2_ver3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="20"
+                    android:textColor="@color/main_color"
+                    android:textSize="20sp" />
+
                 <ImageView
-                    android:id="@+id/phone_location_ver2"
+                    android:id="@+id/phone_message_ver2"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:padding="10dp"
-                    android:src="@drawable/icon_location"
+                    android:src="@drawable/plus"
                     android:scaleType="centerInside" />
+
+
+
+
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

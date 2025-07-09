@@ -13,7 +13,9 @@ import kotlin.random.Random
 
 object MyFoodMemberData {
     private val myFoodMemberList: MutableList<MyFoodMemberDto> = mutableListOf()
-    private val myFoodMemberIdsWithItems = listOf(1, 3, 10, 25, 30)
+//    private val myFoodMemberIdsWithItems = listOf(1, 3, 10, 25, 30)
+    private val myFoodMemberIdsWithItems: List<Int> = (1..30).toList()
+
     private var initialized = false
 
     private val sampleDueDates = listOf(
