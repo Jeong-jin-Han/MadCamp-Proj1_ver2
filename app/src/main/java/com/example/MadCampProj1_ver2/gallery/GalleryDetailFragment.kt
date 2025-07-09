@@ -155,10 +155,13 @@ class GalleryDetailFragment : Fragment() {
                 if (abs(deltaX) > SWIPE_THRESHOLD && abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                     if (deltaX > 0) {
                         Log.d("SwipeEvent", "Swipe Right detected")
-                        navigateToAdjacentPhoto(-1)
+//                        navigateToAdjacentPhoto(-1)
+                        navigateToAdjacentPhoto(1)
+
                     } else {
                         Log.d("SwipeEvent", "Swipe Left detected")
-                        navigateToAdjacentPhoto(1)
+//                        navigateToAdjacentPhoto(1)
+                        navigateToAdjacentPhoto(-1)
                     }
                     return true
                 }
@@ -211,61 +214,104 @@ class GalleryDetailFragment : Fragment() {
 
     private fun navigateToAdjacentPhoto(direction: Int) {
 //        val currentPhotoId = arguments?.getInt("id") ?: return
+//        Log.d("GalleryDetailFragment", "Current photo ID: $currentPhotoId")
+//
 //        val sortedIdList = arguments?.getIntegerArrayList("sortedList") ?: return
+//        Log.d("GalleryDetailFragment", "Sorted ID list: $sortedIdList")
+//
 //        val currentIndex = sortedIdList.indexOf(currentPhotoId)
+//        Log.d("GalleryDetailFragment", "Current index of photo ID: $currentIndex")
+//
 //        val newIndex = (currentIndex + direction).coerceIn(0, sortedIdList.size - 1)
-//        if (newIndex == currentIndex) return
+//        Log.d("GalleryDetailFragment", "New index after direction ($direction): $newIndex")
+//
+//        if (newIndex == currentIndex) {
+//            Log.d("GalleryDetailFragment", "No change in index, returning")
+//            return
+//        }
 //
 //        val newPhotoId = sortedIdList[newIndex]
+//        Log.d("GalleryDetailFragment", "Navigating to new photo ID: $newPhotoId")
+//
 //        val fragment = GalleryDetailFragment().apply {
 //            arguments = Bundle().apply {
 //                putInt("id", newPhotoId)
 //                putIntegerArrayList("sortedList", sortedIdList)
 //            }
 //        }
+//
+//        Log.d("GalleryDetailFragment", "Fragment transaction starting")
+//
 //        val transaction = requireActivity().supportFragmentManager.beginTransaction()
 //        if (direction > 0) {
 //            transaction.setCustomAnimations(
 //                R.anim.slide_in_right, R.anim.slide_out_left
 //            )
+//            Log.d("GalleryDetailFragment", "Swipe direction: Right")
 //        } else {
 //            transaction.setCustomAnimations(
 //                R.anim.slide_in_left, R.anim.slide_out_right
 //            )
+//            Log.d("GalleryDetailFragment", "Swipe direction: Left")
 //        }
+//
 //        transaction.replace(R.id.content_frame_ver2, fragment)
 //            .commit()
+//
+//        Log.d("GalleryDetailFragment", "Fragment transaction committed")
+//
+
+
+
+
         val currentPhotoId = arguments?.getInt("id") ?: return
         val galleryDataList = GalleryData.getGalleryDataList()
         val gallery = galleryDataList.find { it.id == currentPhotoId }
 
-        // 현재 사진의 카테고리 (date 필드가 카테고리라고 가정)
+        val totalsortedIdList = arguments?.getIntegerArrayList("sortedList") ?: return
+        Log.d("SwipeEvent", "total sorted Ids: ${totalsortedIdList.map { it }}")
+
+
+// 현재 사진의 카테고리 (date 필드가 카테고리라고 가정)
         val currentCategory = gallery?.date ?: return
 
-        // 같은 카테고리 내에서만 필터링
-        val sortedIdList = galleryDataList.filter { it.date == currentCategory }
-            .sortedBy { it.id } // ID로 정렬 (또는 원하는 다른 방식으로 정렬)
+// 같은 카테고리 내에서만 필터링
+        // 먼저 currentCategory에 해당하는 ID만 뽑음
+        val categoryIdSet = galleryDataList.filter { it.date == currentCategory }.map { it.id }.toSet()
+        Log.d("SwipeEvent", "categor sorted Ids: ${categoryIdSet.map { it }}")
+
+
+// totalsortedIdList 순서대로, 그 중 currentCategory에 해당하는 ID만 추출
+        val sortedIdList = totalsortedIdList.filter { it in categoryIdSet }
+
+        //
 
         Log.d("SwipeEvent", "Current category: $currentCategory")
-        Log.d("SwipeEvent", "Sorted photo IDs in the same category: ${sortedIdList.map { it.id }}")
+        Log.d("SwipeEvent", "Sorted photo IDs in the same category: ${sortedIdList.map { it }}")
 
-        val currentIndex = sortedIdList.indexOfFirst { it.id == currentPhotoId }
+// 현재 사진의 인덱스를 정렬된 리스트에서 찾기
+        val currentIndex = sortedIdList.indexOfFirst { it == currentPhotoId }
         val newIndex = (currentIndex + direction).coerceIn(0, sortedIdList.size - 1)
 
+// 새 인덱스가 같으면 이동하지 않음
         if (newIndex == currentIndex) {
             Log.d("SwipeEvent", "No change in photo, currentIndex: $currentIndex, newIndex: $newIndex")
             return
         }
 
-        val newPhotoId = sortedIdList[newIndex].id
+// 새로운 사진의 ID 가져오기
+        val newPhotoId = sortedIdList[newIndex]
         Log.d("SwipeEvent", "Navigating to new photo ID: $newPhotoId")
 
+// 새로운 Fragment로 이동
         val fragment = GalleryDetailFragment().apply {
             arguments = Bundle().apply {
-                putInt("id", newPhotoId)
-                putIntegerArrayList("sortedList", ArrayList(sortedIdList.map { it.id }))
+                putInt("id", newPhotoId) // 새로운 사진 ID
+                putIntegerArrayList("sortedList", ArrayList(sortedIdList.map { it })) // 정렬된 ID 리스트
             }
         }
+
+// 트랜잭션 적용
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         if (direction > 0) {
             transaction.setCustomAnimations(
@@ -278,6 +324,8 @@ class GalleryDetailFragment : Fragment() {
         }
         transaction.replace(R.id.content_frame_ver2, fragment)
             .commit()
+
+
     }
 }
 

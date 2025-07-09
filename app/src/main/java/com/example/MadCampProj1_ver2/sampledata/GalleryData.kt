@@ -749,4 +749,3 @@ object GalleryData {
         galleryList.clear()
     }
 }
-
