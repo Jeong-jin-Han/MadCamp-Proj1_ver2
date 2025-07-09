@@ -11,7 +11,7 @@
     "major": "컴퓨터공학",
     "minor": "인공지능",
     "birth": "January 1st, 1990",
-    "home": "Seoul, Korea"
+    "home": "서울특별시 중구 세종대로 110"
   },
   {
     "memberId": 2,
@@ -25,7 +25,7 @@
     "major": "기계공학",
     "minor": "로봇공학",
     "birth": "February 2nd, 1992",
-    "home": "Busan, Korea"
+    "home": "부산광역시 연제구 중앙대로 1001"
   },
   {
     "memberId": 3,
@@ -39,7 +39,7 @@
     "major": "경영학",
     "minor": "마케팅",
     "birth": "March 3rd, 1993",
-    "home": "Incheon, Korea"
+    "home": "인천광역시 남동구 정각로 29"
   },
   {
     "memberId": 4,
@@ -53,7 +53,7 @@
     "major": "전기공학",
     "minor": "사물인터넷",
     "birth": "April 4th, 1994",
-    "home": "Gwangju, Korea"
+    "home": "광주광역시 서구 내방로 111"
   },
   {
     "memberId": 5,
@@ -67,7 +67,7 @@
     "major": "토목공학",
     "minor": "도시계획",
     "birth": "May 5th, 1995",
-    "home": "Daejeon, Korea"
+    "home": "충청북도 청주시 상당구 중앙로 3-1"
   },
   {
     "memberId": 6,
@@ -81,7 +81,7 @@
     "major": "생명공학",
     "minor": "유전학",
     "birth": "June 6th, 1996",
-    "home": "Seoul, Korea"
+    "home": "강원특별자치도 춘천시 중앙로 1"
   },
   {
     "memberId": 7,
@@ -95,7 +95,7 @@
     "major": "환경공학",
     "minor": "지속가능성",
     "birth": "July 7th, 1997",
-    "home": "Changwon, Korea"
+    "home": "경상남도 거제시 계룡로 144"
   },
   {
     "memberId": 8,
@@ -109,7 +109,7 @@
     "major": "경제학",
     "minor": "데이터 분석",
     "birth": "August 8th, 1998",
-    "home": "Andong, Korea"
+    "home": "안동시 천년숲동로 10-10"
   },
   {
     "memberId": 9,
@@ -123,7 +123,7 @@
     "major": "물리학",
     "minor": "천체물리학",
     "birth": "September 9th, 1999",
-    "home": "Gangneung, Korea"
+    "home": "강원특별자치도 삼척시"
   },
   {
     "memberId": 10,
@@ -137,7 +137,7 @@
     "major": "건축학",
     "minor": "실내디자인",
     "birth": "October 10th, 1990",
-    "home": "Jeju, Korea"
+    "home": "제주특별자치도 제주시 이도이동"
   },
   {
     "memberId": 11,
@@ -151,7 +151,7 @@
     "major": "의학",
     "minor": "소아과학",
     "birth": "November 11th, 1991",
-    "home": "Suwon, Korea"
+    "home": "수원시 원천동"
   },
   {
     "memberId": 12,
@@ -165,7 +165,7 @@
     "major": "화학",
     "minor": "유기화학",
     "birth": "December 12th, 1992",
-    "home": "Ulsan, Korea"
+    "home": "울산광역시 남구 신정동 673-12"
   },
   {
     "memberId": 13,
@@ -179,7 +179,7 @@
     "major": "법학",
     "minor": "기업법",
     "birth": "January 13th, 1993",
-    "home": "Daejeon, Korea"
+    "home": "대전광역시 동구 미래길 16"
   },
   {
     "memberId": 14,
@@ -193,7 +193,7 @@
     "major": "정치외교학",
     "minor": "국제관계",
     "birth": "February 14th, 1994",
-    "home": "Seoul, Korea"
+    "home": "경기도 연천군 신서면 답곡리"
   },
   {
     "memberId": 15,
@@ -207,7 +207,7 @@
     "major": "수학",
     "minor": "통계학",
     "birth": "March 15th, 1995",
-    "home": "Cheongju, Korea"
+    "home": "경상북도 영주시 하망동 291-1"
   },
   {
     "memberId": 16,
@@ -221,7 +221,7 @@
     "major": "화학공학",
     "minor": "공정공학",
     "birth": "April 16th, 1996",
-    "home": "Pohang, Korea"
+    "home": "경상북도 포항시 남구 해도동"
   },
   {
     "memberId": 17,
@@ -235,7 +235,7 @@
     "major": "재료공학",
     "minor": "나노기술",
     "birth": "May 17th, 1997",
-    "home": "Busan, Korea"
+    "home": "부산광역시 사상구 엄궁동 669-3"
   },
   {
     "memberId": 18,
@@ -249,7 +249,7 @@
     "major": "철학",
     "minor": "윤리학",
     "birth": "June 18th, 1998",
-    "home": "Suncheon, Korea"
+    "home": "전라남도 여수시 시청로 1"
   },
   {
     "memberId": 19,
@@ -263,7 +263,7 @@
     "major": "교육학",
     "minor": "유아교육",
     "birth": "July 19th, 1999",
-    "home": "Gangneung, Korea"
+    "home": "강원특별자치도 삼척시 갈천동"
   },
   {
     "memberId": 20,
@@ -277,146 +277,146 @@
     "major": "예술학",
     "minor": "그래픽디자인",
     "birth": "August 20th, 1990",
-    "home": "Cheonan, Korea"
+    "home": "충청남도 천안시 동남구 봉명1길 17"
   },
   {
     "memberId": 21,
     "name": "조유나",
     "phone": "010-1010-1212",
     "email": "yuna_cho@gmail.com",
-    "lat": 36.7188,
-    "lng": 127.1489,
+    "lat": 36.718135,
+    "lng": 127.151711,
     "imgPath": "profile_10",
     "imgCirclePath": "profile_circle_10",
     "major": "예술학",
     "minor": "영상예술",
     "birth": "November 21st, 1991",
-    "home": "Daejeon, Korea"
+    "home": "충청남도 연기군 소정면 소정리"
   },
   {
     "memberId": 22,
     "name": "권정우",
     "phone": "010-1111-1313",
     "email": "jungwoo_kwon@gmail.com",
-    "lat": 38.3204,
-    "lng": 127.4176,
+    "lat": 38.301865,
+    "lng": 127.356853,
     "imgPath": "profile_26",
     "imgCirclePath": "profile_circle_26",
     "major": "사회학",
     "minor": "사회복지",
     "birth": "December 22nd, 1992",
-    "home": "Seoul, Korea"
+    "home": "강원특별자치도 철원군 김화읍"
   },
   {
     "memberId": 23,
     "name": "한지훈",
     "phone": "010-1212-1414",
     "email": "jihoon_han@gmail.com",
-    "lat": 37.0410,
-    "lng": 127.7481,
+    "lat": 37.047976,
+    "lng": 127.755760,
     "imgPath": "profile_27",
     "imgCirclePath": "profile_circle_27",
     "major": "통계학",
     "minor": "확률이론",
     "birth": "January 23rd, 1993",
-    "home": "Suwon, Korea"
+    "home": "충청북도 충주시 노은면 연하리"
   },
   {
     "memberId": 24,
     "name": "김수정",
     "phone": "010-1313-1515",
     "email": "sujung_kim@gmail.com",
-    "lat": 37.4803,
-    "lng": 126.8816,
+    "lat": 37.478810,
+    "lng": 126.881568,
     "imgPath": "profile_28",
     "imgCirclePath": "profile_circle_28",
     "major": "교육학",
     "minor": "교육심리",
     "birth": "February 24th, 1994",
-    "home": "Incheon, Korea"
+    "home": "서울특별시 금천구 가산디지털1로"
   },
   {
     "memberId": 25,
     "name": "오다영",
     "phone": "010-1414-1616",
     "email": "dayoung_oh@gmail.com",
-    "lat": 35.8151,
-    "lng": 128.5745,
+    "lat": 35.813830,
+    "lng": 128.555265,
     "imgPath": "profile_29",
     "imgCirclePath": "profile_circle_29",
     "major": "경영학",
     "minor": "인적자원관리",
     "birth": "March 25th, 1995",
-    "home": "Daegu, Korea"
+    "home": "대구광역시 달서구 상인3동"
   },
   {
     "memberId": 26,
     "name": "이채은",
     "phone": "010-1515-1717",
     "email": "chaeun_lee@gmail.com",
-    "lat": 36.3491,
-    "lng": 127.4337,
+    "lat": 36.349621,
+    "lng": 127.434869,
     "imgPath": "profile_11",
     "imgCirclePath": "profile_circle_11",
     "major": "심리학",
     "minor": "임상심리",
     "birth": "April 26th, 1996",
-    "home": "Daejeon, Korea"
+    "home": "대전광역시 동구 동서대로"
   },
   {
     "memberId": 27,
     "name": "박민준",
     "phone": "010-1616-1818",
     "email": "minjun_park@gmail.com",
-    "lat": 35.9857,
-    "lng": 128.6226,
+    "lat": 35.985691,
+    "lng": 128.622270,
     "imgPath": "profile_12",
     "imgCirclePath": "profile_circle_12",
     "major": "전자공학",
     "minor": "디지털회로",
     "birth": "May 27th, 1997",
-    "home": "Gwangju, Korea"
+    "home": "대구광역시 동구 송정동 237-1"
   },
   {
     "memberId": 28,
     "name": "정유빈",
     "phone": "010-1717-1919",
     "email": "yubin_jung@gmail.com",
-    "lat": 37.8472,
-    "lng": 126.8915,
+    "lat": 37.850843,
+    "lng": 126.887626,
     "imgPath": "profile_13",
     "imgCirclePath": "profile_circle_13",
     "major": "정치학",
     "minor": "국제정치",
     "birth": "June 28th, 1998",
-    "home": "Seoul, Korea"
+    "home": "경기도 파주시 법원읍 법원리"
   },
   {
     "memberId": 29,
     "name": "최서연",
     "phone": "010-1818-2020",
     "email": "seoyeon_choi@gmail.com",
-    "lat": 36.7172,
-    "lng": 126.8427,
+    "lat": 36.716116,
+    "lng": 126.842518,
     "imgPath": "profile_14",
     "imgCirclePath": "profile_circle_14",
     "major": "생물학",
     "minor": "동물생태학",
     "birth": "July 29th, 1999",
-    "home": "Cheongju, Korea"
+    "home": "충청남도 예산군 예산읍 관작리"
   },
   {
     "memberId": 30,
     "name": "김태우",
     "phone": "010-1919-2121",
     "email": "taewoo_kim@gmail.com",
-    "lat": 37.6497,
-    "lng": 126.9694,
+    "lat": 37.664187,
+    "lng": 126.952460,
     "imgPath": "profile_15",
     "imgCirclePath": "profile_circle_15",
     "major": "화학",
     "minor": "무기화학",
     "birth": "August 30th, 2000",
-    "home": "Seoul, Korea"
+    "home": "경기도 고양시 덕양구 북한산로"
   }
 ]

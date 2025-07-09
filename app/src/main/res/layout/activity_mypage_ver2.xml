@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -48,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="0dp"
         android:layout_gravity="center">
         <TextView
             android:id="@+id/phone_detail_name"
@@ -56,34 +57,82 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:text="홍길동"
-            android:fontFamily="@font/pretendard_semibold"
+            android:fontFamily="@font/pretendard_extrabold"
             android:textColor="@color/font_color"
-            android:textSize="23sp" />
+            android:textSize="30sp" />
 
-        <TextView
-            android:layout_marginLeft="6dp"
-            android:id="@+id/phone_detail_qualification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="교수"
-            android:fontFamily="@font/pretendard_regular"
-            android:textColor="@color/main_color"
-            android:textSize="13sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/phone_detail_major"
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="3dp"
-        android:textAlignment="center"
-        android:text="카이스트\n컴퓨터공학과"
-        android:fontFamily="@font/pretendard_regular"
-        android:textColor="@color/font_color"
-        android:textSize="14sp" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="3dp">-->
+
+<!--        &lt;!&ndash; 집 아이콘을 좌측에 배치 &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/house_icon"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            app:srcCompat="@drawable/detail_home"-->
+<!--            android:layout_gravity="center_vertical"/>-->
+
+<!--        &lt;!&ndash; 텍스트 뷰 (주소) &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/phone_detail_major"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="3dp"-->
+<!--            android:text="서울특별시 강서구 공항대로 123"-->
+<!--            android:textColor="@color/font_color"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textAlignment="center"-->
+<!--            android:fontFamily="@font/pretendard_bold"-->
+<!--            android:layout_weight="1"-->
+<!--            android:maxWidth="250dp"-->
+<!--            android:maxHeight="50dp"-->
+<!--            android:ellipsize="end"-->
+<!--            android:singleLine="true"-->
+<!--            android:layout_gravity="center_vertical"/>-->
+<!--    </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/house_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/detail_home"
+                android:layout_marginStart="30dp"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/phone_detail_major"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginRight="30dp"
+                android:text="서울특별시 중구 세종대로 110"
+                android:textColor="@color/font_color"
+                android:textSize="20sp"
+                android:fontFamily="@font/pretendard_bold"
+                android:layout_weight="1"
+                android:maxWidth="250dp"
+                android:maxHeight="50dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
 
     <!--구분선-->
     <View

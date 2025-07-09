@@ -53,6 +53,8 @@ class FoodBankDetailFragment : Fragment() {
                     view.findViewById<ImageView>(R.id.phone_detail_image).setImageResource(member.imgPath)
                     view.findViewById<TextView>(R.id.phone_detail_name).text = member.name
                     view.findViewById<TextView>(R.id.phone_detail_qualification).text = cv.qualification
+
+
                     view.findViewById<TextView>(R.id.phone_detail_email).text = member.email
                     view.findViewById<TextView>(R.id.phone_detail_phone).text = member.phone
                     view.findViewById<TextView>(R.id.phone_detail_edu).text = cv.edu

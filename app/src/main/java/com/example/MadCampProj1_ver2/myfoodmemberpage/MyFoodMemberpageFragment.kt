@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,8 @@ import com.example.MadCampProj1_ver2.myfooddata.MyFoodDto
 import com.example.MadCampProj1_ver2.foodbank.FoodBankDetailFragment
 import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData
 import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData.getMyFoodMemberIfExists
+import com.example.MadCampProj1_ver2.sampledata.MemberData
+import com.example.MadCampProj1_ver2.sampledata.MemberDto
 
 import java.util.Calendar
 
@@ -70,6 +73,17 @@ class MyFoodMemberpageFragment : Fragment() {
                 Log.d("FoodDebug", "memberId: $memberId → 해당 멤버의 식재료만 필터링")
                 val result = MyFoodMemberData.getFoodDtoListfromMemberId(memberId ?: return, foodDataList)
                 Log.d("FoodDebug", "필터링된 식재료 수: ${result.size}")
+                val memberDataList: List<MemberDto> = MemberData.getPhoneDataList(requireContext()) // member data
+                val member = memberDataList.find {it.memberId == memberId}
+
+                /* xml file 수정하기 */
+                if (member != null) {
+                    view.findViewById<ImageView>(R.id.phone_detail_image).setImageResource(member.imgPath)
+                    view.findViewById<TextView>(R.id.phone_detail_name).text = member.name
+                    view.findViewById<TextView>(R.id.phone_detail_major).text = member.home
+                }
+
+
                 result
             }
         }

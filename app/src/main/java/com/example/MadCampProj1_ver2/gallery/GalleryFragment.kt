@@ -167,6 +167,12 @@ class GalleryFragment : Fragment() {
         val mypageButton = view.findViewById<ImageView>(R.id.top_bar_person_ver2)
         mypageButton.setOnClickListener {
 
+            val fragment = MyFoodpageFragment().apply {
+                arguments = Bundle().apply {
+                    putString("source", "gallery")
+                }
+            }
+
             requireActivity().supportFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     R.anim.phone_slide_in_right, // 새로운 Fragment가 오른쪽에서 들어오는 애니메이션
@@ -174,7 +180,7 @@ class GalleryFragment : Fragment() {
                     R.anim.phone_slide_in_left,  // 뒤로가기 시 기존 Fragment가 왼쪽에서 들어오는 애니메이션
                     R.anim.phone_slide_out_right
                 )
-                .replace(R.id.content_frame_ver2, MyFoodpageFragment())
+                .replace(R.id.content_frame_ver2, fragment)
                 .addToBackStack(null)
                 .commit()
         }

@@ -23,6 +23,8 @@ import com.example.MadCampProj1_ver2.foodbank.FoodBankFragment
 import com.example.MadCampProj1_ver2.foodmap.FoodMapFragment
 import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData.getMyFoodMemberIfExists
 
+import com.example.MadCampProj1_ver2.gallery.GalleryFragment
+
 import java.util.Calendar
 
 
@@ -57,7 +59,7 @@ class MyFoodpageFragment : Fragment() {
             val targetFragment = when (source) {
                 "bank" -> FoodBankFragment()
                 "map" -> FoodMapFragment()
-//                "gallery" -> FoodGalleryFragment()
+                "gallery" -> GalleryFragment()
                 else -> FoodBankFragment() // 기본 fallback
             }
 
