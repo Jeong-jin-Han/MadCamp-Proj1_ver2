@@ -34,7 +34,7 @@ class FoodMapAdapter (
 
     class MapViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.phone_component_name_ver3)
-        val statusTextView: TextView = view.findViewById(R.id.phone_component_status_ver3)
+//        val statusTextView: TextView = view.findViewById(R.id.phone_component_status_ver3)
         val imageView: ImageView = view.findViewById(R.id.phone_component_image_ver3)
 
         val moreView: LinearLayout = view.findViewById(R.id.phone_component_more_ver3)
@@ -60,7 +60,7 @@ class FoodMapAdapter (
             onCardClick: (Int) -> Unit,
         ) {
             nameTextView.text = member.name
-            statusTextView.text = qualification
+//            statusTextView.text = qualification
             imageView.setImageResource(member.imgPath)
 
             cardView.radius = 50f
@@ -109,6 +109,7 @@ class FoodMapAdapter (
                 }
                 // ✅ 반드시 호출해야 adapter 갱신됨!
                 onCheckClick(memberId)
+//                notifyDataSetChanged()  // RecyclerView 갱신
             }
         }
     }

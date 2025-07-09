@@ -120,7 +120,7 @@ class ContactViewHolder(
     view: View,
 )  : RecyclerView.ViewHolder(view) {
     private val nameTextView: TextView = view.findViewById(R.id.phone_component_name)
-    private val statusTextView: TextView = view.findViewById(R.id.phone_component_status)
+//    private val statusTextView: TextView = view.findViewById(R.id.phone_component_status)
     private val imageView: ImageView = view.findViewById(R.id.phone_component_image)
     private val callView: ImageView = view.findViewById(R.id.phone_call)
     private val messageView: ImageView = view.findViewById(R.id.phone_message)
@@ -145,7 +145,7 @@ class ContactViewHolder(
         nameTextView.text = member.name
         for (cv in CVData.getCVDataList(context)) {
             if (cv.memberId == member.memberId) {
-                statusTextView.text = cv.studentID
+//                statusTextView.text = cv.studentID
                 break
             }
         }

@@ -19,7 +19,7 @@ class MapAdapter (private var memberDataList: List<MemberDto>,
 
     class MapViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.phone_component_name)
-        val statusTextView: TextView = view.findViewById(R.id.phone_component_status)
+//        val statusTextView: TextView = view.findViewById(R.id.phone_component_status)
         val imageView: ImageView = view.findViewById(R.id.phone_component_image)
         val cardView: CardView = view.findViewById(R.id.phone)
     }
@@ -36,7 +36,7 @@ class MapAdapter (private var memberDataList: List<MemberDto>,
         val cv = cvDataList.find {it.memberId == member.memberId}
         if(cv != null){
             holder.nameTextView.text = member.name
-            holder.statusTextView.text = cv.qualification
+//            holder.statusTextView.text = cv.qualification
             holder.imageView.setImageResource(member.imgPath)
         }
         holder.cardView.radius = 50f

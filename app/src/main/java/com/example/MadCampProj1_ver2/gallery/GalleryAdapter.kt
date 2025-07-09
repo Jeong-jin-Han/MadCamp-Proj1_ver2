@@ -106,6 +106,10 @@ class GalleryAdapter (private val context: Context,
             dto.ingredients.count { it !in mergedFridge }
         })
 
+        // 로그 추가하여 데이터 확인
+        Log.d("GalleryAdapter", "Filtered Data: ${filteredData.size}")
+        Log.d("GalleryAdapter", "Sorted Data: ${sortedData.size}")
+
 
         dataList.clear()
         dataList.addAll(sortedData)

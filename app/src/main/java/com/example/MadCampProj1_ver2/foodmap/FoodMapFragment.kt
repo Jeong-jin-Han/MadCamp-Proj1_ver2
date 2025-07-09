@@ -133,6 +133,7 @@ class FoodMapFragment: Fragment() {
                 val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
                 Log.d("CartUpdate", "Checked members: ${updatedList.map { it.name }}")
                 cartAdapter.updateData(updatedList)
+                cartAdapter.notifyDataSetChanged()  // 전체 데이터 변경 후 갱신
             }
         )
 
@@ -233,7 +234,7 @@ class FoodMapFragment: Fragment() {
         val view = LayoutInflater.from(context).inflate(R.layout.map_pin, null)
         val imageView: ImageView = view.findViewById(R.id.phone_component_image)
         val nameText: TextView = view.findViewById(R.id.phone_component_name)
-        val statusText: TextView = view.findViewById(R.id.phone_component_status)
+//        val statusText: TextView = view.findViewById(R.id.phone_component_status)
         val cardView: CardView = view.findViewById(R.id.phone)
 
         // cvdata가 아니라 Food에 대한 정보를 가져오게 할 예정
@@ -243,7 +244,7 @@ class FoodMapFragment: Fragment() {
             imageView.setBackgroundResource(R.drawable.circle)
             cardView.radius = 50f
             nameText.text = foodmember.name
-            statusText.text = it.qualification
+//            statusText.text = it.qualification
         }
 
         marker.icon = OverlayImage.fromBitmap(createBitmapFromView(view))
@@ -299,6 +300,7 @@ class FoodMapFragment: Fragment() {
                 val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
                 Log.d("CartUpdate", "Checked members: ${updatedList.map { it.name }}")
                 cartAdapter.updateData(updatedList)
+                cartAdapter.notifyDataSetChanged()  // 전체 데이터 변경 후 갱신
             }
         )
 //        TODO()

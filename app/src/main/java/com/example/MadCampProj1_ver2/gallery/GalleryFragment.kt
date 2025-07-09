@@ -134,6 +134,11 @@ class GalleryFragment : Fragment() {
                 val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
                 Log.d("CartUpdate", "Checked members: ${updatedList.map { it.name }}")
                 cartAdapter.updateData(updatedList)
+                cartAdapter.notifyDataSetChanged() // Adapter에 변경된 사항을 알리고 UI 업데이트
+
+                // groupId를 어떻게 ㅎ
+//                val groupId = getSelectedGroupId() // 사용자가 선택한 그룹 ID를 가져오는 함수
+                galleryAdapter?.updateData(0)
             }
         )
 

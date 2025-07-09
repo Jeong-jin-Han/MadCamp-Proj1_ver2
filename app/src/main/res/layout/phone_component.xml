@@ -60,6 +60,7 @@
                     android:id="@+id/phone_component_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:paddingTop="5dp"
                     android:textSize="17sp"
                     android:textColor="@color/font_color"
@@ -67,14 +68,6 @@
                     android:text="달걀"/>
 
                 <!--학석박-->
-                <TextView
-                    android:id="@+id/phone_component_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="@color/main_color"
-                    android:fontFamily="@font/pretendard_light"
-                    android:text="유통기한"/>
             </LinearLayout>
         </LinearLayout>
 

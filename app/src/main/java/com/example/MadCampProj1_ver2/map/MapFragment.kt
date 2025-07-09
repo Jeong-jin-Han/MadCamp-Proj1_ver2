@@ -184,7 +184,7 @@ class MapFragment : Fragment() {
         val view = LayoutInflater.from(context).inflate(R.layout.map_pin, null)
         val imageView: ImageView = view.findViewById(R.id.phone_component_image)
         val nameText: TextView = view.findViewById(R.id.phone_component_name)
-        val statusText: TextView = view.findViewById(R.id.phone_component_status)
+//        val statusText: TextView = view.findViewById(R.id.phone_component_status)
         val cardView: CardView = view.findViewById(R.id.phone)
 
         val cv = CVData.getCVDataList(requireContext()).find { it.memberId == member.memberId }
@@ -193,7 +193,7 @@ class MapFragment : Fragment() {
             imageView.setBackgroundResource(R.drawable.circle)
             cardView.radius = 50f
             nameText.text = member.name
-            statusText.text = it.qualification
+//            statusText.text = it.qualification
         }
 
         marker.icon = OverlayImage.fromBitmap(createBitmapFromView(view))
