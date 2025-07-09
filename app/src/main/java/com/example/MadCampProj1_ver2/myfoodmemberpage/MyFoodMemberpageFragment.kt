@@ -111,6 +111,7 @@ class MyFoodMemberpageFragment : Fragment() {
 //        recyclerView.adapter = PhoneAdapter(sectionedList, requireContext(), {id ->
         recyclerView_meat.adapter = MyFoodMemberPageAdapter(sectionedList_meat, requireContext())
 
+
         // diary
         recyclerView_dairy.layoutManager = LinearLayoutManager(activity) // 아이템을 세트별로 나열
         Log.d("hi", sectionedList_dairy.toString())
