@@ -75,7 +75,8 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/bell"
                     android:paddingHorizontal="8dp"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/notificationNumber_ver2"
@@ -88,7 +89,8 @@
                     android:textAlignment="center"
                     android:textSize="6sp"
                     android:textColor="@color/background2"
-                    android:fontFamily="@font/pretendard_semibold" />
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:visibility="gone"/>
             </FrameLayout>
 
             <!-- 냉장고 아이콘 -->
