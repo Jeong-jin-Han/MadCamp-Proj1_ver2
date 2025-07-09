@@ -148,10 +148,18 @@ class GalleryDetailFragment : Fragment() {
         // 제스처 감지기 초기화 (스와이프 좌우 이동)
         gestureDetector = GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
             override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+                Log.d("SwipeEvent", "onFling called") // onFling 호출 여부 로그
                 if (e1 == null || e2 == null) return false
                 val deltaX = e2.x - e1.x
+                Log.d("SwipeEvent", "deltaX: $deltaX") // deltaX 값 로그
                 if (abs(deltaX) > SWIPE_THRESHOLD && abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (deltaX > 0) navigateToAdjacentPhoto(-1) else navigateToAdjacentPhoto(1)
+                    if (deltaX > 0) {
+                        Log.d("SwipeEvent", "Swipe Right detected")
+                        navigateToAdjacentPhoto(-1)
+                    } else {
+                        Log.d("SwipeEvent", "Swipe Left detected")
+                        navigateToAdjacentPhoto(1)
+                    }
                     return true
                 }
                 return false
@@ -202,17 +210,60 @@ class GalleryDetailFragment : Fragment() {
     }
 
     private fun navigateToAdjacentPhoto(direction: Int) {
+//        val currentPhotoId = arguments?.getInt("id") ?: return
+//        val sortedIdList = arguments?.getIntegerArrayList("sortedList") ?: return
+//        val currentIndex = sortedIdList.indexOf(currentPhotoId)
+//        val newIndex = (currentIndex + direction).coerceIn(0, sortedIdList.size - 1)
+//        if (newIndex == currentIndex) return
+//
+//        val newPhotoId = sortedIdList[newIndex]
+//        val fragment = GalleryDetailFragment().apply {
+//            arguments = Bundle().apply {
+//                putInt("id", newPhotoId)
+//                putIntegerArrayList("sortedList", sortedIdList)
+//            }
+//        }
+//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//        if (direction > 0) {
+//            transaction.setCustomAnimations(
+//                R.anim.slide_in_right, R.anim.slide_out_left
+//            )
+//        } else {
+//            transaction.setCustomAnimations(
+//                R.anim.slide_in_left, R.anim.slide_out_right
+//            )
+//        }
+//        transaction.replace(R.id.content_frame_ver2, fragment)
+//            .commit()
         val currentPhotoId = arguments?.getInt("id") ?: return
-        val sortedIdList = arguments?.getIntegerArrayList("sortedList") ?: return
-        val currentIndex = sortedIdList.indexOf(currentPhotoId)
-        val newIndex = (currentIndex + direction).coerceIn(0, sortedIdList.size - 1)
-        if (newIndex == currentIndex) return
+        val galleryDataList = GalleryData.getGalleryDataList()
+        val gallery = galleryDataList.find { it.id == currentPhotoId }
 
-        val newPhotoId = sortedIdList[newIndex]
+        // 현재 사진의 카테고리 (date 필드가 카테고리라고 가정)
+        val currentCategory = gallery?.date ?: return
+
+        // 같은 카테고리 내에서만 필터링
+        val sortedIdList = galleryDataList.filter { it.date == currentCategory }
+            .sortedBy { it.id } // ID로 정렬 (또는 원하는 다른 방식으로 정렬)
+
+        Log.d("SwipeEvent", "Current category: $currentCategory")
+        Log.d("SwipeEvent", "Sorted photo IDs in the same category: ${sortedIdList.map { it.id }}")
+
+        val currentIndex = sortedIdList.indexOfFirst { it.id == currentPhotoId }
+        val newIndex = (currentIndex + direction).coerceIn(0, sortedIdList.size - 1)
+
+        if (newIndex == currentIndex) {
+            Log.d("SwipeEvent", "No change in photo, currentIndex: $currentIndex, newIndex: $newIndex")
+            return
+        }
+
+        val newPhotoId = sortedIdList[newIndex].id
+        Log.d("SwipeEvent", "Navigating to new photo ID: $newPhotoId")
+
         val fragment = GalleryDetailFragment().apply {
             arguments = Bundle().apply {
                 putInt("id", newPhotoId)
-                putIntegerArrayList("sortedList", sortedIdList)
+                putIntegerArrayList("sortedList", ArrayList(sortedIdList.map { it.id }))
             }
         }
         val transaction = requireActivity().supportFragmentManager.beginTransaction()

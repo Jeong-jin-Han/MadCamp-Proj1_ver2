@@ -8,6 +8,9 @@ import android.view.ViewConfiguration
 import android.widget.FrameLayout
 import kotlin.math.abs
 
+
+import android.util.Log
+
 class CustomContainerLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
@@ -38,16 +41,20 @@ class CustomContainerLayout @JvmOverloads constructor(
                 distanceX: Float,
                 distanceY: Float
             ): Boolean {
+                Log.d("SwipeEvent", "onScroll called")  // 추가된 로그
                 if (e1 != null && e2 != null) {
                     val deltaX = e2.x - e1.x
                     val deltaY = e2.y - e1.y
+                    Log.d("SwipeEvent", "deltaX: $deltaX, deltaY: $deltaY")  // deltaX, deltaY 값 로그
 
                     // 수평 슬라이드 감지
                     if (abs(deltaX) > abs(deltaY) && abs(deltaX) > touchSlop) {
                         isSliding = true
                         if (deltaX > 0) {
+                            Log.d("SwipeEvent", "Swiped Right")
                             performSlideRight() // 오른쪽에서 왼쪽으로
                         } else {
+                            Log.d("SwipeEvent", "Swiped Left")
                             performSlideLeft() // 왼쪽에서 오른쪽으로
                         }
                         return true
@@ -77,11 +84,13 @@ class CustomContainerLayout @JvmOverloads constructor(
 
     private fun performSlideLeft() {
         // 왼쪽으로 슬라이드 시 동작 처리
+        Log.d("SwipeEvent", "performSlideLeft called")  // 슬라이드 왼쪽 동작 로그
         (context as? SlideHandler)?.onSlideLeft()
     }
 
     private fun performSlideRight() {
         // 오른쪽으로 슬라이드 시 동작 처리
+        Log.d("SwipeEvent", "performSlideRight called")  // 슬라이드 오른쪽 동작 로그
         (context as? SlideHandler)?.onSlideRight()
     }
 

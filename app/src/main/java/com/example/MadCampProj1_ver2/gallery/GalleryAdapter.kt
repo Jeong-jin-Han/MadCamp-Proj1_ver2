@@ -88,6 +88,10 @@ class GalleryAdapter (private val context: Context,
     fun updateData(id: Int) {
 
         val imgData = GalleryData.getGalleryDataList()
+
+        // id에 따라 필터링된 데이터 로그 추가
+        Log.d("GalleryAdapter", "ID: $id")
+
         val filteredData = if (id == 0) {
             imgData
         } else {
