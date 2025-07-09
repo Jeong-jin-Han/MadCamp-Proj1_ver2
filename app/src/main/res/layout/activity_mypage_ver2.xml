@@ -179,10 +179,9 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:maxHeight="300dp"
                         android:id="@+id/recycler_vegatable"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="150dp" />
                 </LinearLayout>
 
 
@@ -224,10 +223,9 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:maxHeight="300dp"
                         android:id="@+id/recycler_meat"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="150dp"
                         android:orientation="horizontal"/>
                 </LinearLayout>
 
@@ -268,10 +266,9 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:maxHeight="300dp"
                         android:id="@+id/recycler_dairy"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="150dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -312,10 +309,9 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:maxHeight="300dp"
                         android:id="@+id/recycler_sauce"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="150dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -356,10 +352,9 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:maxHeight="300dp"
                         android:id="@+id/recycler_etc"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="150dp" />
                 </LinearLayout>
 
             </LinearLayout>
