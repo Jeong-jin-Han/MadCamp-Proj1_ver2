@@ -128,6 +128,23 @@ class FoodMapFragment: Fragment() {
             },
             onLocationClick = {
                 id ->
+                // onLocationClick 이벤트 처리
+                val member = MyFoodMemberList.find { it.memberId == id }
+
+                if(member != null) {
+                    val fragment = FoodMapFragment().apply {
+                        arguments = Bundle().apply {
+                            putDouble("lat", member.lat)
+                            putDouble("lng", member.lng)
+                            putInt("memberId", member.memberId)
+                        }
+                    }
+
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.content_frame_ver2, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
             },
             onCheckClick = { memberId ->
                 val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
@@ -214,7 +231,7 @@ class FoodMapFragment: Fragment() {
                 setupRecyclerView(view, MyFoodMemberList)
 
                 // 특정 GPS 위촐 이동 (lat, lng 값이 유효한 경우)
-                if (lat != -1.0 && lng != -1.0 && memberId == -1) {
+                if (lat != -1.0 && lng != -1.0 && memberId != -1) {
                     val foodmember = MyFoodMemberList.find {it.memberId == memberId}
                     foodmember?.let {
                         moveToLocation(lat, lng, it)
@@ -295,6 +312,23 @@ class FoodMapFragment: Fragment() {
             },
             onLocationClick = {
                 id ->
+                val MyFoodMemberList: List<MyFoodMemberDto> = MyFoodMemberData.getAllMyFoodMembers()
+                val member = MyFoodMemberList.find { it.memberId == id }
+
+                if(member != null) {
+                    val fragment = FoodMapFragment().apply {
+                        arguments = Bundle().apply {
+                            putDouble("lat", member.lat)
+                            putDouble("lng", member.lng)
+                            putInt("memberId", member.memberId)
+                        }
+                    }
+
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.content_frame_ver2, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
             },
             onCheckClick = { memberId ->
                 val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
