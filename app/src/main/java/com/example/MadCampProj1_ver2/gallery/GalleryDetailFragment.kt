@@ -17,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -114,6 +115,8 @@ class GalleryDetailFragment : Fragment() {
         val galleryDataList = GalleryData.getGalleryDataList()
         val gallery = galleryDataList.find { it.id == galleryId }
         selectedCategory = gallery?.date ?: "한식"
+        Log.d("카테고리 디버그", "onViewCreated selectedCategory: $selectedCategory")
+        Log.d("카테고리 디버그", "onViewCreated gallery?.date: ${gallery?.date}")
         val memberDataList = MemberData.getPhoneDataList(requireContext())
         val member = memberDataList.find { it.memberId == gallery?.memberId }
 
@@ -226,6 +229,7 @@ class GalleryDetailFragment : Fragment() {
                 .addToBackStack("galleryFragment")
                 .commit()
         }
+
 
     }
 

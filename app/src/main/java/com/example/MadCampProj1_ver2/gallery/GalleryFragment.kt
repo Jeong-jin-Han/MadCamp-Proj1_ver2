@@ -289,6 +289,12 @@ class GalleryFragment : Fragment() {
 
         recyclerView1.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView1.adapter = GalleryGroupAdapter(galleryDataList1) { id ->
+            // 🟡 카테고리 이름 가져오기
+            val groupData = GalleryGroupData.getGalleryGroupDataList()
+            val categoryTitle = groupData.find { it.memberId == id }?.title ?: "한식"
+
+            // ✅ 선택된 카테고리 반영
+            selectedCategory = categoryTitle
             galleryAdapter?.updateData(id)
         }
     }
