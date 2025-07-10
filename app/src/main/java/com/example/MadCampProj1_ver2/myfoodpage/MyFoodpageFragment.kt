@@ -132,6 +132,7 @@ class MyFoodpageFragment : Fragment() {
                     statusTextView.text = "유통기한: $selectedDate"
                     // 여기서 id는 클릭된 FoodItem의 id (또는 foodId 등)
                     // 필요하면 선택된 날짜와 id로 서버에 저장하거나 다른 UI 업데이트도 가능
+//                    recyclerView_vegatable.adapter?.notifyDataSetChanged()
                 }
             },
             onPlusClick = {
@@ -141,7 +142,6 @@ class MyFoodpageFragment : Fragment() {
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
                 numberView2.text = "$number"
-
             },
             onMinusClick = {
                     foodId, numberView, numberView2 ->
@@ -150,6 +150,7 @@ class MyFoodpageFragment : Fragment() {
                 val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
                 numberView.text = "$number 개"
                 numberView2.text = "$number"
+
             }
         )
 
@@ -455,6 +456,14 @@ class MyFoodpageFragment : Fragment() {
                 numberView2.text = "$number"
             }
         )
+
+        refreshAdapters(
+            recyclerView_vegatable,
+            recyclerView_meat,
+            recyclerView_dairy,
+            recyclerView_sauce,
+            recyclerView_etc
+        )
     }
     fun prepareSectionedList(foodList: List<FoodDto>): List<ListItem> {
         val groupTitles = listOf("채소", "육류와 가공육", "유제품과 가공식품", "양념류", "기타")
@@ -542,6 +551,59 @@ class MyFoodpageFragment : Fragment() {
             year, month, day
         )
         datePickerDialog.show()
+    }
+
+    private fun refreshAdapters(
+        recyclerView_vegatable: RecyclerView,
+        recyclerView_meat: RecyclerView,
+        recyclerView_dairy: RecyclerView,
+        recyclerView_sauce: RecyclerView,
+        recyclerView_etc: RecyclerView
+    ) {
+        val foodDataList = FoodData.getFoodDataList(requireContext())
+
+        fun createAdapter(category: String): FoodBankAdapter {
+            val sectionedList = prepareSectionedList_with_MyFood(foodDataList, category)
+            return FoodBankAdapter(
+                sectionedList,
+                requireContext(),
+                onItemClick = { /* 필요 시 구현 */ },
+                onLocationClick = { /* 필요 시 구현 */ },
+                onCalanderClick = { foodId, statusTextView ->
+                    showDatePickerDialog { selectedDate ->
+                        MyFoodData.addMyFoodDataDueDate(foodId, selectedDate)
+                        Toast.makeText(requireContext(), "[$foodId] 날짜 선택됨: $selectedDate", Toast.LENGTH_SHORT).show()
+                        statusTextView.text = "유통기한: $selectedDate"
+                        // 👉 refresh
+                        refreshAdapters(recyclerView_vegatable, recyclerView_meat, recyclerView_dairy, recyclerView_sauce, recyclerView_etc)
+                    }
+                },
+                onPlusClick = { foodId, numberView, numberView2 ->
+                    MyFoodData.addMyFoodDataNumber(foodId)
+                    Toast.makeText(requireContext(), "[$foodId] 수량 +1", Toast.LENGTH_SHORT).show()
+                    val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
+                    numberView.text = "$number 개"
+                    numberView2.text = "$number"
+                    // 👉 refresh
+                    refreshAdapters(recyclerView_vegatable, recyclerView_meat, recyclerView_dairy, recyclerView_sauce, recyclerView_etc)
+                },
+                onMinusClick = { foodId, numberView, numberView2 ->
+                    MyFoodData.deleteMyFoodDataNumber(foodId)
+                    Toast.makeText(requireContext(), "[$foodId] 수량 -1", Toast.LENGTH_SHORT).show()
+                    val number = MyFoodData.getMyFoodDataNumberfromFoodId(foodId)
+                    numberView.text = "$number 개"
+                    numberView2.text = "$number"
+                    // 👉 refresh
+                    refreshAdapters(recyclerView_vegatable, recyclerView_meat, recyclerView_dairy, recyclerView_sauce, recyclerView_etc)
+                }
+            )
+        }
+
+        recyclerView_vegatable.adapter = createAdapter("채소")
+        recyclerView_meat.adapter = createAdapter("육류와 가공육")
+        recyclerView_dairy.adapter = createAdapter("유제품과 가공식품")
+        recyclerView_sauce.adapter = createAdapter("양념류")
+        recyclerView_etc.adapter = createAdapter("기타")
     }
 
 }

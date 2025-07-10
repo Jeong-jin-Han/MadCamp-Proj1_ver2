@@ -42,6 +42,9 @@ import com.example.MadCampProj1_ver2.sampledata.GalleryDto
 
 import com.example.MadCampProj1_ver2.myfoodmemberpage.MyFoodMemberpageFragment
 import android.util.Log
+import com.example.MadCampProj1_ver2.foodmap.FoodMapFragment
+import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData
+import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberDto
 
 @Suppress("DEPRECATION")
 
@@ -129,6 +132,23 @@ class GalleryFragment : Fragment() {
             },
             onLocationClick = {
                     id ->
+                val MyFoodMemberList: List<MyFoodMemberDto> = MyFoodMemberData.getAllMyFoodMembers()
+                val member = MyFoodMemberList.find { it.memberId == id }
+
+                if(member != null) {
+                    val fragment = FoodMapFragment().apply {
+                        arguments = Bundle().apply {
+                            putDouble("lat", member.lat)
+                            putDouble("lng", member.lng)
+                            putInt("memberId", member.memberId)
+                        }
+                    }
+
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.content_frame_ver2, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
             },
             onCheckClick = { memberId ->
                 val updatedList = MyFoodCheckedMemberData.getCheckedFoodMembers()
