@@ -48,7 +48,7 @@
             android:layout_marginTop="65dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/background"
+            android:background="@color/pink"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/recycler_view"
             app:layout_constraintHorizontal_weight="1"

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!-- 배경 요소들 -->
+    <View
+        android:id="@+id/rectangle_1"
+        android:layout_width="296dp"
+        android:layout_height="488dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="181dp"
+        android:background="@drawable/rectangle_1" />
+
+    <View
+        android:id="@+id/rectangle_2"
+        android:layout_width="273dp"
+        android:layout_height="166dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="192dp"
+        android:background="@drawable/rectangle_2" />
+
+    <View
+        android:id="@+id/rectangle_3"
+        android:layout_width="273dp"
+        android:layout_height="278dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="375dp"
+        android:background="@drawable/rectangle_3" />
+
+    <View
+        android:id="@+id/rectangle_4"
+        android:layout_width="49dp"
+        android:layout_height="11dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginTop="669dp"
+        android:background="@drawable/rectangle_4" />
+
+    <View
+        android:id="@+id/rectangle_5"
+        android:layout_width="49dp"
+        android:layout_height="11dp"
+        android:layout_marginLeft="205dp"
+        android:layout_marginTop="669dp"
+        android:background="@drawable/rectangle_5" />
+
+    <View
+        android:id="@+id/line_1"
+        android:layout_width="293dp"
+        android:layout_height="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="368dp"
+        android:background="@drawable/line_1" />
+
+    <View
+        android:id="@+id/rectangle_6"
+        android:layout_width="200dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="113dp"
+        android:background="@drawable/rectangle_6" />
+
+    <View
+        android:id="@+id/rectangle_7"
+        android:layout_width="273dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="588dp"
+        android:background="#FFF7E0" />
+
+    <!-- 텍스트 요소들 -->
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="158dp"
+        android:layout_height="66dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginTop="120dp"
+        android:text="자취생"
+        android:textSize="64sp"
+        android:textColor="#FF7D29"
+        android:fontFamily="@font/bmjua"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/text_fridge"
+        android:layout_width="260dp"
+        android:layout_height="95dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="227dp"
+        android:text="냉장고"
+        android:textSize="100sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/bmhanna"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/text_reul"
+        android:layout_width="260dp"
+        android:layout_height="95dp"
+        android:layout_marginLeft="133dp"
+        android:layout_marginTop="384dp"
+        android:text="를"
+        android:textSize="80sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/bmhanna"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/text_request"
+        android:layout_width="354dp"
+        android:layout_height="94dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="479dp"
+        android:text="부탁해"
+        android:textSize="100sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/bmhanna"
+        android:gravity="center" />
+
+</RelativeLayout>

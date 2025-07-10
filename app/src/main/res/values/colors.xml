@@ -12,9 +12,12 @@
     <color name="background">#F6F6F8</color>
     <color name="background2">#FCFCFE</color>
     <color name="mint">#8DD8DE</color>
+    <color name="pink">#F1D3CE</color>
     <color name="gray">#EBEBEB</color>
+    <color name="darkgray">#3C3D37</color>
     <color name="detail_color">#314C71</color>
     <color name="font_color">#303030</color>
     <color name="notification_color">#D2F0F1</color>
+
 
 </resources>

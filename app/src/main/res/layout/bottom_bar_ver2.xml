@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Ingredient"
-            android:textSize="9dp"/>
+            android:fontFamily="@font/bmhanna"
+            android:textSize="15dp"/>
 
     </LinearLayout>
 
@@ -64,7 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Recipe"
-            android:textSize="9dp"/>
+            android:fontFamily="@font/bmhanna"
+            android:textSize="15dp"/>
 
     </LinearLayout>
 
@@ -93,7 +95,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Network"
-            android:textSize="9dp"/>
+            android:fontFamily="@font/bmhanna"
+            android:textSize="15dp"/>
 
     </LinearLayout>
 

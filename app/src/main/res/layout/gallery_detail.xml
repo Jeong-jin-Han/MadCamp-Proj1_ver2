@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="40dp"
-                android:fontFamily="@font/pretendard_medium"
+                android:fontFamily="@font/bmjua"
                 android:paddingTop="20dp"
                 android:text="2024-12-31"
                 android:textColor="#818181"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
-                android:fontFamily="@font/pretendard_semibold"
+                android:fontFamily="@font/b5"
                 android:paddingTop="5dp"
                 android:text="텐동 먹기"
                 android:textColor="@color/black"
@@ -80,9 +80,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingTop="16dp"
+                android:paddingTop="5dp"
                 android:layout_marginHorizontal="30dp"
-                android:text="재료들 표시" />
+                android:fontFamily="@font/b7"
+                android:text="재료들 표시"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/gallery_detail_abstract"
@@ -91,7 +93,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/pretendard_regular"
+                android:fontFamily="@font/b4"
                 android:lineSpacingExtra="8dp"
                 android:paddingTop="10dp"
                 android:text="오늘은 연구실 카드로 비싼 텐동을 먹었어요~\n여러분도 열심히 연구해서 연구실 카드로 밥을 먹도록 합시다"

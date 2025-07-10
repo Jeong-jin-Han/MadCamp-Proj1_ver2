@@ -35,7 +35,7 @@
                 android:layout_gravity="start|center_vertical"
                 android:paddingLeft="10dp"
                 android:text="식재료"
-                android:fontFamily="@font/pretendard_bold"
+                android:fontFamily="@font/bmhanna"
                 android:textSize="22dp"
                 android:textColor="#080808" />
 

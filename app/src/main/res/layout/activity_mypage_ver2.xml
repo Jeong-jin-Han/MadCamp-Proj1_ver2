@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:text="넙죽이"
-            android:fontFamily="@font/pretendard_extrabold"
+            android:fontFamily="@font/b5"
             android:textColor="@color/font_color"
             android:textSize="30sp" />
 
@@ -107,8 +107,8 @@
 
             <ImageView
                 android:id="@+id/house_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 app:srcCompat="@drawable/detail_home"
                 android:layout_marginStart="30dp"
                 android:layout_gravity="center_vertical"/>
@@ -124,7 +124,7 @@
                 android:text="대전광역시 유성구 대학로 291"
                 android:textColor="@color/font_color"
                 android:textSize="20sp"
-                android:fontFamily="@font/pretendard_bold"
+                android:fontFamily="@font/b4"
                 android:layout_weight="1"
                 android:maxWidth="250dp"
                 android:maxHeight="50dp"
