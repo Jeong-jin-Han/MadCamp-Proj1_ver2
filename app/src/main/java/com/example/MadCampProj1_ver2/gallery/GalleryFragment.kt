@@ -45,6 +45,7 @@ import android.util.Log
 import com.example.MadCampProj1_ver2.foodmap.FoodMapFragment
 import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberData
 import com.example.MadCampProj1_ver2.myfoodmemberdata.MyFoodMemberDto
+import com.example.MadCampProj1_ver2.sampledata.GalleryData
 
 @Suppress("DEPRECATION")
 
@@ -55,6 +56,8 @@ class GalleryFragment : Fragment() {
     private var galleryAdapter: GalleryAdapter? = null
     private var imageFilePath: String? = null
 
+    private var selectedCategory: String = "한식"
+
     private lateinit var cartAdapter: FoodMapAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +67,11 @@ class GalleryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 1. 전달받은 category 가져오기 (예: "일식&중식")
+        arguments?.getString("category")?.let {
+            selectedCategory = it
+        }
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         val recyclerView1: RecyclerView = view.findViewById(R.id.recycler_view1)
@@ -210,9 +218,15 @@ class GalleryFragment : Fragment() {
                 .commit()
         }
 
+        // 2. 해당 카테고리로 필터링
+        val filteredGalleryList = GalleryData.getGalleryDataList()
+            .filter { it.date == selectedCategory }
 
+
+
+//        dataList = getGalleryDataList().filter { it.date == "한식" }.toMutableList()
         galleryAdapter = GalleryAdapter(context = requireContext(),
-            dataList = getGalleryDataList().filter { it.date == "한식" }.toMutableList()) { id, sharedView ->
+            dataList = filteredGalleryList.toMutableList()) { id, sharedView ->
 //
 //            val mergedFridge = MyFoodMergeData.getMergedList().map { it.foodId }.toSet()
 //            val sortedList = getGalleryDataList()
@@ -244,6 +258,7 @@ class GalleryFragment : Fragment() {
                 arguments = Bundle().apply {
                     putInt("id", id)
                     putIntegerArrayList("sortedList", ArrayList(sortedList))  // 👉 리스트 같이 넘기기 (GalleryDto는 Parcelable 필요)
+                    putString("category", selectedCategory) // ✅ 여기서 다시 전달
                 }
             }
 
@@ -255,8 +270,17 @@ class GalleryFragment : Fragment() {
         }
 
 
+//        recyclerView.adapter = galleryAdapter
+//        galleryAdapter?.updateData(1)
+
+        val groupData = GalleryGroupData.getGalleryGroupDataList()
+
+// 현재 selectedCategory 값을 기반으로 groupId 찾기
+        val groupId = groupData.find { it.title == selectedCategory }?.memberId ?: 1  // 기본값은 1 ("한식")
+
+// RecyclerView 세팅 후 업데이트
         recyclerView.adapter = galleryAdapter
-        galleryAdapter?.updateData(1)
+        galleryAdapter?.updateData(groupId)
 
 
         cameraButton.setOnClickListener {

@@ -42,6 +42,7 @@ class GalleryDetailFragment : Fragment() {
 
     private val SWIPE_THRESHOLD = 100
     private val SWIPE_VELOCITY_THRESHOLD = 100
+    private var selectedCategory: String = "한식"  // 기본값
 
     // assets/ingredients.json을 읽어 Ingredient 리스트 반환
     private fun loadIngredients(context: Context): List<Ingredient> {
@@ -107,10 +108,12 @@ class GalleryDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val galleryId = arguments?.getInt("id") ?: -1
+
         if (galleryId == -1) return
 
         val galleryDataList = GalleryData.getGalleryDataList()
         val gallery = galleryDataList.find { it.id == galleryId }
+        selectedCategory = gallery?.date ?: "한식"
         val memberDataList = MemberData.getPhoneDataList(requireContext())
         val member = memberDataList.find { it.memberId == gallery?.memberId }
 
@@ -203,13 +206,27 @@ class GalleryDetailFragment : Fragment() {
             }
         }
 
-        backArrow.visibility = View.VISIBLE
+//        backArrow.visibility = View.VISIBLE
+//        backArrow.setOnClickListener {
+//            requireActivity().supportFragmentManager.popBackStack(
+//                "galleryFragment",
+//                FragmentManager.POP_BACK_STACK_INCLUSIVE
+//            )
+//        }
         backArrow.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack(
-                "galleryFragment",
-                FragmentManager.POP_BACK_STACK_INCLUSIVE
-            )
+
+            val fragment = GalleryFragment().apply {
+                arguments = Bundle().apply {
+                    putString("category", selectedCategory)
+                }
+            }
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.content_frame_ver2, fragment)
+                .addToBackStack("galleryFragment")
+                .commit()
         }
+
     }
 
     private fun navigateToAdjacentPhoto(direction: Int) {
@@ -274,6 +291,8 @@ class GalleryDetailFragment : Fragment() {
 
 // 현재 사진의 카테고리 (date 필드가 카테고리라고 가정)
         val currentCategory = gallery?.date ?: return
+        Log.d("카테고리 디버그", "selectedCategory: $selectedCategory")
+        Log.d("카테고리 디버그", "gallery?.date: ${gallery?.date}")
 
 // 같은 카테고리 내에서만 필터링
         // 먼저 currentCategory에 해당하는 ID만 뽑음
@@ -308,6 +327,7 @@ class GalleryDetailFragment : Fragment() {
             arguments = Bundle().apply {
                 putInt("id", newPhotoId) // 새로운 사진 ID
                 putIntegerArrayList("sortedList", ArrayList(sortedIdList.map { it })) // 정렬된 ID 리스트
+                putString("category", selectedCategory) // 🔥 현재 카테고리 추가
             }
         }
 
